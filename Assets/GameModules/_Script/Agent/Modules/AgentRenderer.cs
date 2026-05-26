@@ -1,6 +1,7 @@
 ﻿using System;
 using _Script.Camera;
 using _Script.ScriptableObject;
+using _Scripts.Agent;
 using UnityEngine;
 
 namespace _Script.Agent.Modules
@@ -32,7 +33,11 @@ namespace _Script.Agent.Modules
 
         public event Action OnAnimationEnd;
         public event Action OnAttackTrigger;
-        
+        public void ResetEndTrigger()
+        {
+            
+        }
+
         private void EndTrigger() => OnAnimationEnd?.Invoke();
         private void AttackTrigger() => OnAttackTrigger?.Invoke();
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using _Script.Agent.Modules.StatSystem;
 using _Script.ScriptableObject;
 using _Script.ScriptableObject.Event;
+using _Scripts.Agent;
 using UnityEngine;
 
 namespace _Script.Agent.Modules

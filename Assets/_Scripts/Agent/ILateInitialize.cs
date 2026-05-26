@@ -1,4 +1,6 @@
-namespace _Script.Agent.Modules
+using _Script.Agent.Modules;
+
+namespace _Scripts.Agent
 {
     public interface ILateInitialize
     {

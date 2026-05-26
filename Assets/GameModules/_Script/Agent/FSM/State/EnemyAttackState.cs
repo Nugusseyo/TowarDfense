@@ -2,6 +2,7 @@ using _Script.Agent.Modules;
 using _Script.Agent.Modules.BattleSystem;
 using _Script.Agent.Modules.StatSystem;
 using _Script.ScriptableObject;
+using _Scripts.Agent;
 using Agents.FSM;
 
 namespace _Script.Agent.FSM.State

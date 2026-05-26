@@ -5,6 +5,7 @@ using _Script.Agent.Modules.BattleSystem;
 using _Script.Agent.Modules.StatSystem;
 using _Script.Agent.Operator;
 using _Script.ScriptableObject;
+using _Scripts.Agent;
 using UnityEngine;
 
 namespace _Script.Agent.FSM.State

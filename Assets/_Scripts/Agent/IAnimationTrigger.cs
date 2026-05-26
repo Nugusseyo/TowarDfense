@@ -1,10 +1,11 @@
 using System;
 
-namespace _Script.Agent.Modules
+namespace _Scripts.Agent
 {
     public interface IAnimationTrigger
     {
         event Action OnAnimationEnd;
         event Action OnAttackTrigger;
+        void ResetEndTrigger();
     }
 }
