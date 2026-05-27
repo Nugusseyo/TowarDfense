@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Magician_Stat
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.Player.OperatorStatusSO
   <DetectRadius>k__BackingField: 10
-  <NormalAttackCooldown>k__BackingField: 0.6
+  <StartAttackDelay>k__BackingField: 0.5
+  <NormalAttackCooldown>k__BackingField: 1
   <SkillAttackCooldown>k__BackingField: 20
   <MaxTargetCount>k__BackingField: 3
   <AttackCount>k__BackingField: 2

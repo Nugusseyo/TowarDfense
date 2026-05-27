@@ -131,13 +131,14 @@ GameObject:
   - component: {fileID: 16843473}
   - component: {fileID: 16843472}
   - component: {fileID: 16843471}
+  - component: {fileID: 16843475}
   m_Layer: 7
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &16843471
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -233,6 +234,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &16843475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16843470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7cf00571bf6124db0e97383c3486ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbstractCitizen
+  <AgentStatusSO>k__BackingField: {fileID: 0}
 --- !u!1001 &42770109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -882,6 +896,7 @@ GameObject:
   - component: {fileID: 739711410}
   - component: {fileID: 739711409}
   - component: {fileID: 739711408}
+  - component: {fileID: 739711412}
   m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
@@ -984,6 +999,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &739711412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739711407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7cf00571bf6124db0e97383c3486ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbstractCitizen
+  <AgentStatusSO>k__BackingField: {fileID: 0}
 --- !u!1 &770891569
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,13 +1024,14 @@ GameObject:
   - component: {fileID: 770891572}
   - component: {fileID: 770891571}
   - component: {fileID: 770891570}
+  - component: {fileID: 770891574}
   m_Layer: 7
   m_Name: Capsule (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &770891570
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1098,6 +1127,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &770891574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770891569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7cf00571bf6124db0e97383c3486ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbstractCitizen
+  <AgentStatusSO>k__BackingField: {fileID: 0}
 --- !u!1001 &834898993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1548,6 +1590,7 @@ Transform:
   - {fileID: 1852673277}
   - {fileID: 1736004760}
   - {fileID: 1376403039}
+  - {fileID: 1125728518}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &907816522
@@ -1744,6 +1787,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4099106018576322814, guid: 5a2ed66399d7bb942944b998d13268f3, type: 3}
   m_PrefabInstance: {fileID: 965198829}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1125728517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1125728518}
+  m_Layer: 0
+  m_Name: Module_Health
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1125728518
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125728517}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 907816521}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1145589233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1856,6 +1930,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1376403039}
+  - component: {fileID: 1376403040}
   m_Layer: 0
   m_Name: Module_AttackModule
   m_TagString: Untagged
@@ -1878,6 +1953,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 907816521}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1376403040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376403038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a2cfa875e7449586ea81f032cf56b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Script.Agent.Operator.OperatorAttackModule
 --- !u!1001 &1393850981
 PrefabInstance:
   m_ObjectHideFlags: 0

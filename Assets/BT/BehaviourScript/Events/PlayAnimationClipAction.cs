@@ -14,12 +14,22 @@ public partial class PlayAnimationClipAction : Action
     [SerializeReference] public BlackboardVariable<AnimationHashSO> Clip;
     [SerializeReference] public BlackboardVariable<float> During;
 
+    private Animator _animator;
+    
     protected override Status OnStart()
     {
-        if (Operator.Value == null || Clip.Value == null || Operator.Value.Renderer == null)
+        if (Operator.Value == null || Clip.Value == null || Operator.Value.Renderer == null
+            || Operator.Value.Renderer.Animator == null)
             return Status.Failure;
+        _animator = Operator.Value.Renderer.Animator;
+        AnimatorStateInfo animInfo;
+        if (_animator.IsInTransition(0))
+            animInfo = _animator.GetNextAnimatorStateInfo(0);
+        else
+            animInfo = _animator.GetCurrentAnimatorStateInfo(0);
         
-        Operator.Value.Renderer.PlayFadeAcrossClip(Clip.Value.AnimationHash, During);
+        if(animInfo.shortNameHash != Clip.Value.AnimationHash) //똑같은거 또 하라고 하면 GET OUT
+            Operator.Value.Renderer.PlayFadeAcrossClip(Clip.Value.AnimationHash, During);
         return Status.Success;
     }
 }

@@ -2,6 +2,7 @@ using System;
 using _Script.Agent.Modules;
 using UnityEngine;
 using UnityEngine.UI;
+using HealthModule = _Script.Agent;
 
 namespace _Script.Agent.CombatSystem
 {
@@ -10,7 +11,7 @@ namespace _Script.Agent.CombatSystem
         [SerializeField] private Image healthBar;
         
         private Agent _agent;
-        private HealthModule _healthModule;
+        private Modules.HealthModule _healthModule;
 
 
         public float NormalizedHealthValue => Mathf.Clamp01(_healthModule.CurrentHealth / _healthModule.MaxHealth);
@@ -22,7 +23,7 @@ namespace _Script.Agent.CombatSystem
 
         private void Start()
         {
-            _healthModule = _agent.GetModule<HealthModule>();
+            _healthModule = _agent.GetModule<Modules.HealthModule>();
             Debug.Assert(_healthModule != null, $"{gameObject.name}이 Agent의 HealthModule을 찾지 못했습니다!");
 
             UpdateHealthBar(0 ,_healthModule.CurrentHealth, _healthModule.MaxHealth);

@@ -9,6 +9,7 @@ using Agents.FSM;
 using GameLib.SoundSystem;
 using UnityEngine;
 using UnityEngine.Events;
+using HealthModule = _Scripts.Agent;
 
 namespace _Script.Agent
 {
@@ -31,7 +32,7 @@ namespace _Script.Agent
         [SerializeField] protected SoundClipSO getDamageSound;
 
         public bool IsDead { get; protected set; }
-        protected HealthModule Health { get; private set; }
+        protected Modules.HealthModule Health { get; private set; }
 
         protected override void Awake()
         {
@@ -44,7 +45,7 @@ namespace _Script.Agent
             base.Initialize();
             
             
-            Health = GetModule<HealthModule>();
+            Health = GetModule<Modules.HealthModule>();
             
             Debug.Assert(Health != null, $"Agent {gameObject.name}가 HealthModule이 존재하지 않습니다!");
             

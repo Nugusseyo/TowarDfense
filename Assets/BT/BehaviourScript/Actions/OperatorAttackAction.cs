@@ -1,5 +1,7 @@
 using _Scripts.Agent.Player;
 using System;
+using _Scripts.Agent;
+using GameModules._Script.Agent;
 using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
@@ -10,21 +12,30 @@ using Unity.Properties;
 public partial class OperatorAttackAction : Action
 {
     [SerializeReference] public BlackboardVariable<AbstractOperator> Operator;
-    
-    
+
+    private IAgentAttackModule _attackModule;
+    private IAnimationTrigger _trigger;
 
     protected override Status OnStart()
     {
-        return Status.Running;
-    }
+        if (Operator.Value == null || Operator.Value.Trigger == null)
+            return Status.Failure;
 
-    protected override Status OnUpdate()
-    {
+        _attackModule = Operator.Value.GetModule<IAgentAttackModule>();
+        
+        if (_attackModule == null) 
+            return Status.Failure;
+
+        _trigger = Operator.Value.Trigger;
+        _trigger.OnAttackTrigger += HandleAttackTrigger;
+
         return Status.Success;
     }
 
-    protected override void OnEnd()
+    private void HandleAttackTrigger()
     {
+        _attackModule.AttackTarget();
+        _trigger.OnAttackTrigger -= HandleAttackTrigger;
     }
 }
 

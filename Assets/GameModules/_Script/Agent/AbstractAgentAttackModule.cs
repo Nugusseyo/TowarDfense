@@ -13,7 +13,7 @@ namespace GameModules._Script.Agent
         private int _targetMaxCount;
         private int _attackCount;
         
-        private List<_Scripts.Agent.Agent> _attackTargets = new List<_Scripts.Agent.Agent>();
+        private readonly List<_Scripts.Agent.Agent> _attackTargets = new List<_Scripts.Agent.Agent>();
         public void Initialize(ModuleAgent moduleAgent)
         {
             _agent = moduleAgent as _Scripts.Agent.Agent;
@@ -28,6 +28,8 @@ namespace GameModules._Script.Agent
 
         }
 
+        public List<_Scripts.Agent.Agent> AttackTargetList => _attackTargets;
+
         public virtual void AttackTarget()
         {
             if (_targetCaster.SucceedColliders[0] == null) //분명 BT에서 타게팅을 미리 해줘야하는데. 안해준거임.
@@ -38,7 +40,7 @@ namespace GameModules._Script.Agent
             // AI : 실제 공격 실행 (리스트에 담긴 적 중 최대 _attackCount 만큼 타격)
             // AI : 몬스터가 1마리밖에 없는데 _attackCount가 3이라고 해서 에러가 나지 않도록 Mathf.Min 안전장치 추가
             int actualHitCount = Mathf.Min(_attackTargets.Count, _attackCount);
-    
+            Debug.Log($"{actualHitCount}, {_attackTargets.Count}, {_attackCount}");
             for (int i = 0; i < actualHitCount; ++i)
             {
                 Debug.Log($"{_agent.name}이(가) 범위 내 가장 가까운 적인 [{_attackTargets[i].name}]을(를) 때리기!");
@@ -78,6 +80,7 @@ namespace GameModules._Script.Agent
 
             // AI : 최대 타겟팅 수량(_targetMaxCount)만큼만 _attackTargets에 적재
             int targetCountToTake = Mathf.Min(validTargets.Count, _targetMaxCount);
+            Debug.Log($"TargetTake : {targetCountToTake}");
             for (int i = 0; i < targetCountToTake; i++)
             {
                 _attackTargets.Add(validTargets[i].agent);

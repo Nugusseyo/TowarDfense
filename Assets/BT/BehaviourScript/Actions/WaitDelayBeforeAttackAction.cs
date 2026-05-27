@@ -6,8 +6,8 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "Wait Until Cooldown End", story: "[Operator] wait until cooldown end", category: "Action/Combat", id: "3519429c8422de69d445b46496ea603b")]
-public partial class WaitUntilCooldownEndAction : Action
+[NodeDescription(name: "Wait Delay before attack", story: "[Operator] wait before attack", category: "Action", id: "ae7982695b07e71b5fd16b0ea7784982")]
+public partial class WaitDelayBeforeAttackAction : Action
 {
     [SerializeReference] public BlackboardVariable<AbstractOperator> Operator;
 
@@ -18,16 +18,17 @@ public partial class WaitUntilCooldownEndAction : Action
     {
         if (Operator.Value == null || Operator.Value.AgentStatusSO == null)
             return Status.Failure;
+
         _startTime = Time.time;
-        _waitTime = Operator.Value.AgentStatusSO.NormalAttackCooldown;
-        
+        _waitTime = Operator.Value.AgentStatusSO.StartAttackDelay;
+
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        if(_startTime + _waitTime < Time.time) return Status.Success;
-        
+        if (_startTime + _waitTime < Time.time) return Status.Success;
+
         return Status.Running;
     }
 }
