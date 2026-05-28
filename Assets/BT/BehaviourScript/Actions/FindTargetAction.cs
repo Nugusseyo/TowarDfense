@@ -1,6 +1,7 @@
 using _Scripts.Agent.Player;
 using System;
 using _Scripts.Agent;
+using GameModules._Script.Agent;
 using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
@@ -12,21 +13,16 @@ public partial class FindTargetAction : Action
 {
     [SerializeReference] public BlackboardVariable<Agent> Agent;
 
-    private ITargetCaster _sensor;
+    private IAgentAttackModule _attackModule;
     
     protected override Status OnStart()
     {
         if (Agent.Value == null || Agent.Value.TargetCaster == null)
             return Status.Failure;
+
+        _attackModule = Agent.Value.GetModule<IAgentAttackModule>();
         
-        _sensor = Agent.Value.TargetCaster;
-
-        return Status.Running;
-    }
-
-    protected override Status OnUpdate()
-    {
-        return Agent.Value.TryCasting() ? Status.Success : Status.Failure;
+        return _attackModule.TryTargeting() ? Status.Success : Status.Failure;
     }
 }
 

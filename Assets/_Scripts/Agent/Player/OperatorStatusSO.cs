@@ -11,5 +11,6 @@ namespace _Scripts.Agent.Player
         [field: SerializeField] public float SkillAttackCooldown { get; private set; } = 20f;
         [field: SerializeField] public int MaxTargetCount { get; private set; } = 2;
         [field: SerializeField] public int AttackCount { get; private set; } = 1;
+        [field: SerializeField] public int Damage { get; private set; } = 200;
     }
 }

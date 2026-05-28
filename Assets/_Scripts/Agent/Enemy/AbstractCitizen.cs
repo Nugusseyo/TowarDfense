@@ -4,9 +4,10 @@ namespace _Scripts.Agent.Enemy
 {
     public class AbstractCitizen : Agent
     {
-        public override bool TryCasting()
+        public override void TakeHeal(int healAmount)
         {
-            return true;
+            base.TakeHeal(healAmount);
+            Debug.Log("나 힐받았어!!!");
         }
     }
 }

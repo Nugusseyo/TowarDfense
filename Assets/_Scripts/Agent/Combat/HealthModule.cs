@@ -6,16 +6,19 @@ namespace _Scripts.Agent
 {
     public class HealthModule : MonoBehaviour, IModule
     {
-        //[SerializeField]
-        //Max hp, min hp 필요
-        
-        private float _health;
-        public float Health
+        [field: SerializeField] public int MaxHealth { get; private set; } = 1000;
+        private int _health;
+        public int Health
         {
             get => _health;
             set
             {
-                //if()
+                int nextHealth = Mathf.Clamp(value, 0, MaxHealth);
+                
+                if(Mathf.Approximately(_health, value)) 
+                    return;
+
+                _health = nextHealth;
             }
         }
 
@@ -28,12 +31,13 @@ namespace _Scripts.Agent
         {
             _moduleAgent = moduleAgent;
             Debug.Assert(_moduleAgent != null, $"HealthModule인데 ModuleAgent가 없어요. Target : {gameObject.name}");
+            Health = MaxHealth;
         }
 
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(int damage)
         {
-            if (Mathf.Approximately(0, damage)) return;
+            if (damage == 0 || damage <= 0) return;
 
             Health -= damage;
             if (Health <= 0)
@@ -44,9 +48,9 @@ namespace _Scripts.Agent
             OnHit?.Invoke();
         }
 
-        public void TakeHeal(float heal)
+        public void TakeHeal(int heal)
         {
-            if(Mathf.Approximately(0, heal)) return;
+            if(heal == 0 || heal <= 0) return;
             
             Health += heal;
             OnHeal?.Invoke();

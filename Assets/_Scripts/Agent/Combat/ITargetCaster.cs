@@ -15,8 +15,8 @@ namespace _Scripts.Agent
         /// <param name="targetLayer">타게팅 대상</param>
         /// <param name="hitCount">적중한 적의 수. 이걸로 for문 돌리셈.</param>
         /// <returns></returns>
-        bool SearchTargetSphere(float radius, LayerMask targetLayer, bool isResetOriginColliders = false);
+        bool SearchTargetSphere(float radius, bool isResetOriginColliders = false);
 
-        bool SearchTargetBox(Vector3 centerOffset, Vector3 size, LayerMask targetLayer);
+        bool SearchTargetBox(Vector3 centerOffset, Vector3 size);
     }
 }

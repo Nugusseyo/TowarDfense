@@ -6,6 +6,7 @@ namespace _Scripts.Agent
 {
     public class OperatorSensor : MonoBehaviour, IModule, ITargetCaster
     {
+        [SerializeField] private LayerMask targetLayer;
         private Agent _agent;
 
         public Collider[] SucceedColliders { get; } = new Collider[32]; //영원히 안바뀜. get만 하자 야르
@@ -24,7 +25,7 @@ namespace _Scripts.Agent
         /// <param name="targetLayer">타게팅 대상</param>
         /// <param name="hitCount">적중한 적의 수. 이걸로 for문 돌리셈.</param>
         /// <returns></returns>
-        public bool SearchTargetSphere(float radius, LayerMask targetLayer, bool isResetOriginColliders = false)
+        public bool SearchTargetSphere(float radius, bool isResetOriginColliders = false)
         {
             if (isResetOriginColliders)
             {
@@ -43,7 +44,7 @@ namespace _Scripts.Agent
 
             return true;
         }
-        public bool SearchTargetBox(Vector3 centerOffset, Vector3 size, LayerMask targetLayer)
+        public bool SearchTargetBox(Vector3 centerOffset, Vector3 size)
         {
             Vector3 worldCenter = transform.position + centerOffset;
             Vector3 extents = size * 0.5f;

@@ -7,5 +7,6 @@ namespace GameModules._Script.Agent
         List<_Scripts.Agent.Agent> AttackTargetList { get;}
         void AttackTarget();
         void SortingTargets();
+        bool TryTargeting();
     }
 }
