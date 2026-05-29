@@ -31,10 +31,8 @@ namespace GameModules._Script.Agent.Operator
             base.AttackTarget();
             
             int actualHitCount = Mathf.Min(_attackTargets.Count, _attackCount);
-            Debug.Log($"{actualHitCount}, {_attackTargets.Count}, {_attackCount}");
             for (int i = 0; i < actualHitCount; ++i)
             {
-                Debug.Log($"{agent.name}이(가) 범위 내 가장 가까운 적인 [{_attackTargets[i].name}]을(를) 때리기!");
                 // AI : 여기서 실제 데미지를 주는 로직(예: _attackTargets[i].TakeDamage(...))을 실행하시면 됩니다.
 
                 if (_attackTargets[i].TryGetComponent(out IHealable healable))
@@ -48,12 +46,15 @@ namespace GameModules._Script.Agent.Operator
         public override bool TryTargeting()
             => targetCaster.SearchTargetSphere(agent.AgentStatusSO.DetectRadius);
 
-        public void UseSkill()
+        public override void UseSkill()
         {
+            if (_playerStateChange == null)
+                _playerStateChange = _operator.PlayerStateChange;
+            
             _playerStateChange.SendEventMessage(OperatorStateEnum.SKILL);
             Debug.Log("Use Skill!!!");
         }
-        
+
 
         private void OnDrawGizmosSelected()
         {

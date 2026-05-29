@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using _Script.Agent.Modules;
 using _Script.Agent.Modules.StatSystem;
+using GameModules._Script.Agent.CombatSystem;
 using UnityEngine;
 
 namespace _Script.Agent.CombatSystem

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _Script.Agent.CombatSystem
+namespace GameModules._Script.Agent.CombatSystem
 {
     public interface IOperatorTargetCaster
     {

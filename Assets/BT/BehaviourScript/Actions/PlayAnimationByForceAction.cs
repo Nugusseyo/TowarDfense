@@ -1,6 +1,8 @@
 using _Script.ScriptableObject;
 using _Scripts.Agent.Player;
 using System;
+using _Script.Agent.Modules;
+using _Scripts.Agent;
 using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
@@ -13,12 +15,16 @@ public partial class PlayAnimationByForceAction : Action
     [SerializeReference] public BlackboardVariable<AbstractOperator> Operator;
     [SerializeReference] public BlackboardVariable<AnimationHashSO> Clip;
 
+    private IAgentRenderer _renderer;
+    
     protected override Status OnStart()
     {
-        if (Operator.Value == null || Clip.Value == null || Operator.Value.Renderer == null)
+        if (Operator.Value == null || Clip.Value == null)
             return Status.Failure;
-
-        Operator.Value.Renderer.PlayClip(Clip.Value.AnimationHash);
+        
+        _renderer = Operator.Value.GetModule<IAgentRenderer>();
+        
+        _renderer.PlayClip(Clip.Value.AnimationHash);
         return Status.Success;
     }
 }

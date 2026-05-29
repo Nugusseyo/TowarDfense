@@ -8,5 +8,6 @@ namespace GameModules._Script.Agent
         void AttackTarget();
         void SortingTargets();
         bool TryTargeting();
+        public void UseSkill();
     }
 }

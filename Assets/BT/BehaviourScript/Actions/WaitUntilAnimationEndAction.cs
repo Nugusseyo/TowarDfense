@@ -18,10 +18,13 @@ namespace BT.BehaviourScript.Actions
         private bool _isAnimationEnd = false;
         protected override Status OnStart()
         {
-            if (Operator.Value == null || Operator.Value.Trigger == null)
+            if (Operator.Value == null)
                 return Status.Failure;
         
-            _trigger = Operator.Value.Trigger;
+            _trigger = Operator.Value.GetModule<IAnimationTrigger>();
+            if (_trigger == null)
+                return Status.Failure;
+            
             _trigger.ResetEndTrigger();
 
             _isAnimationEnd = false;

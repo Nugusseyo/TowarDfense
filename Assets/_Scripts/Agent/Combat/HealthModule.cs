@@ -2,7 +2,7 @@ using _Script.Agent.Modules;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace _Scripts.Agent
+namespace _Scripts.Agent.Combat
 {
     public class HealthModule : MonoBehaviour, IModule
     {
@@ -21,6 +21,8 @@ namespace _Scripts.Agent
                 _health = nextHealth;
             }
         }
+
+        public bool IsDead { get; private set; } = false;
 
         private ModuleAgent _moduleAgent;
 
@@ -43,6 +45,7 @@ namespace _Scripts.Agent
             if (Health <= 0)
             {
                 OnDeath?.Invoke();
+                IsDead = true;
                 return;
             }
             OnHit?.Invoke();

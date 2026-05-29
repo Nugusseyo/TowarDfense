@@ -17,7 +17,7 @@ public partial class FindTargetAction : Action
     
     protected override Status OnStart()
     {
-        if (Agent.Value == null || Agent.Value.TargetCaster == null)
+        if (Agent.Value == null)
             return Status.Failure;
 
         _attackModule = Agent.Value.GetModule<IAgentAttackModule>();

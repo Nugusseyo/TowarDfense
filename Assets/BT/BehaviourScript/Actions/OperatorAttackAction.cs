@@ -18,15 +18,15 @@ public partial class OperatorAttackAction : Action
 
     protected override Status OnStart()
     {
-        if (Operator.Value == null || Operator.Value.Trigger == null)
+        if (Operator.Value == null)
             return Status.Failure;
 
+        _trigger = Operator.Value.GetModule<IAnimationTrigger>();
         _attackModule = Operator.Value.GetModule<IAgentAttackModule>();
         
-        if (_attackModule == null) 
+        if(_trigger == null || _attackModule == null) 
             return Status.Failure;
-
-        _trigger = Operator.Value.Trigger;
+        
         _trigger.OnAttackTrigger += HandleAttackTrigger;
 
         return Status.Success;

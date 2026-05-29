@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using _Script.Agent.Modules;
 using _Scripts.Agent;
+using _Scripts.Agent.Player;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -75,7 +76,6 @@ namespace GameModules._Script.Agent
 
             // AI : 최대 타겟팅 수량(_targetMaxCount)만큼만 _attackTargets에 적재
             int targetCountToTake = Mathf.Min(validTargets.Count, _targetMaxCount);
-            Debug.Log($"TargetTake : {targetCountToTake}");
             for (int i = 0; i < targetCountToTake; i++)
             {
                 _attackTargets.Add(validTargets[i].agent);
@@ -83,6 +83,7 @@ namespace GameModules._Script.Agent
         }
 
         public abstract bool TryTargeting();
+        public abstract void UseSkill();
 
         public void ChangeAttackTargetCount(int targetMaxCount, int attackCount)
         {

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.Player.OperatorStatusSO
   <DetectRadius>k__BackingField: 10
   <StartAttackDelay>k__BackingField: 0.5
-  <NormalAttackCooldown>k__BackingField: 1
-  <SkillAttackCooldown>k__BackingField: 20
+  <NormalAttackCooldown>k__BackingField: 2
+  <SkillAttackCooldown>k__BackingField: 1
   <MaxTargetCount>k__BackingField: 3
   <AttackCount>k__BackingField: 2
+  <Damage>k__BackingField: 100
