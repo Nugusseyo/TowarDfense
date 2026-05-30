@@ -16,4 +16,9 @@ public class HealthSystemTester : MonoBehaviour
                 agent.TakeDamage(damage);
         }
     }
+    
+    public void TakeDam()
+    {
+        agent.TakeDamage(damage);
+    }
 }

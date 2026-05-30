@@ -31,7 +31,7 @@ namespace _Script.Tools.Utility
                 Destroy(gameObject);
         }
 
-        protected void OnDestroy()
+        protected virtual void OnDestroy()
         {
             if(_instance == this)
                 _instance = null;

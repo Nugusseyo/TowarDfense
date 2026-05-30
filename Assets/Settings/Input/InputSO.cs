@@ -3,9 +3,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "New InputSO", menuName = "Input SO")]
-public class InputSO : ScriptableObject, Controls.IPlayerActions
+public class InputSO : ScriptableObject, Controls.IPlayerActions, Controls.IInGameActions
 {
     private Controls _controls;
+
+    public Action OnLeftBtnClick;
 
     [SerializeField] private LayerMask groundLayer;
     
@@ -21,27 +23,35 @@ public class InputSO : ScriptableObject, Controls.IPlayerActions
         }
     }
 
+    private Vector3 _worldPos;
+    private Vector3 _camPos;
+
     private void OnEnable()
     {
         if (_controls == null)
         {
             _controls = new Controls();
             _controls.Player.SetCallbacks(this);
+            _controls.InGame.SetCallbacks(this);
         }
-        _controls.Player.Enable();
+        _controls.InGame.Enable();
     }
 
     private void OnDisable()
     {
         _controls.Player.Disable();
+        _controls.InGame.Disable();
     }
-
-    private Vector3 _worldPos;
-    private Vector3 _camPos;
     
     public void OnPoint(InputAction.CallbackContext context)
     {
         _camPos = context.ReadValue<Vector2>();
+    }
+
+    public void OnClick(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+            OnLeftBtnClick?.Invoke();
     }
 
     public bool GetMousePos(out Vector3 worldPos)
@@ -78,4 +88,44 @@ public class InputSO : ScriptableObject, Controls.IPlayerActions
         worldPos = hit.collider.transform.position; 
         return true;
     }
+    public GameObject GetGameObject(LayerMask targetLayer)
+    {
+        if (!TryRaycast(targetLayer, out RaycastHit hit)) 
+            return null;
+        
+        
+        return hit.collider.gameObject;
+    }
+
+    public void ChangeInput(bool isInGame)
+    {
+        if (isInGame)
+        {
+            _controls.Player.Disable();
+            _controls.InGame.Enable();
+        }
+        else
+        {
+            _controls.Player.Enable();
+            _controls.InGame.Disable();
+        }
+    }
+
+    #region  InGame Input Region
+
+    public Action OnInGameClick;
+
+    public void OnInPoint(InputAction.CallbackContext context)
+    {
+        _camPos = context.ReadValue<Vector2>();
+    }
+
+    public void OnInClick(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+            OnInGameClick?.Invoke();
+    }
+
+    #endregion
+    
 }

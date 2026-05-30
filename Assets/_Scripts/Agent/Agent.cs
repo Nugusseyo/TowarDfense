@@ -15,6 +15,7 @@ namespace _Scripts.Agent
         public HealthModule HealthModule { get; private set; }
 
         [field:SerializeField] public OperatorStatusSO AgentStatusSO { get; private set; }
+        [field:SerializeField] public AgentUIDataSO UIData { get; private set; }
         protected override void Awake()
         {
             base.Awake();

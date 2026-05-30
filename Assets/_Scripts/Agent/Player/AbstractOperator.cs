@@ -9,9 +9,9 @@ namespace _Scripts.Agent.Player
         public PlayerStateChange PlayerStateChange => _playerStateChange;
         private PlayerStateChange _playerStateChange;
 
-        private void Start()
+        private void OnEnable()
         {
-            //BT는 Awake에서 만들기 시작하므로 Start에서 만들어주자.
+            //BT는 Awake에서 만들기 시작하므로 Start에서 만들어주자. //Start에서 하니까 노드가 일찍 시작해서 안된다. OnEnable로 옮기자;;
             AgentBT.SetVariableValue(OperatorStrings.Operator, this);
 
             //임시 AttackModuleCode 구역

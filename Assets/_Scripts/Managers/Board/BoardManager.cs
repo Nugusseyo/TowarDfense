@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using _Script.ScriptableObject.Event;
 using _Script.Tools.Utility;
 using _Scripts.Agent.Player;
+using _Scripts.UI;
 using UnityEngine;
 
 namespace _Scripts.Managers.Board
@@ -9,6 +11,9 @@ namespace _Scripts.Managers.Board
     {
         [field: SerializeField] public InputSO InputSO { get; private set; }
         [field: SerializeField] public HoldOperListSO HoldOperatorListSO { get; private set; }
+        [field: SerializeField] public EventChannelSO ShowGroundEventChannelSO { get; private set; }
+        [field: SerializeField] public EventChannelSO ShowMountainEventChannelSO { get; private set; }
+        [field: SerializeField] public EventChannelSO ViewUIEventChannelSO { get; private set; }
         [SerializeField] private LayerMask groundLayer;
 
         [SerializeField] private LayerMask mountainLayer;
@@ -19,8 +24,9 @@ namespace _Scripts.Managers.Board
         private bool _isSpawning = false;
         private OperatorWrapper _currentOperatorInfo = null;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             Grid = GetComponent<Grid>();
         }
 
@@ -29,25 +35,39 @@ namespace _Scripts.Managers.Board
         {
             SpawnOperator(0);
         }
-
-        // 1. UI 등에서 "몇 번 오퍼레이터 소환할래요" 하고 찔러주는 함수
+        
         public void SpawnOperator(int index)
         {
-            OperatorWrapper operatorWrapper = HoldOperatorListSO.GetOperator(index);
+            InputSO.OnLeftBtnClick = null;  //다른 오퍼레이터 눌러놓은거 초기화 시켜줘야함.
+            //안그러면 중복 소환 됨;;
             
-            // 프리팹 자체가 이미 필드에 배치된 녀석인지 체크 (프리팹 기준 검사라면 유효)
+            OperatorWrapper operatorWrapper = HoldOperatorListSO.GetOperator(index);
+            if (operatorWrapper == null) return;
+            
             if (_operators.ContainsValue(operatorWrapper))
             {
                 Debug.LogWarning("이미 소환된 오퍼레이터입니다!");
                 return;
             }
-
-            // 설치 모드 돌입 및 정보 저장
+            InputSO.ChangeInput(false);
+            
             _currentOperatorInfo = operatorWrapper;
             _isSpawning = true;
+            
+            if(operatorWrapper.isMountain)
+                ShowMountainEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(_isSpawning));
+            else
+                ShowGroundEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(_isSpawning));
+            
             Debug.Log($"{operatorWrapper.operatorPrefab.name} 배치 모드 시작! 설치할 타일을 클릭하세요.");
+            InputSO.OnLeftBtnClick += HandlePlacement;
+            //Agent.Agent agent = operatorWrapper.operatorPrefab.GetComponent<Agent.Agent>(); 
+            //ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(agent));
+            
+            //Operator의 Info가 뜨게 하는 방법은 한 번 다르게 생각해보자.
         }
-
+        
+        /*
         private void Update()
         {
             // 배치 모드가 아니라면 마우스 클릭 감지를 아예 하지 않음 (성능 이득 야르!)
@@ -58,10 +78,19 @@ namespace _Scripts.Managers.Board
             {
                 HandlePlacement();
             }
-        }
+        }*/
 
         private void HandlePlacement()
         {
+            if (_currentOperatorInfo == null)
+            {
+                InputSO.ChangeInput(true);
+                _isSpawning = false;
+                _currentOperatorInfo = null;
+                InputSO.OnLeftBtnClick -= HandlePlacement;
+                return;
+            }
+            
             bool isMountain = _currentOperatorInfo.isMountain;
             LayerMask targetLayer = isMountain ? mountainLayer : groundLayer;
             
@@ -88,12 +117,25 @@ namespace _Scripts.Managers.Board
                 Debug.Log($"[{gridPos}] 칸에 {newOperator.name} 배치 완료!");
                 
                 _isSpawning = false;
-                _currentOperatorInfo = null;
+                InputSO.OnLeftBtnClick -= HandlePlacement;
             }
             else
             {
                 Debug.Log("아무것도 보이지 않아...");
             }
+            
+            if(_currentOperatorInfo.isMountain)
+                ShowMountainEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(_isSpawning));
+            else
+                ShowGroundEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(_isSpawning));
+
+            if (!_isSpawning)
+            {
+                _currentOperatorInfo = null;
+                //ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(null));
+                //Operator Info 뜨게 하는거 다시 생각해보자 2
+            }
+            InputSO.ChangeInput(!_isSpawning);
         }
     }
 }

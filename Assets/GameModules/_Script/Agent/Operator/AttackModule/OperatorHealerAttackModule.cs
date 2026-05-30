@@ -1,15 +1,12 @@
-using System;
 using _Script.Agent.Modules;
 using _Scripts.Agent;
 using _Scripts.Agent.Player;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace GameModules._Script.Agent.Operator
+namespace GameModules._Script.Agent.Operator.AttackModule
 {
     public class OperatorHealerAttackModule : AbstractAgentAttackModule
     {
-        
         private PlayerStateChange _playerStateChange;
         private AbstractOperator _operator;
 
