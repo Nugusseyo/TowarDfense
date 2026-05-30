@@ -19,12 +19,20 @@ namespace _Scripts.Managers.CostManager
             get => _cost;
             set => _cost = Mathf.Clamp(value, 0, maxCost);
         }
+        
+        public float GetNormalCost
+        {
+            get
+            {
+                if (Cost >= maxCost) return 1f;
+                
+                float interval = 1f / costPerSecond;
+                return Mathf.Clamp01(_costTimer / interval);
+            }
+        }
 
-        [field: SerializeField] public EventChannelSO GameManagerEventChannel { get; private set; }
-
-        public float GetNormalCost => Mathf.Clamp01(_costTimer / costPerSecond);
-
-        private bool _isRunning = false;
+        [SerializeField] private bool _isRunning = false; 
+        
         private void Awake()
         {
             Cost = startCost;
@@ -32,18 +40,24 @@ namespace _Scripts.Managers.CostManager
         
         private void Update()
         {
-            if (!_isRunning || _cost == maxCost)
+            if (!_isRunning || _cost >= maxCost)
             {
                 _costTimer = 0;
                 return;
             }
-            
             _costTimer += Time.deltaTime;
-
-            if (_costTimer >= costPerSecond)
+            float interval = 1f / costPerSecond; 
+            
+            while (_costTimer >= interval) //렉걸려서 deltaTime이 1을 넘어선 경우, while문으로 처리.
             {
-                _costTimer -= costPerSecond;
+                _costTimer -= interval;
                 Cost++;
+
+                if (Cost >= maxCost)
+                {
+                    _costTimer = 0;
+                    break;
+                }
             }
         }
     }

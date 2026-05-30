@@ -15,5 +15,10 @@ namespace _Scripts.Agent.Enemy
             base.TakeDamage(damageAmount);
             Debug.Log("나 데미지 받았어!!");
         }
+
+        public override void OnDeath()
+        {
+            
+        }
     }
 }

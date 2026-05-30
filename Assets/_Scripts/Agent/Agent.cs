@@ -1,3 +1,4 @@
+using System;
 using _Script.Agent.Modules;
 using _Script.Agent.Modules.StatSystem;
 using _Scripts.Agent.Player;
@@ -35,6 +36,13 @@ namespace _Scripts.Agent
             Debug.Assert(AttackModule != null, $"Agent가 AttackModule이 없습니다! Target : {gameObject.name}");
             HealthModule = GetModule<HealthModule>();
             Debug.Assert(HealthModule != null, $"Agent에는 무조건 HealthModule이 존재해야 합니다. Target : {gameObject.name}");
+            HealthModule.OnDeath.AddListener(OnDeath);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            if(HealthModule != null)
+                HealthModule.OnDeath.RemoveListener(OnDeath);
         }
 
         public void SetVariable<T>(string variableName, T value)
@@ -67,6 +75,7 @@ namespace _Scripts.Agent
             HealthModule.TakeDamage(damageAmount);
         }
 
+        public abstract void OnDeath();
         public virtual void UseSkill() => AttackModule.UseSkill();
     }
 }

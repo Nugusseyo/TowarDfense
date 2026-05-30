@@ -1,4 +1,5 @@
 using System;
+using _Scripts.Managers.Board;
 using Unity.Behavior;
 using UnityEngine;
 
@@ -30,6 +31,13 @@ namespace _Scripts.Agent.Player
         {
             public const string Operator = "Operator";
             public const string ChannelEvent = "StateChangeEvent";
+        }
+
+        public override void OnDeath()
+        {
+            Debug.Log("OnDeath Start");
+            BoardManager.Instance.RemoveDictionary(this);
+            _playerStateChange.SendEventMessage(OperatorStateEnum.DEAD);
         }
     }
 }

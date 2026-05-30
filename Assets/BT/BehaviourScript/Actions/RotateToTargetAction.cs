@@ -35,7 +35,6 @@ public partial class RotateToTargetAction : Action
         }
 
         //_startTime = Time.time;
-        _targetTrm = _attackModule.AttackTargetList.Count == 0 ? null : _attackModule.AttackTargetList[0].transform;
         
         Debug.Log("Start Time");
         
@@ -45,6 +44,7 @@ public partial class RotateToTargetAction : Action
     protected override Status OnUpdate()
     {
         //if (_startTime + _rotateTime < Time.time) return Status.Success;
+        _targetTrm = _attackModule.AttackTargetList.Count == 0 ? null : _attackModule.AttackTargetList[0].transform;
         
         Vector3 direction;
         if (_targetTrm == null) //대상이 없다;;
@@ -53,6 +53,7 @@ public partial class RotateToTargetAction : Action
         else
             direction = _targetTrm.position
                         - Operator.Value.transform.position;
+        direction.y = 0;
         
         Quaternion rotation = Quaternion.LookRotation(direction.normalized);
         Operator.Value.transform.rotation =

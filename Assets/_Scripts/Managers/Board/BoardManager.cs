@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using _Script.ScriptableObject.Event;
 using _Script.Tools.Utility;
 using _Scripts.Agent.Player;
@@ -18,7 +19,7 @@ namespace _Scripts.Managers.Board
 
         [SerializeField] private LayerMask mountainLayer;
 
-        private Dictionary<Vector2Int, OperatorWrapper> _operators = new Dictionary<Vector2Int, OperatorWrapper>();
+        private Dictionary<Vector2Int, AbstractOperator> _operators = new Dictionary<Vector2Int, AbstractOperator>();
         public Grid Grid { get; private set; }
 
         private bool _isSpawning = false;
@@ -42,9 +43,10 @@ namespace _Scripts.Managers.Board
             //안그러면 중복 소환 됨;;
             
             OperatorWrapper operatorWrapper = HoldOperatorListSO.GetOperator(index);
+            
             if (operatorWrapper == null) return;
             
-            if (_operators.ContainsValue(operatorWrapper))
+            if (_operators.Any(x => x.Value.UIData == operatorWrapper.operatorPrefab.UIData))
             {
                 Debug.LogWarning("이미 소환된 오퍼레이터입니다!");
                 return;
@@ -112,8 +114,9 @@ namespace _Scripts.Managers.Board
                 spawnWorldPos.y = yPos;
                 
                 AbstractOperator newOperator = Instantiate(_currentOperatorInfo.operatorPrefab, spawnWorldPos, Quaternion.identity); //이거 풀링으로 고쳐야함.
+                newOperator.gameObject.name = newOperator.UIData.agentName;
                 
-                _operators.Add(gridPos, _currentOperatorInfo);
+                _operators.Add(gridPos, newOperator);
                 Debug.Log($"[{gridPos}] 칸에 {newOperator.name} 배치 완료!");
                 
                 _isSpawning = false;
@@ -136,6 +139,17 @@ namespace _Scripts.Managers.Board
                 //Operator Info 뜨게 하는거 다시 생각해보자 2
             }
             InputSO.ChangeInput(!_isSpawning);
+        }
+
+        public void RemoveDictionary(AbstractOperator abstractOperator)
+        {
+            if (_operators.ContainsValue(abstractOperator))
+            {
+                Debug.Log("죽은 Operator가 Dictionary에 포함되어있음. 제거 시작");
+                //KeyValuePair : Dictionary가 뱉는 Pair return값.
+                KeyValuePair<Vector2Int, AbstractOperator> pair = _operators.FirstOrDefault(x => x.Value ==  abstractOperator);
+                _operators.Remove(pair.Key);
+            }
         }
     }
 }

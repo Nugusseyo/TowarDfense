@@ -19,11 +19,17 @@ namespace BT.BehaviourScript.Actions
         protected override Status OnStart()
         {
             if (Operator.Value == null)
+            {
+                Debug.LogError("Operator is Null!!!");
                 return Status.Failure;
+            }
         
             _trigger = Operator.Value.GetModule<IAnimationTrigger>();
             if (_trigger == null)
+            {
+                Debug.LogError("Trigger is Null!!!");
                 return Status.Failure;
+            }
             
             _trigger.ResetEndTrigger();
 
@@ -47,7 +53,8 @@ namespace BT.BehaviourScript.Actions
 
         protected override void OnEnd()
         {
-            _trigger.OnAnimationEnd -= HandleAnimationEnd;
+            if(_trigger != null)
+                _trigger.OnAnimationEnd -= HandleAnimationEnd;
         }
     }
 }
