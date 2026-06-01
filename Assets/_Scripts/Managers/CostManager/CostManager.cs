@@ -31,10 +31,11 @@ namespace _Scripts.Managers.CostManager
             }
         }
 
-        [SerializeField] private bool _isRunning = false; 
-        
-        private void Awake()
+        [SerializeField] private bool _isRunning = false;
+
+        protected override void Awake()
         {
+            base.Awake();
             Cost = startCost;
         }
         

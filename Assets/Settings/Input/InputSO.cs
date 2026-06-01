@@ -8,6 +8,7 @@ public class InputSO : ScriptableObject, Controls.IPlayerActions, Controls.IInGa
     private Controls _controls;
 
     public Action OnLeftBtnClick;
+    public bool IsInGame { get; private set; } = true;
 
     [SerializeField] private LayerMask groundLayer;
     
@@ -109,6 +110,7 @@ public class InputSO : ScriptableObject, Controls.IPlayerActions, Controls.IInGa
             _controls.Player.Enable();
             _controls.InGame.Disable();
         }
+        IsInGame = isInGame;
     }
 
     #region  InGame Input Region

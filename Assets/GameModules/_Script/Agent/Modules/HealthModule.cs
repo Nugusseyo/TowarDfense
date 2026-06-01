@@ -34,6 +34,8 @@ namespace _Script.Agent.Modules
                 }
             }
         }
+        
+        public float GetHealthNormal => Mathf.Clamp01(CurrentHealth / MaxHealth);
 
         public void Initialize(ModuleAgent moduleAgent)
         {

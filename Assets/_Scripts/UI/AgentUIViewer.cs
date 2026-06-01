@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using _Script.ScriptableObject.Event;
 using _Scripts.Agent;
@@ -41,9 +40,12 @@ namespace _Scripts.UI
         private IAgentSkillModule _curSkillModule;
         private IAgentAttackModule _curAttackModule;
 
+        private bool _isActive;
+
         private void Awake()
         {
             ViewUIEventChannelSO.AddListener<AgentOnUI>(HandleAgentSelect);
+            ViewUIEventChannelSO.AddListener<AgentInfoUI>(HandleAgentInfoView);
             skillBtn.onClick.AddListener(HandleSkillButtonClick);
             _skillBtnImage = skillBtn.GetComponent<Image>();
         }
@@ -64,6 +66,7 @@ namespace _Scripts.UI
         private void OnDestroy()
         {
             ViewUIEventChannelSO.RemoveListener<AgentOnUI>(HandleAgentSelect);
+            ViewUIEventChannelSO.RemoveListener<AgentInfoUI>(HandleAgentInfoView);
             if(skillBtn != null)
                 skillBtn.onClick.RemoveListener(HandleSkillButtonClick);
         }
@@ -108,8 +111,11 @@ namespace _Scripts.UI
         private IEnumerator RemoveWaitSecond()
         {
             yield return new WaitForSeconds(0.1f);
-            uiParent.SetActive(false);
-            worldCanvas.SetActive(false);
+            if (!_isActive)
+            {
+                uiParent.SetActive(false);
+                worldCanvas.SetActive(false);
+            }
         }
 
         private void Update()
@@ -142,6 +148,25 @@ namespace _Scripts.UI
             }
             
             percentBG.color = percentGradient.Evaluate(fPercent);
+        }
+        
+        
+        private void HandleAgentInfoView(AgentInfoUI evt)
+        {
+            _isActive = evt.IsActive;
+            
+            uiParent.SetActive(_isActive);
+            worldCanvas.SetActive(false);
+
+            if (evt.Agent == null) return;
+            
+            AgentUIDataSO data = evt.Agent.UIData;
+            
+            positionIcon.sprite = data.positionTypeIcon;
+            agentName.text = data.agentName;
+            
+            skillIcon.sprite = data.skillIcon;
+            skillDesc.text = data.skillDesc;
         }
     }
 }

@@ -19,6 +19,7 @@ namespace _Scripts.Agent
         public UnityEvent OnSkill;
 
         [field: SerializeField] public AbstractSkillDataSO SkillData { get; private set; } 
+        [field: SerializeField] public SkillConditionSO SkillCondition { get; private set; } 
         
         protected Agent _agent;
         
@@ -50,7 +51,7 @@ namespace _Scripts.Agent
             if (_timer < _cooldown || _agent.HealthModule.IsDead)
                 return false;
 
-            return _targetCaster.SearchTargetSphere(SkillData.SkillRadius);
+            return SkillCondition.TryUseSkill(_agent, _targetCaster, SkillData);
         }
 
         public virtual void UseSkill()

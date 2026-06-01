@@ -27,11 +27,7 @@ namespace _Scripts.Agent.Player
         }
 
 
-        public static class OperatorStrings
-        {
-            public const string Operator = "Operator";
-            public const string ChannelEvent = "StateChangeEvent";
-        }
+        
 
         public override void OnDeath()
         {
@@ -39,5 +35,10 @@ namespace _Scripts.Agent.Player
             BoardManager.Instance.RemoveDictionary(this);
             _playerStateChange.SendEventMessage(OperatorStateEnum.DEAD);
         }
+    }
+    public static class OperatorStrings
+    {
+        public const string Operator = "Operator";
+        public const string ChannelEvent = "StateChangeEvent";
     }
 }

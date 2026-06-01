@@ -9,6 +9,7 @@ namespace _Scripts.Agent.Combat.Skills.Operator
         public override void UseSkill(Agent agent, ITargetCaster caster)
         {
             //공격 범위 내 모든 시민들 치료.
+            caster.SearchTargetSphere(SkillRadius);
             for (int i = 0; i < caster.HitCount; ++i)
             {
                 if (caster.SucceedColliders[i].TryGetComponent(out IHealable healable))

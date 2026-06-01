@@ -29,6 +29,7 @@ namespace _Scripts.Managers.InfoM
 
         private void HandleInGameClick()
         {
+            if (!InputSO.IsInGame) return;
             Debug.Log("야루");
             GameObject target = InputSO.GetGameObject(infoTargetLayer);
             

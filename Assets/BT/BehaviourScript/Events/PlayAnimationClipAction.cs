@@ -8,10 +8,10 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "PlayAnimationClip", story: "[Operator] play animation [Clip] [During]", category: "Action/Animation", id: "7e89dcb7c4ed3b930e35739fb67622fd")]
+[NodeDescription(name: "PlayAnimationClip", story: "[Agent] play animation [Clip] [During]", category: "Action/Animation", id: "7e89dcb7c4ed3b930e35739fb67622fd")]
 public partial class PlayAnimationClipAction : Action
 {
-    [SerializeReference] public BlackboardVariable<AbstractOperator> Operator;
+    [SerializeReference] public BlackboardVariable<Agent> Agent;
     [SerializeReference] public BlackboardVariable<AnimationHashSO> Clip;
     [SerializeReference] public BlackboardVariable<float> During;
 
@@ -20,10 +20,10 @@ public partial class PlayAnimationClipAction : Action
     
     protected override Status OnStart()
     {
-        if (Operator.Value == null || Clip.Value == null)
+        if (Agent.Value == null || Clip.Value == null)
             return Status.Failure;
         
-        _renderer = Operator.Value.GetModule<IAgentRenderer>();
+        _renderer = Agent.Value.GetModule<IAgentRenderer>();
         if (_renderer == null || _renderer.Animator == null)
             return Status.Failure;
         

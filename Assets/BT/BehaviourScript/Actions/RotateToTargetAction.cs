@@ -44,7 +44,15 @@ public partial class RotateToTargetAction : Action
     protected override Status OnUpdate()
     {
         //if (_startTime + _rotateTime < Time.time) return Status.Success;
-        _targetTrm = _attackModule.AttackTargetList.Count == 0 ? null : _attackModule.AttackTargetList[0].transform;
+        if (_attackModule?.AttackTargetList == null || _attackModule.AttackTargetList.Count == 0)
+        {
+            _targetTrm = null;
+        }
+        else
+        {
+            Agent firstTarget = _attackModule.AttackTargetList[0];
+            _targetTrm = firstTarget != null ? firstTarget.transform : null;
+        }
         
         Vector3 direction;
         if (_targetTrm == null) //대상이 없다;;
@@ -54,13 +62,17 @@ public partial class RotateToTargetAction : Action
             direction = _targetTrm.position
                         - Operator.Value.transform.position;
         direction.y = 0;
+        direction.Normalize();
         
-        Quaternion rotation = Quaternion.LookRotation(direction.normalized);
-        Operator.Value.transform.rotation =
-            Quaternion.Lerp(Operator.Value.transform.rotation
-                , rotation
-                , 10 * Time.deltaTime);
-
+        if (direction != Vector3.zero)
+        {
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            Operator.Value.transform.rotation = Quaternion.Lerp(
+                Operator.Value.transform.rotation, 
+                rotation, 
+                10 * Time.deltaTime
+            );
+        }
         return Status.Running;
     }
 }

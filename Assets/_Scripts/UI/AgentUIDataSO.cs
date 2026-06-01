@@ -11,4 +11,7 @@ public class AgentUIDataSO : ScriptableObject
     [Header("Skills")]
     public Sprite skillIcon;
     public string skillDesc;
+
+    [Header("Cost UI")] 
+    public int cost;
 }

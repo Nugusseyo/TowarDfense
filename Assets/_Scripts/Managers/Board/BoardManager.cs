@@ -29,6 +29,7 @@ namespace _Scripts.Managers.Board
         {
             base.Awake();
             Grid = GetComponent<Grid>();
+            InputSO.ChangeInput(true);
         }
 
         [ContextMenu("Spawn 0")]
@@ -51,6 +52,12 @@ namespace _Scripts.Managers.Board
                 Debug.LogWarning("이미 소환된 오퍼레이터입니다!");
                 return;
             }
+
+            if (operatorWrapper.operatorPrefab.UIData.cost > CostManager.CostManager.Instance.Cost)
+            {
+                Debug.LogWarning("소환하려는 대상의 Cost가 현재 Cost보다 높은데 소환이 허락되었습니다.");
+                return;
+            }
             InputSO.ChangeInput(false);
             
             _currentOperatorInfo = operatorWrapper;
@@ -63,6 +70,7 @@ namespace _Scripts.Managers.Board
             
             Debug.Log($"{operatorWrapper.operatorPrefab.name} 배치 모드 시작! 설치할 타일을 클릭하세요.");
             InputSO.OnLeftBtnClick += HandlePlacement;
+            ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentInfoUI.Init(_currentOperatorInfo.operatorPrefab, true));
             //Agent.Agent agent = operatorWrapper.operatorPrefab.GetComponent<Agent.Agent>(); 
             //ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(agent));
             
@@ -118,6 +126,8 @@ namespace _Scripts.Managers.Board
                 
                 _operators.Add(gridPos, newOperator);
                 Debug.Log($"[{gridPos}] 칸에 {newOperator.name} 배치 완료!");
+
+                CostManager.CostManager.Instance.Cost -= newOperator.UIData.cost;
                 
                 _isSpawning = false;
                 InputSO.OnLeftBtnClick -= HandlePlacement;
@@ -135,6 +145,7 @@ namespace _Scripts.Managers.Board
             if (!_isSpawning)
             {
                 _currentOperatorInfo = null;
+                ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentInfoUI.Init(null, false));
                 //ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(null));
                 //Operator Info 뜨게 하는거 다시 생각해보자 2
             }
