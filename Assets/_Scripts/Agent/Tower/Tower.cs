@@ -1,3 +1,5 @@
+using System;
+using _Scripts.Agent.Enemy.Citizens;
 using _Scripts.Agent.Player;
 using Unity.Behavior;
 using UnityEngine;
@@ -6,6 +8,7 @@ namespace _Scripts.Agent.Tower
 {
     public class Tower : Agent
     {
+        public GameObject upgradePrefab;
         public TowerStateChange TowerStateChange => _towerStateChange;
         private TowerStateChange _towerStateChange;
 
@@ -24,7 +27,7 @@ namespace _Scripts.Agent.Tower
     
         public override void OnDeath()
         {
-        
+            
         }
     }
     public static class TowerStrings

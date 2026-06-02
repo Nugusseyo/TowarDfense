@@ -5,6 +5,7 @@ using _Script.Tools.Utility;
 using _Scripts.Agent.Player;
 using _Scripts.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace _Scripts.Managers.Board
 {
@@ -40,7 +41,7 @@ namespace _Scripts.Managers.Board
         
         public void SpawnOperator(int index)
         {
-
+            InputSO.ChangeInput(false);
             InputSO.OnLeftBtnClick = null;  //다른 오퍼레이터 눌러놓은거 초기화 시켜줘야함.
             //안그러면 중복 소환 됨;;
             
@@ -69,15 +70,16 @@ namespace _Scripts.Managers.Board
             if (_operators.Any(x => x.Value.UIData == operatorWrapper.operatorPrefab.UIData))
             {
                 Debug.LogWarning("이미 소환된 오퍼레이터입니다!");
+                InputSO.ChangeInput(true);
                 return;
             }
 
             if (operatorWrapper.operatorPrefab.UIData.cost > CostManager.CostManager.Instance.Cost)
             {
                 Debug.LogWarning("소환하려는 대상의 Cost가 현재 Cost보다 높은데 소환이 허락되었습니다.");
+                InputSO.ChangeInput(true);
                 return;
             }
-            InputSO.ChangeInput(false);
             
             _currentOperatorInfo = operatorWrapper;
             _isSpawning = true;

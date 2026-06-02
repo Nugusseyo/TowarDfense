@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "New InputSO", menuName = "Input SO")]
@@ -51,8 +52,10 @@ public class InputSO : ScriptableObject, Controls.IPlayerActions, Controls.IInGa
 
     public void OnClick(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
+        {
             OnLeftBtnClick?.Invoke();
+        }
     }
 
     public bool GetMousePos(out Vector3 worldPos)

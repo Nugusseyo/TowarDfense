@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using _Script.Tools.Utility;
+using _Scripts.Agent.Tower;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,7 +11,9 @@ namespace _Scripts.Agent.Enemy.Citizens
 {
     public class CreatureService : MonoBehaviour
     {
-        [SerializeField] private GameObject spawnerGameObject;
+        
+        [SerializeField] private GameObject citizenSpawnerGameObject;
+        [SerializeField] private GameObject towerSpawnerGameObject;
         [field:SerializeField] public CreatureListSO creatureListSO { get; private set; }
         public List<CreatureInfo> Creatures = new List<CreatureInfo>();
 
@@ -19,11 +23,18 @@ namespace _Scripts.Agent.Enemy.Citizens
         private Queue<CreatureInfo> sortedCreatures = new Queue<CreatureInfo>();
         private List<GameObject> _activeCreatures = new List<GameObject>();
         private ICitizenSpawner _citizenSpawner;
+        private ITowerSpawner _towerSpawner;
         private void Awake()
         {
-            if (!spawnerGameObject.TryGetComponent(out ICitizenSpawner _))
+            if (!citizenSpawnerGameObject.TryGetComponent(out ICitizenSpawner _))
             {
                 Debug.LogError("Citizen Spawner가 없습니다.");
+                return;
+            }
+
+            if (!towerSpawnerGameObject.TryGetComponent(out ITowerSpawner _))
+            {
+                Debug.LogError("TowerSpawner가 없습니다.");
                 return;
             }
             if (creatureListSO != null && Creatures.Count > 0)
@@ -37,7 +48,8 @@ namespace _Scripts.Agent.Enemy.Citizens
                 //알고싶지 않았음.
                 Creatures = new List<CreatureInfo>(creatureListSO.CreatureInfos);
             }
-            _citizenSpawner = spawnerGameObject.GetComponent<ICitizenSpawner>();
+            _citizenSpawner = citizenSpawnerGameObject.GetComponent<ICitizenSpawner>();
+            _towerSpawner = towerSpawnerGameObject.GetComponent<ITowerSpawner>();
         }
 
         private void Start()
@@ -62,6 +74,7 @@ namespace _Scripts.Agent.Enemy.Citizens
         private void SummonEnemyWave(int wave)
         {
             if (sortedCreatures.Count <= 0) return;
+            _towerSpawner.SpawnTower(wave);
             Queue<CreatureInfo> creatures = new Queue<CreatureInfo>();
             while (sortedCreatures.Count > 0 && sortedCreatures.Peek().wave == wave)
             {

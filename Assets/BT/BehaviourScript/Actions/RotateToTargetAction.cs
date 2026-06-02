@@ -20,6 +20,7 @@ public partial class RotateToTargetAction : Action
     private Transform _targetTrm;
     
     private IAgentAttackModule _attackModule;
+    private Transform _visual;
     
     protected override Status OnStart()
     {
@@ -27,6 +28,7 @@ public partial class RotateToTargetAction : Action
             return Status.Failure;
 
         _attackModule = Agent.Value.GetModule<IAgentAttackModule>();
+        _visual = Agent.Value.GetModule<IAgentRenderer>().Animator.gameObject.transform;
 
         if (_attackModule == null)
         {
@@ -67,10 +69,10 @@ public partial class RotateToTargetAction : Action
         if (direction != Vector3.zero)
         {
             Quaternion rotation = Quaternion.LookRotation(direction);
-            Agent.Value.transform.rotation = Quaternion.Lerp(
-                Agent.Value.transform.rotation, 
+            _visual.rotation = Quaternion.Lerp(
+                _visual.rotation, 
                 rotation, 
-                10 * Time.deltaTime
+                20 * Time.deltaTime
             );
         }
         return Status.Running;

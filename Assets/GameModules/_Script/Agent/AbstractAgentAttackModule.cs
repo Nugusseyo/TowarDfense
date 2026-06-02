@@ -62,7 +62,6 @@ namespace GameModules._Script.Agent
             }
             
             SortingRule.SortingTarget(targetCaster.SucceedColliders, targetCaster.HitCount, transform.position, _targetMaxCount, _attackTargets);
-            Debug.Log("Sorted target count : " + _attackTargets.Count);
             /*
             for (int i = 0; i < hitCount; i++)
             {

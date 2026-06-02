@@ -15,8 +15,9 @@ namespace _Scripts.Agent
         public IAgentAttackModule AttackModule { get; private set; }
         public HealthModule HealthModule { get; private set; }
 
-        [field:SerializeField] public OperatorStatusSO AgentStatusSO { get; private set; }
+        [field:SerializeField] public OperatorStatusSO AgentStatusSO { get; protected set; }
         [field:SerializeField] public AgentUIDataSO UIData { get; private set; }
+        [field:SerializeField] public TagSO AgentTag { get; private set; }
         protected override void Awake()
         {
             base.Awake();

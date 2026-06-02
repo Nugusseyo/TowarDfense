@@ -69,6 +69,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 74df779fa6ce9f8449de164af81fea3e, type: 2}
     - target: {fileID: 1809239370967080452, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+      propertyPath: <AgentTag>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: b9dd06bd37ed5fe47be13b110183b1eb, type: 2}
+    - target: {fileID: 1809239370967080452, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: <AgentStatusSO>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 009cdf9a1a361954bae285f44db9cedf, type: 2}

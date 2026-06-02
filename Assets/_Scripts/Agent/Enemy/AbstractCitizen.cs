@@ -39,12 +39,13 @@ namespace _Scripts.Agent.Enemy
         public override void TakeDamage(int damageAmount)
         {
             base.TakeDamage(damageAmount);
-            Debug.Log("나 데미지 받았어!!");
         }
 
         public override void OnDeath()
         {
-            
+            Mover.NavAgent.isStopped = true;
+            _stateChange.SendEventMessage(CitizenState.DEAD);
+            Destroy(gameObject, 3f);
         }
     }
 

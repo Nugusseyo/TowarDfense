@@ -18,7 +18,7 @@ public partial class AgentPlayFeedbackAction : Action
     
     protected override Status OnStart()
     {
-        if (Agent.Value == null || Feedback.Value == null) return Status.Failure;
+        if (Agent.Value == null) return Status.Failure;
 
          _feedbacks = Agent.Value.GetModule<Feedbacks>();
          _trigger = Agent.Value.GetModule<IAnimationTrigger>();

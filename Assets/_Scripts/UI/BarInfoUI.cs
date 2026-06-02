@@ -14,7 +14,7 @@ namespace _Scripts.UI
         [SerializeField] private Image healthBar;
         [SerializeField] private Image skillBar;
         
-        private HealthModule _healthModule;
+        private Agent.Combat.HealthModule _healthModule;
         private IAgentSkillModule _skillModule;
         public void Initialize(ModuleAgent moduleAgent)
         {
@@ -23,15 +23,17 @@ namespace _Scripts.UI
 
         private void Start()
         {
-            _healthModule = _moduleAgent.GetModule<HealthModule>();
+            _healthModule = _moduleAgent.GetModule<Agent.Combat.HealthModule>();
             _skillModule = _moduleAgent.GetModule<IAgentSkillModule>();
             _cameraTransform = Camera.main.transform;
         }
 
         private void Update()
         {
-            if(healthBar != null && _healthModule != null)
+            if (healthBar != null && _healthModule != null)
+            {
                 healthBar.fillAmount = _healthModule.GetHealthNormal;
+            }
             
             if(skillBar != null && _skillModule != null)
                 skillBar.fillAmount = _skillModule.GetCooldownNormal;

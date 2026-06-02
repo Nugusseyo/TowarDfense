@@ -21,6 +21,7 @@ namespace _Scripts.Agent.Combat
                 _health = nextHealth;
             }
         }
+        public float GetHealthNormal => Mathf.Clamp01((float)Health / MaxHealth);
 
         public bool IsDead { get; private set; } = false;
 

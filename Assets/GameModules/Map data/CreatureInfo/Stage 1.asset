@@ -31,3 +31,12 @@ MonoBehaviour:
   - creature: {fileID: 5782135197438909392, guid: 118267c5a55c0bb42a6913062df0cb39, type: 3}
     wave: 1
     spawnTime: 4
+  - creature: {fileID: 5782135197438909392, guid: 118267c5a55c0bb42a6913062df0cb39, type: 3}
+    wave: 2
+    spawnTime: 2
+  - creature: {fileID: 5782135197438909392, guid: 118267c5a55c0bb42a6913062df0cb39, type: 3}
+    wave: 3
+    spawnTime: 2
+  - creature: {fileID: 5782135197438909392, guid: 118267c5a55c0bb42a6913062df0cb39, type: 3}
+    wave: 4
+    spawnTime: 2

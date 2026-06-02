@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d9f669e80874d34845beeed1ba87ce4, type: 3}
+  m_Name: CrossBowInfo
+  m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.Tower.TowerLevelInfoSO
+  levelVisuals:
+  - {fileID: 1800201306751354, guid: 5940923b77c2e41448526ff737dafe21, type: 3}
+  - {fileID: 1428138843865682, guid: bf0ae0a2f513d604e87952044a95f4d2, type: 3}
+  - {fileID: 1724137594830602, guid: 6458cc159d9918f47bbd43ab92a9159b, type: 3}
+  - {fileID: 1795475495174448, guid: 0bc5acfb36d3ce740884db2b7b852e50, type: 3}
+  statSO:
+  - {fileID: 11400000, guid: 67f0c44912c4de34482a19f225fe4f1c, type: 2}
+  - {fileID: 11400000, guid: 67f0c44912c4de34482a19f225fe4f1c, type: 2}
+  - {fileID: 11400000, guid: 67f0c44912c4de34482a19f225fe4f1c, type: 2}
+  - {fileID: 11400000, guid: 67f0c44912c4de34482a19f225fe4f1c, type: 2}

@@ -56,7 +56,6 @@ namespace _Scripts.Agent
 
         public virtual void UseSkill()
         {
-            Debug.Log("나 스킬 쓴다!");
             OnSkill?.Invoke();
             _timer = 0;
         }
