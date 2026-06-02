@@ -8,21 +8,21 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "Operator attack", story: "[Operator] attack in attackList", category: "Action/Combat", id: "966744992145ea5736d587e201f920ef")]
+[NodeDescription(name: "Operator attack", story: "[Agent] attack in attackList", category: "Action/Combat", id: "966744992145ea5736d587e201f920ef")]
 public partial class OperatorAttackAction : Action
 {
-    [SerializeReference] public BlackboardVariable<AbstractOperator> Operator;
+    [SerializeReference] public BlackboardVariable<Agent> Agent;
 
     private IAgentAttackModule _attackModule;
     private IAnimationTrigger _trigger;
 
     protected override Status OnStart()
     {
-        if (Operator.Value == null)
+        if (Agent.Value == null)
             return Status.Failure;
 
-        _trigger = Operator.Value.GetModule<IAnimationTrigger>();
-        _attackModule = Operator.Value.GetModule<IAgentAttackModule>();
+        _trigger = Agent.Value.GetModule<IAnimationTrigger>();
+        _attackModule = Agent.Value.GetModule<IAgentAttackModule>();
         
         if(_trigger == null || _attackModule == null) 
             return Status.Failure;

@@ -9,22 +9,22 @@ using Action = Unity.Behavior.Action;
 namespace BT.BehaviourScript.Actions
 {
     [Serializable, GeneratePropertyBag]
-    [NodeDescription(name: "WaitUntilAnimationEnd", story: "[Operator] wait animation end", category: "Action/Animation", id: "06d0f8d8f9c0b2c199cf93c4b9e757ac")]
+    [NodeDescription(name: "WaitUntilAnimationEnd", story: "[Agent] wait animation end", category: "Action/Animation", id: "06d0f8d8f9c0b2c199cf93c4b9e757ac")]
     public partial class WaitUntilAnimationEndAction : Action
     {
-        [SerializeReference] public BlackboardVariable<AbstractOperator> Operator;
+        [SerializeReference] public BlackboardVariable<Agent> Agent;
 
         private IAnimationTrigger _trigger;
         private bool _isAnimationEnd = false;
         protected override Status OnStart()
         {
-            if (Operator.Value == null)
+            if (Agent.Value == null)
             {
                 Debug.LogError("Operator is Null!!!");
                 return Status.Failure;
             }
         
-            _trigger = Operator.Value.GetModule<IAnimationTrigger>();
+            _trigger = Agent.Value.GetModule<IAnimationTrigger>();
             if (_trigger == null)
             {
                 Debug.LogError("Trigger is Null!!!");

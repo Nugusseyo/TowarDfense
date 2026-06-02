@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace _Scripts.Agent.Player
 {
-    [CreateAssetMenu(fileName = "PlayerStatus", menuName = "Scriptable Objects/PlayerStatus")]
+    [CreateAssetMenu(fileName = "PlayerStatus", menuName = "Agent/PlayerStatus")]
     public class OperatorStatusSO : ScriptableObject
     {
         [field: SerializeField] public float DetectRadius { get; private set; } = 10f;

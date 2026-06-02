@@ -9,10 +9,10 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "Rotate to Target", story: "[Operator] rotate to currentTarget", category: "Action", id: "89b0374032fe7ea8fd5a24518596b019")]
+[NodeDescription(name: "Rotate to Target", story: "[Agent] rotate to currentTarget", category: "Action", id: "89b0374032fe7ea8fd5a24518596b019")]
 public partial class RotateToTargetAction : Action
 {
-    [SerializeReference] public BlackboardVariable<AbstractOperator> Operator;
+    [SerializeReference] public BlackboardVariable<Agent> Agent;
 
     //private float _rotateTime = 0.4f;
     //private float _startTime;
@@ -23,10 +23,10 @@ public partial class RotateToTargetAction : Action
     
     protected override Status OnStart()
     {
-        if (Operator.Value == null)
+        if (Agent.Value == null)
             return Status.Failure;
 
-        _attackModule = Operator.Value.GetModule<IAgentAttackModule>();
+        _attackModule = Agent.Value.GetModule<IAgentAttackModule>();
 
         if (_attackModule == null)
         {
@@ -60,15 +60,15 @@ public partial class RotateToTargetAction : Action
         //정면이나 보자.
         else
             direction = _targetTrm.position
-                        - Operator.Value.transform.position;
+                        - Agent.Value.transform.position;
         direction.y = 0;
         direction.Normalize();
         
         if (direction != Vector3.zero)
         {
             Quaternion rotation = Quaternion.LookRotation(direction);
-            Operator.Value.transform.rotation = Quaternion.Lerp(
-                Operator.Value.transform.rotation, 
+            Agent.Value.transform.rotation = Quaternion.Lerp(
+                Agent.Value.transform.rotation, 
                 rotation, 
                 10 * Time.deltaTime
             );

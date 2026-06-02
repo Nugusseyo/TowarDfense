@@ -40,12 +40,31 @@ namespace _Scripts.Managers.Board
         
         public void SpawnOperator(int index)
         {
+
             InputSO.OnLeftBtnClick = null;  //다른 오퍼레이터 눌러놓은거 초기화 시켜줘야함.
             //안그러면 중복 소환 됨;;
             
             OperatorWrapper operatorWrapper = HoldOperatorListSO.GetOperator(index);
             
             if (operatorWrapper == null) return;
+            if (_currentOperatorInfo != null || _isSpawning)
+            {
+                if (_currentOperatorInfo.operatorPrefab != null)
+                {
+                    if (_currentOperatorInfo.operatorPrefab == operatorWrapper.operatorPrefab)
+                    {
+                        ShowMountainEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(false));
+                        ShowGroundEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(false));
+                        ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentInfoUI.Init(null, false));
+                        InputSO.ChangeInput(true);
+                        _isSpawning = false;
+                        _currentOperatorInfo = null;
+                        Debug.Log("같은 Operator누름 감지. 배치 취소합니다.");
+                        return;
+                    }
+                }
+            }
+            
             
             if (_operators.Any(x => x.Value.UIData == operatorWrapper.operatorPrefab.UIData))
             {
@@ -63,10 +82,13 @@ namespace _Scripts.Managers.Board
             _currentOperatorInfo = operatorWrapper;
             _isSpawning = true;
             
+            ShowMountainEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(false));
+            ShowMountainEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(false));
+            
             if(operatorWrapper.isMountain)
-                ShowMountainEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(_isSpawning));
+                ShowMountainEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(true));
             else
-                ShowGroundEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(_isSpawning));
+                ShowGroundEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(true));
             
             Debug.Log($"{operatorWrapper.operatorPrefab.name} 배치 모드 시작! 설치할 타일을 클릭하세요.");
             InputSO.OnLeftBtnClick += HandlePlacement;
