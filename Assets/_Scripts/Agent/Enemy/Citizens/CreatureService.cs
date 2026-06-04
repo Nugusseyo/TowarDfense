@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using _Script.ScriptableObject.Event;
 using _Script.Tools.Utility;
 using _Scripts.Agent.Tower;
 using UnityEditor;
@@ -29,13 +28,15 @@ namespace _Scripts.Agent.Enemy.Citizens
         protected override void Awake()
         {
             base.Awake();
-            if (!citizenSpawnerGameObject.TryGetComponent(out ICitizenSpawner _))
+            if (citizenSpawnerGameObject != null 
+                && !citizenSpawnerGameObject.TryGetComponent(out ICitizenSpawner _))
             {
                 Debug.LogError("Citizen Spawner가 없습니다.");
                 return;
             }
 
-            if (!towerSpawnerGameObject.TryGetComponent(out ITowerSpawner _))
+            if (towerSpawnerGameObject != null
+                && !towerSpawnerGameObject.TryGetComponent(out ITowerSpawner _))
             {
                 Debug.LogError("TowerSpawner가 없습니다.");
                 return;
@@ -91,7 +92,7 @@ namespace _Scripts.Agent.Enemy.Citizens
         private IEnumerator CreatureSpawn(Queue<CreatureInfo> q, int wave)
         {
             float startTime = Time.time;
-            CreatureInfo creatureInfo = q.Peek();
+            CreatureInfo creatureInfo;
             while (q.Count > 0)
             {
                 creatureInfo = q.Peek();

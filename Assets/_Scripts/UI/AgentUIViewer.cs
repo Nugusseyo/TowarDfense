@@ -1,10 +1,13 @@
 using System.Collections;
+using System;
 using _Script.ScriptableObject.Event;
 using _Scripts.Agent;
+using _Scripts.Agent.Player;
 using GameModules._Script.Agent;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening; // 💡 DOTween 네임스페이스 추가
 
 namespace _Scripts.UI
 {
@@ -29,25 +32,54 @@ namespace _Scripts.UI
         #region Middle_Center UI
         
         [Header("CenterUI")]
-        [SerializeField] private Button skillBtn;                   //  이미지는 Skill Icon과 동일.
+        [SerializeField] private Button skillBtn;                   
+        [SerializeField] private Button removeBtn;
         [SerializeField] private TextMeshProUGUI skillPercent;
         [SerializeField] private Image percentBG;
         [SerializeField] private Gradient percentGradient;
-        private Image _skillBtnImage;                                //  GetCompo로 받아옴.
+        private Image _skillBtnImage;                                
         
         #endregion
 
         private IAgentSkillModule _curSkillModule;
         private IAgentAttackModule _curAttackModule;
+        private AbstractOperator _curOperator;
 
         private bool _isActive;
+        private Coroutine _removeWaitCoroutine;
+
+        // 💡 투명도 제어를 위한 CanvasGroup 변수
+        private CanvasGroup _uiParentCG;
+        private CanvasGroup _worldCanvasCG;
 
         private void Awake()
         {
             ViewUIEventChannelSO.AddListener<AgentOnUI>(HandleAgentSelect);
             ViewUIEventChannelSO.AddListener<AgentInfoUI>(HandleAgentInfoView);
             skillBtn.onClick.AddListener(HandleSkillButtonClick);
+            removeBtn.onClick.AddListener(HandleRemoveButtonClick);
             _skillBtnImage = skillBtn.GetComponent<Image>();
+
+            removeBtn.gameObject.SetActive(false);
+
+            _uiParentCG = uiParent.GetComponent<CanvasGroup>();
+            _worldCanvasCG = worldCanvas.GetComponent<CanvasGroup>();
+        }
+
+        private void HandleRemoveButtonClick()
+        {
+            if (_curOperator != null)
+            {
+                _curOperator.OnDeath();
+            }
+            
+            _uiParentCG.DOKill();
+            _worldCanvasCG.DOKill();
+            uiParent.SetActive(false);
+            worldCanvas.SetActive(false);
+
+            ClearCurrentAgent(); 
+            removeBtn.gameObject.SetActive(false);
         }
 
         private void Start()
@@ -59,8 +91,13 @@ namespace _Scripts.UI
         private void HandleSkillButtonClick()
         {
             _curAttackModule.UseSkill();
+            
+            _uiParentCG.DOKill();
+            _worldCanvasCG.DOKill();
             uiParent.SetActive(false);
             worldCanvas.SetActive(false);
+
+            ClearCurrentAgent();
         }
 
         private void OnDestroy()
@@ -69,21 +106,43 @@ namespace _Scripts.UI
             ViewUIEventChannelSO.RemoveListener<AgentInfoUI>(HandleAgentInfoView);
             if(skillBtn != null)
                 skillBtn.onClick.RemoveListener(HandleSkillButtonClick);
+            if(removeBtn != null)
+                removeBtn.onClick.RemoveListener(HandleRemoveButtonClick);
+
+            
+            _uiParentCG.DOKill();
+            _worldCanvasCG.DOKill();
         }
 
         private void HandleAgentSelect(AgentOnUI evt)
         {
             if (evt.NextAgent == null)
             {
-                StartCoroutine(RemoveWaitSecond());
-                //Camera Moving 추가하기
+                if (_removeWaitCoroutine != null) StopCoroutine(_removeWaitCoroutine);
+                _removeWaitCoroutine = StartCoroutine(RemoveWaitSecond());
                 return;
             }
-            StopCoroutine(RemoveWaitSecond());
+            
+            if (_removeWaitCoroutine != null) 
+            {
+                StopCoroutine(_removeWaitCoroutine);
+                _removeWaitCoroutine = null;
+            }
             
             Agent.Agent agent = evt.NextAgent;
             _curSkillModule = agent.GetModule<IAgentSkillModule>();
             _curAttackModule = agent.GetModule<IAgentAttackModule>();
+            if (agent is AbstractOperator abstractOperator)
+            {
+                removeBtn.gameObject.SetActive(true);
+                _curOperator = abstractOperator;
+                if(abstractOperator == null)
+                    Debug.LogError("AbstractOperator가 아닙니다!");
+            }
+            else
+            {
+                Debug.LogWarning("AbstractOperator가 아닙니다!");
+            }
             AgentUIDataSO data = agent.UIData;
 
             if (_curSkillModule == null || data == null || _curAttackModule == null)
@@ -92,9 +151,6 @@ namespace _Scripts.UI
                 return;
             }
             
-            uiParent.SetActive(true);
-            worldCanvas.SetActive(true);
-
             positionIcon.sprite = data.positionTypeIcon;
             agentName.text = data.agentName;
             
@@ -105,7 +161,16 @@ namespace _Scripts.UI
             Vector3 fixPos = agent.transform.position;
             fixPos.y = worldCanvas.transform.position.y;
             worldCanvas.transform.position = fixPos;
+            
+            _uiParentCG.DOKill();
+            _uiParentCG.alpha = 0f;
+            uiParent.SetActive(true);
+            _uiParentCG.DOFade(1f, 0.1f).SetEase(Ease.OutQuad);
 
+            _worldCanvasCG.DOKill();
+            _worldCanvasCG.alpha = 0f;
+            worldCanvas.SetActive(true);
+            _worldCanvasCG.DOFade(1f, 0.1f).SetEase(Ease.OutQuad);
         }
 
         private IEnumerator RemoveWaitSecond()
@@ -113,9 +178,14 @@ namespace _Scripts.UI
             yield return new WaitForSeconds(0.1f);
             if (!_isActive)
             {
+                _uiParentCG.DOKill();
+                _worldCanvasCG.DOKill();
                 uiParent.SetActive(false);
                 worldCanvas.SetActive(false);
+
+                ClearCurrentAgent();
             }
+            _removeWaitCoroutine = null;
         }
 
         private void Update()
@@ -150,12 +220,20 @@ namespace _Scripts.UI
             percentBG.color = percentGradient.Evaluate(fPercent);
         }
         
-        
         private void HandleAgentInfoView(AgentInfoUI evt)
         {
             _isActive = evt.IsActive;
             
+            _uiParentCG.DOKill();
             uiParent.SetActive(_isActive);
+
+            if (_isActive)
+            {
+                _uiParentCG.alpha = 0f;
+                _uiParentCG.DOFade(1f, 0.1f).SetEase(Ease.OutQuad);
+            }
+            
+            _worldCanvasCG.DOKill();
             worldCanvas.SetActive(false);
 
             if (evt.Agent == null) return;
@@ -167,6 +245,13 @@ namespace _Scripts.UI
             
             skillIcon.sprite = data.skillIcon;
             skillDesc.text = data.skillDesc;
+        }
+        
+        private void ClearCurrentAgent()
+        {
+            _curSkillModule = null;
+            _curAttackModule = null;
+            _curOperator = null;
         }
     }
 }

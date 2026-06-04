@@ -8,7 +8,7 @@ namespace _Scripts.UI
         public static AgentInfoUI AgentInfoUI = new AgentInfoUI();
     }
 
-    public class AgentOnUI : GameEvent
+    public class AgentOnUI : _Script.ScriptableObject.Event.GameEvent
     {
         public Agent.Agent NextAgent { get; private set; }
 
@@ -19,7 +19,7 @@ namespace _Scripts.UI
         }
     }
 
-    public class AgentInfoUI : GameEvent
+    public class AgentInfoUI : _Script.ScriptableObject.Event.GameEvent
     {
         public Agent.Agent Agent { get; private set; }
         public bool IsActive { get; private set; }

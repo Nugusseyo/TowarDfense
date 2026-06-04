@@ -24,10 +24,9 @@ namespace _Scripts.UI
                 AgentUIDataSO data = wrapper.operatorPrefab.UIData;
                 GameObject button = Instantiate(buttonPrefab, buttonParent);
                 Button buttonScript = button.GetComponent<Button>();
-                Image image = button.GetComponent<Image>();
-                TextMeshProUGUI text = button.GetComponentInChildren<TextMeshProUGUI>();
-                image.sprite = data.portrait;
-                text.text = data.cost.ToString();
+                CharacterButton charBtn = button.GetComponent<CharacterButton>();
+                charBtn.Portrait.sprite = data.portrait;
+                charBtn.TopText.text = data.cost.ToString();
                 
                 buttonScript.onClick.AddListener(() => BoardManager.Instance.SpawnOperator(index));
             }

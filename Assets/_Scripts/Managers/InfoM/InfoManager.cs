@@ -3,6 +3,7 @@ using _Script.ScriptableObject.Event;
 using _Script.Tools.Utility;
 using _Scripts.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace _Scripts.Managers.InfoM
 {
@@ -30,12 +31,17 @@ namespace _Scripts.Managers.InfoM
         private void HandleInGameClick()
         {
             if (!InputSO.IsInGame) return;
+            
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) 
+            {
+                return;
+            }
+
             Debug.Log("야루");
             GameObject target = InputSO.GetGameObject(infoTargetLayer);
             
-            if (target == null) //아무것도 안집힘. 그럼 UI 꺼줘야해
+            if (target == null) 
             {
-                //UI OFF
                 ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(null));
                 return;
             }
@@ -45,9 +51,8 @@ namespace _Scripts.Managers.InfoM
             else
                 TargetInfo = null;
             
-            if (TargetInfo == null) //아무것도 안집힘. 그럼 UI 꺼줘야해
+            if (TargetInfo == null) 
             {
-                //UI OFF
                 ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(null));
                 return;
             }

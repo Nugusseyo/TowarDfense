@@ -7,7 +7,7 @@ namespace _Scripts.UI
         public static DecalShow DecalShow = new DecalShow();
     }
 
-    public class DecalShow : GameEvent
+    public class DecalShow : _Script.ScriptableObject.Event.GameEvent
     {
         public bool Show;
         public DecalShow Init(bool show)

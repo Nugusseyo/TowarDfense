@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using _Script.ScriptableObject.Event;
@@ -26,11 +27,30 @@ namespace _Scripts.Managers.Board
         private bool _isSpawning = false;
         private OperatorWrapper _currentOperatorInfo = null;
 
+        [field: SerializeField] public int MaxOperatorCount = 8;
+        public event Action<int> OnOperatorCountChanged; 
+        private int _currentOperatorCount;
+        public int CurrentOperatorCount
+        {
+            get => _currentOperatorCount;
+            set
+            {
+                _currentOperatorCount = Mathf.Clamp(value, 0, MaxOperatorCount);
+                OnOperatorCountChanged?.Invoke(_currentOperatorCount);
+            }
+        }
+
         protected override void Awake()
         {
             base.Awake();
             Grid = GetComponent<Grid>();
-            InputSO.ChangeInput(true);
+            if(InputSO != null)
+                InputSO.ChangeInput(true);
+        }
+
+        private void Start()
+        {
+            CurrentOperatorCount = MaxOperatorCount;
         }
 
         [ContextMenu("Spawn 0")]
@@ -41,10 +61,14 @@ namespace _Scripts.Managers.Board
         
         public void SpawnOperator(int index)
         {
+            if(CurrentOperatorCount == 0)
+            {
+                Debug.LogWarning("Operator의 수가 없습니다.");
+                return;
+            }
             OperatorWrapper operatorWrapper = HoldOperatorListSO.GetOperator(index);
             if (operatorWrapper == null) return;
-
-            // 💡 개선: 이미 배치 모드인 상태에서 다른 버튼을 눌렀을 때의 예외 처리 추가
+            
             if (_isSpawning || _currentOperatorInfo != null)
             {
                 if (_currentOperatorInfo?.operatorPrefab == operatorWrapper.operatorPrefab)
@@ -53,7 +77,7 @@ namespace _Scripts.Managers.Board
                     return;
                 }
                 
-                ResetSpawningStateOnly(); // 💡 개선: 다른 캐릭터 버튼을 눌렀다면 이전 캐싱 데이터와 이벤트를 안전하게 선행 초기화
+                ResetSpawningStateOnly();
             }
             else
             {
@@ -87,7 +111,7 @@ namespace _Scripts.Managers.Board
             
             Debug.Log($"{operatorWrapper.operatorPrefab.name} 배치 모드 시작! 설치할 타일을 클릭하세요.");
             
-            InputSO.OnLeftBtnClick -= HandlePlacement; // 💡 개선: 다른 버튼 누름으로 인한 델리게이트 중복 구독 현상 원천 차단
+            InputSO.OnLeftBtnClick -= HandlePlacement;
             InputSO.OnLeftBtnClick += HandlePlacement;
             
             ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentInfoUI.Init(_currentOperatorInfo.operatorPrefab, true));
@@ -95,7 +119,6 @@ namespace _Scripts.Managers.Board
 
         private void HandlePlacement()
         {
-            // 💡 핵심 개선: 마우스가 UI 요소 위에 떠 있다면 월드 클릭(레이캐스트 피킹) 연산을 생략하여 Vector.zero 소환 현상 방지
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             {
                 return;
@@ -131,6 +154,7 @@ namespace _Scripts.Managers.Board
                 _operators.Add(gridPos, newOperator);
                 Debug.Log($"[{gridPos}] 칸에 {newOperator.name} 배치 완료!");
 
+                CurrentOperatorCount--;
                 CostManager.CostManager.Instance.Cost -= newOperator.UIData.cost;
                 
                 _isSpawning = false;
@@ -138,7 +162,7 @@ namespace _Scripts.Managers.Board
             }
             else
             {
-                return; // 💡 개선: 유효한 레이어 감지에 실패했을 경우 데이터가 튀는 것을 막고 그대로 리턴하여 재입력 대기
+                return;
             }
             
             if(_currentOperatorInfo.isMountain)
@@ -153,16 +177,14 @@ namespace _Scripts.Managers.Board
             }
             InputSO.ChangeInput(!_isSpawning);
         }
-
-        // 💡 개선: 순수 내부 배치 상태 변수와 이벤트만 안전하게 분리 수거하는 공용 메서드
+        
         private void ResetSpawningStateOnly()
         {
             InputSO.OnLeftBtnClick -= HandlePlacement;
             _isSpawning = false;
             _currentOperatorInfo = null;
         }
-
-        // 💡 개선: 배치 모드를 도중에 탈출하거나 같은 버튼을 다시 눌러 취소할 때 사용하는 완전 복구 메서드
+        
         private void CancelSpawning()
         {
             ResetSpawningStateOnly();
@@ -179,6 +201,7 @@ namespace _Scripts.Managers.Board
                 Debug.Log("죽은 Operator가 Dictionary에 포함되어있음. 제거 시작");
                 KeyValuePair<Vector2Int, AbstractOperator> pair = _operators.FirstOrDefault(x => x.Value ==  abstractOperator);
                 _operators.Remove(pair.Key);
+                CurrentOperatorCount++;
             }
         }
     }
