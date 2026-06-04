@@ -635,6 +635,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7309336765473688641}
     m_Modifications:
+    - target: {fileID: 969404885560781309, guid: ee36ba4c59cc0c34cb1ff5069fa7dad9, type: 3}
+      propertyPath: m_Color.b
+      value: 0.07848549
+      objectReference: {fileID: 0}
+    - target: {fileID: 969404885560781309, guid: ee36ba4c59cc0c34cb1ff5069fa7dad9, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 969404885560781309, guid: ee36ba4c59cc0c34cb1ff5069fa7dad9, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3057145061210917594, guid: ee36ba4c59cc0c34cb1ff5069fa7dad9, type: 3}
       propertyPath: m_Name
       value: PlayerInfoBar

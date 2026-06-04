@@ -12,11 +12,19 @@ namespace _Scripts.Feedbacks
         private Dictionary<FeedbackType, FeedbackPlayer> FeedbackPlayers = new Dictionary<FeedbackType, FeedbackPlayer>();
         public void Initialize(ModuleAgent moduleAgent)
         {
+        }
+
+        private void Start()
+        {
             FeedbackPlayers = GetComponentsInChildren<FeedbackPlayer>().ToDictionary(x => x.FeedbackType, x => x);
         }
 
         public FeedbackPlayer GetFeedbackPlayer(FeedbackType feedbackType)
         {
+            if (!FeedbackPlayers.ContainsKey(feedbackType))
+            {
+                Debug.LogError("안에 대상이 없는데요?");
+            }
             return FeedbackPlayers.GetValueOrDefault(feedbackType);
         }
         
@@ -25,6 +33,7 @@ namespace _Scripts.Feedbacks
     [BlackboardEnum][Serializable]
     public enum FeedbackType
     {
-        LANDING
+        LANDING,
+        UPGRADE
     }
 }

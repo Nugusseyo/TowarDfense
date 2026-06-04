@@ -4,6 +4,9 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Agent UI data",  menuName = "Agent/UI data")]
 public class AgentUIDataSO : ScriptableObject
 {
+    [Header("Button data")]
+    public Sprite portrait;
+    
     [Header("Left UI")] 
     public Sprite positionTypeIcon;
     public string agentName;

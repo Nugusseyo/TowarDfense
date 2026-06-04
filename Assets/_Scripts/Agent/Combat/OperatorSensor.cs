@@ -30,12 +30,31 @@ namespace _Scripts.Agent
             if (isResetOriginColliders)
             {
                 Array.Clear(SucceedColliders, 0, SucceedColliders.Length);
-                //Array 전부 싹 클리어하기.
+                //Array 전부 싹 클리어
                 //Clear(대상, 첫번째 idx, 끝 idx);
             }
             //미리 캐싱해둔걸 쥐어주고 할당시켜주는 NonAlloc OverlapSphere. 모르면 멍충이
             //hitCount : Return값으로 찾기에 성공한 갯수를 반환해준다.
             HitCount = Physics.OverlapSphereNonAlloc(transform.position, radius, SucceedColliders, targetLayer);
+            //아무것도 없으니까 false
+            if (HitCount == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        public bool SearchTargetSphere(Vector3 pos, float radius, bool isResetOriginColliders = false)
+        {
+            if (isResetOriginColliders)
+            {
+                Array.Clear(SucceedColliders, 0, SucceedColliders.Length);
+                //Array 전부 싹 클리어
+                //Clear(대상, 첫번째 idx, 끝 idx);
+            }
+            //미리 캐싱해둔걸 쥐어주고 할당시켜주는 NonAlloc OverlapSphere. 모르면 멍충이
+            //hitCount : Return값으로 찾기에 성공한 갯수를 반환해준다.
+            HitCount = Physics.OverlapSphereNonAlloc(pos, radius, SucceedColliders, targetLayer);
             //아무것도 없으니까 false
             if (HitCount == 0)
             {

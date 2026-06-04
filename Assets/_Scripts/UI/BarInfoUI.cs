@@ -30,12 +30,12 @@ namespace _Scripts.UI
 
         private void Update()
         {
-            if (healthBar != null && _healthModule != null)
+            if (healthBar != null && _healthModule != null && !float.IsNaN(_healthModule.GetHealthNormal))
             {
                 healthBar.fillAmount = _healthModule.GetHealthNormal;
             }
             
-            if(skillBar != null && _skillModule != null)
+            if(skillBar != null && _skillModule != null && !float.IsNaN(_skillModule.GetCooldownNormal))
                 skillBar.fillAmount = _skillModule.GetCooldownNormal;
         }
 

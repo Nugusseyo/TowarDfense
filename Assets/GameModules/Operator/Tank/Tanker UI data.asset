@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a48560bf467baa409b9ddefca2eef1e, type: 3}
   m_Name: Tanker UI data
   m_EditorClassIdentifier: Assembly-CSharp::AgentUIDataSO
+  portrait: {fileID: 21300000, guid: 07a874086c5186044a407705722bdf52, type: 3}
   positionTypeIcon: {fileID: 21300000, guid: 0af3cd3df2ebecd439d6bae1e3686ba3, type: 3}
   agentName: "\uC2A4\uD0AC\uC5C6\uB294\uC560"
   skillIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}

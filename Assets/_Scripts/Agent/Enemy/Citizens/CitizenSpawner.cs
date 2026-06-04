@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _Script.ScriptableObject.Event;
 using UnityEngine;
 
 namespace _Scripts.Agent.Enemy.Citizens
@@ -11,7 +12,7 @@ namespace _Scripts.Agent.Enemy.Citizens
         [Header("WayPoint Settings")]
         [SerializeField] private List<CitizenWayPointData> wayPointsInput = new List<CitizenWayPointData>();
 
-        private List<CitizenWayPoint> _cachedWayPoints = new List<CitizenWayPoint>();
+        private readonly List<CitizenWayPoint> _cachedWayPoints = new List<CitizenWayPoint>();
 
         private void Awake()
         {

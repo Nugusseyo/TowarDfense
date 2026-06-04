@@ -45,7 +45,6 @@ namespace _Scripts.Agent.Enemy
         {
             Mover.NavAgent.isStopped = true;
             _stateChange.SendEventMessage(CitizenState.DEAD);
-            Destroy(gameObject, 3f);
         }
     }
 

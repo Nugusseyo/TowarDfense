@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Mortar Controller
+  m_Controller: {fileID: 9100000, guid: a1691b1f8cf1b7345bac2a0ee02413d5, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 07b54e32a4688b740a0169dd40d3ddb4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6b46a6fcf801fcf4d85b568133c7fe35, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d5b67c027108bb448a92700954783bbd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7800cebb298e74144902cc3f854fbcf9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6dbd37ac8f406d2478ccea9db9e63f5d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: dee71a9b778afa2439cb5ff95e1dcb85, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b5b6459238a573947b328cb875da6f57, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 51ac7608b3f819f4db7e3ec353e52eb3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 060a939e4b379454a904c21728dcfaa6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2e1c5228ccca8614da7c84c5589d3c3f, type: 2}

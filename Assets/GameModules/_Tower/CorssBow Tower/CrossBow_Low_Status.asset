@@ -18,4 +18,4 @@ MonoBehaviour:
   <SkillAttackCooldown>k__BackingField: 0
   <MaxTargetCount>k__BackingField: 30
   <AttackCount>k__BackingField: 1
-  <Damage>k__BackingField: 25
+  <Damage>k__BackingField: 20

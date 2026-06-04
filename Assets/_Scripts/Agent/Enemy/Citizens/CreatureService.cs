@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using _Script.ScriptableObject.Event;
 using _Script.Tools.Utility;
 using _Scripts.Agent.Tower;
 using UnityEditor;
@@ -9,13 +10,13 @@ using UnityEngine;
 
 namespace _Scripts.Agent.Enemy.Citizens
 {
-    public class CreatureService : MonoBehaviour
+    public class CreatureService : MonoSingleton<CreatureService>
     {
-        
         [SerializeField] private GameObject citizenSpawnerGameObject;
         [SerializeField] private GameObject towerSpawnerGameObject;
         [field:SerializeField] public CreatureListSO creatureListSO { get; private set; }
         public List<CreatureInfo> Creatures = new List<CreatureInfo>();
+        public Action<int> OnWaveChanged;
 
         [Header("List Generate To SO")] 
         [SerializeField] private string soName;
@@ -24,8 +25,10 @@ namespace _Scripts.Agent.Enemy.Citizens
         private List<GameObject> _activeCreatures = new List<GameObject>();
         private ICitizenSpawner _citizenSpawner;
         private ITowerSpawner _towerSpawner;
-        private void Awake()
+
+        protected override void Awake()
         {
+            base.Awake();
             if (!citizenSpawnerGameObject.TryGetComponent(out ICitizenSpawner _))
             {
                 Debug.LogError("Citizen Spawner가 없습니다.");
@@ -69,22 +72,23 @@ namespace _Scripts.Agent.Enemy.Citizens
 
             sortedCreatures = new Queue<CreatureInfo>(creatures);
             SummonEnemyWave(0);
+            _towerSpawner.SpawnTower(0);
+            OnWaveChanged?.Invoke(0);
         }
 
         private void SummonEnemyWave(int wave)
         {
             if (sortedCreatures.Count <= 0) return;
-            _towerSpawner.SpawnTower(wave);
             Queue<CreatureInfo> creatures = new Queue<CreatureInfo>();
             while (sortedCreatures.Count > 0 && sortedCreatures.Peek().wave == wave)
             {
                 creatures.Enqueue(sortedCreatures.Dequeue());
             }
             if(creatures.Count > 0)
-                StartCoroutine(CreatureSpawn(creatures));
+                StartCoroutine(CreatureSpawn(creatures, wave));
         }
 
-        private IEnumerator CreatureSpawn(Queue<CreatureInfo> q)
+        private IEnumerator CreatureSpawn(Queue<CreatureInfo> q, int wave)
         {
             float startTime = Time.time;
             CreatureInfo creatureInfo = q.Peek();
@@ -114,8 +118,12 @@ namespace _Scripts.Agent.Enemy.Citizens
                 _activeCreatures.RemoveAll(x => x == null);
                 yield return null;
             }
-            yield return new WaitForSeconds(1f);
-            SummonEnemyWave(creatureInfo.wave + 1);
+
+            int nextWave = wave + 1;
+            _towerSpawner.SpawnTower(nextWave);
+            OnWaveChanged?.Invoke(nextWave);
+            yield return new WaitForSeconds(2f);
+            SummonEnemyWave(nextWave);
         }
 
 

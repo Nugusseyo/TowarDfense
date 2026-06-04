@@ -29,36 +29,40 @@ namespace _Scripts.Agent.Tower
             if (_towers.Count != 0)
             {
                 int towersCount = _towers.Count;
-                for (int i = towersCount - 1; i > 0; --i)
+                for (int i = towersCount - 1; i >= 0; --i)
                 {
                     Tower tower = _towers[i];
-                    if (tower.upgradePrefab == null) continue;
+                    if (tower.upgradePrefab == null)
+                    {
+                        tower.ShutDownThreeSecond();
+                        continue;
+                    }
                     Debug.Log("Upgrade!!");
                     _towers.Remove(tower);
-                    _towers.Add(Instantiate(tower.upgradePrefab, tower.transform.position, Quaternion.identity).GetComponent<Tower>());
-                    Destroy(tower.gameObject);
+                    GameObject newTower = tower.TowerUpgrade();
+                    _towers.Add(newTower.GetComponent<Tower>());
                 }
             }
             
-            Queue<TowerSpawnInfo> towerSpawnInfos = new Queue<TowerSpawnInfo>();
+            Queue<TowerSpawnInfo> spawnInfos = new Queue<TowerSpawnInfo>();
             int count = _towerPool.Count;
             for(int i = 0; i < count; i++)
             {
                 if (_towerPool.Peek().wave == wave)
                 {
-                    _towers.Add(_towerPool.Peek().towerPrefab.GetComponent<Tower>());
-                    towerSpawnInfos.Enqueue(_towerPool.Dequeue());
+                    spawnInfos.Enqueue(_towerPool.Dequeue());
                 }
                 else
                     break;
             }
 
-            while (towerSpawnInfos.Count > 0)
+            while (spawnInfos.Count > 0)
             {
-                TowerSpawnInfo info = towerSpawnInfos.Dequeue();
-                _towers.Add(
-                    Instantiate(info.towerPrefab, info.spawnPos, Quaternion.identity)
-                    .GetComponent<Tower>());
+                TowerSpawnInfo info = spawnInfos.Dequeue();
+                Tower tower = Instantiate(info.towerPrefab, info.spawnPos, Quaternion.identity)
+                    .GetComponent<Tower>();
+                _towers.Add(tower);
+                tower.ShutDownThreeSecond();
             }
         }
 

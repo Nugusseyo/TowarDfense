@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a48560bf467baa409b9ddefca2eef1e, type: 3}
   m_Name: Magician UI data
   m_EditorClassIdentifier: Assembly-CSharp::AgentUIDataSO
+  portrait: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   positionTypeIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   agentName: "\uBB34\uC57C\uD638\uD560\uC544\uBC84\uC9C0"
   skillIcon: {fileID: 21300000, guid: 0af3cd3df2ebecd439d6bae1e3686ba3, type: 3}

@@ -9,6 +9,8 @@ namespace _Scripts.Managers.Board
     public class HoldOperListSO : ScriptableObject
     {
         [SerializeField] private List<OperatorWrapper> operators = new List<OperatorWrapper>();
+        
+        public int OperatorCount => operators.Count;
 
         public OperatorWrapper GetOperator(int index)
         {

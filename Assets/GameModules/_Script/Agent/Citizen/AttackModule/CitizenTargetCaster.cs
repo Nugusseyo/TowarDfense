@@ -13,6 +13,11 @@ namespace GameModules._Script.Agent.Citizen.AttackModule
             return false;
         }
 
+        public bool SearchTargetSphere(Vector3 pos, float radius, bool isResetOriginColliders = false)
+        {
+            return false;
+        }
+
         public bool SearchTargetBox(Vector3 centerOffset, Vector3 size)
         {
             return false;

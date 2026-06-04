@@ -41,31 +41,24 @@ namespace _Scripts.Managers.Board
         
         public void SpawnOperator(int index)
         {
-            InputSO.ChangeInput(false);
-            InputSO.OnLeftBtnClick = null;  //다른 오퍼레이터 눌러놓은거 초기화 시켜줘야함.
-            //안그러면 중복 소환 됨;;
-            
             OperatorWrapper operatorWrapper = HoldOperatorListSO.GetOperator(index);
-            
             if (operatorWrapper == null) return;
-            if (_currentOperatorInfo != null || _isSpawning)
+
+            // 💡 개선: 이미 배치 모드인 상태에서 다른 버튼을 눌렀을 때의 예외 처리 추가
+            if (_isSpawning || _currentOperatorInfo != null)
             {
-                if (_currentOperatorInfo.operatorPrefab != null)
+                if (_currentOperatorInfo?.operatorPrefab == operatorWrapper.operatorPrefab)
                 {
-                    if (_currentOperatorInfo.operatorPrefab == operatorWrapper.operatorPrefab)
-                    {
-                        ShowMountainEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(false));
-                        ShowGroundEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(false));
-                        ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentInfoUI.Init(null, false));
-                        InputSO.ChangeInput(true);
-                        _isSpawning = false;
-                        _currentOperatorInfo = null;
-                        Debug.Log("같은 Operator누름 감지. 배치 취소합니다.");
-                        return;
-                    }
+                    CancelSpawning();
+                    return;
                 }
+                
+                ResetSpawningStateOnly(); // 💡 개선: 다른 캐릭터 버튼을 눌렀다면 이전 캐싱 데이터와 이벤트를 안전하게 선행 초기화
             }
-            
+            else
+            {
+                InputSO.ChangeInput(false);
+            }
             
             if (_operators.Any(x => x.Value.UIData == operatorWrapper.operatorPrefab.UIData))
             {
@@ -85,7 +78,7 @@ namespace _Scripts.Managers.Board
             _isSpawning = true;
             
             ShowMountainEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(false));
-            ShowMountainEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(false));
+            ShowGroundEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(false));
             
             if(operatorWrapper.isMountain)
                 ShowMountainEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(true));
@@ -93,35 +86,24 @@ namespace _Scripts.Managers.Board
                 ShowGroundEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(true));
             
             Debug.Log($"{operatorWrapper.operatorPrefab.name} 배치 모드 시작! 설치할 타일을 클릭하세요.");
-            InputSO.OnLeftBtnClick += HandlePlacement;
-            ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentInfoUI.Init(_currentOperatorInfo.operatorPrefab, true));
-            //Agent.Agent agent = operatorWrapper.operatorPrefab.GetComponent<Agent.Agent>(); 
-            //ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(agent));
             
-            //Operator의 Info가 뜨게 하는 방법은 한 번 다르게 생각해보자.
+            InputSO.OnLeftBtnClick -= HandlePlacement; // 💡 개선: 다른 버튼 누름으로 인한 델리게이트 중복 구독 현상 원천 차단
+            InputSO.OnLeftBtnClick += HandlePlacement;
+            
+            ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentInfoUI.Init(_currentOperatorInfo.operatorPrefab, true));
         }
-        
-        /*
-        private void Update()
-        {
-            // 배치 모드가 아니라면 마우스 클릭 감지를 아예 하지 않음 (성능 이득 야르!)
-            if (!_isSpawning || _currentOperatorInfo == null) return;
-
-            // 마우스 좌클릭을 했을 때
-            if (Input.GetMouseButtonDown(0))
-            {
-                HandlePlacement();
-            }
-        }*/
 
         private void HandlePlacement()
         {
+            // 💡 핵심 개선: 마우스가 UI 요소 위에 떠 있다면 월드 클릭(레이캐스트 피킹) 연산을 생략하여 Vector.zero 소환 현상 방지
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
             if (_currentOperatorInfo == null)
             {
-                InputSO.ChangeInput(true);
-                _isSpawning = false;
-                _currentOperatorInfo = null;
-                InputSO.OnLeftBtnClick -= HandlePlacement;
+                CancelSpawning();
                 return;
             }
             
@@ -139,13 +121,11 @@ namespace _Scripts.Managers.Board
                     return;
                 }
                 
-                //중앙 정렬
                 Vector3 spawnWorldPos = Grid.GetCellCenterWorld(cellPos);
-                
                 int yPos = isMountain ? 3 : 1;
                 spawnWorldPos.y = yPos;
                 
-                AbstractOperator newOperator = Instantiate(_currentOperatorInfo.operatorPrefab, spawnWorldPos, Quaternion.identity); //이거 풀링으로 고쳐야함.
+                AbstractOperator newOperator = Instantiate(_currentOperatorInfo.operatorPrefab, spawnWorldPos, Quaternion.identity);
                 newOperator.gameObject.name = newOperator.UIData.agentName;
                 
                 _operators.Add(gridPos, newOperator);
@@ -158,7 +138,7 @@ namespace _Scripts.Managers.Board
             }
             else
             {
-                Debug.Log("아무것도 보이지 않아...");
+                return; // 💡 개선: 유효한 레이어 감지에 실패했을 경우 데이터가 튀는 것을 막고 그대로 리턴하여 재입력 대기
             }
             
             if(_currentOperatorInfo.isMountain)
@@ -170,10 +150,26 @@ namespace _Scripts.Managers.Board
             {
                 _currentOperatorInfo = null;
                 ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentInfoUI.Init(null, false));
-                //ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(null));
-                //Operator Info 뜨게 하는거 다시 생각해보자 2
             }
             InputSO.ChangeInput(!_isSpawning);
+        }
+
+        // 💡 개선: 순수 내부 배치 상태 변수와 이벤트만 안전하게 분리 수거하는 공용 메서드
+        private void ResetSpawningStateOnly()
+        {
+            InputSO.OnLeftBtnClick -= HandlePlacement;
+            _isSpawning = false;
+            _currentOperatorInfo = null;
+        }
+
+        // 💡 개선: 배치 모드를 도중에 탈출하거나 같은 버튼을 다시 눌러 취소할 때 사용하는 완전 복구 메서드
+        private void CancelSpawning()
+        {
+            ResetSpawningStateOnly();
+            ShowMountainEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(false));
+            ShowGroundEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(false));
+            ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentInfoUI.Init(null, false));
+            InputSO.ChangeInput(true);
         }
 
         public void RemoveDictionary(AbstractOperator abstractOperator)
@@ -181,7 +177,6 @@ namespace _Scripts.Managers.Board
             if (_operators.ContainsValue(abstractOperator))
             {
                 Debug.Log("죽은 Operator가 Dictionary에 포함되어있음. 제거 시작");
-                //KeyValuePair : Dictionary가 뱉는 Pair return값.
                 KeyValuePair<Vector2Int, AbstractOperator> pair = _operators.FirstOrDefault(x => x.Value ==  abstractOperator);
                 _operators.Remove(pair.Key);
             }

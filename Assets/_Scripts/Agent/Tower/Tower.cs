@@ -1,6 +1,5 @@
-using System;
-using _Scripts.Agent.Enemy.Citizens;
-using _Scripts.Agent.Player;
+using System.Collections;
+using _Scripts.Feedbacks;
 using Unity.Behavior;
 using UnityEngine;
 
@@ -28,6 +27,42 @@ namespace _Scripts.Agent.Tower
         public override void OnDeath()
         {
             
+        }
+
+        private GameObject _returnObj;
+        public GameObject TowerUpgrade()
+        {
+            Feedbacks.Feedbacks feedbacks = GetModule<Feedbacks.Feedbacks>();
+            if (feedbacks != null)
+            {
+                FeedbackPlayer player = feedbacks.GetFeedbackPlayer(FeedbackType.UPGRADE);
+                player.FeedbackPlay();
+            }
+            TowerStateChange.SendEventMessage(TowerState.SHUTDOWN);
+            
+            _returnObj = Instantiate(upgradePrefab, transform.position, Quaternion.identity);
+            _returnObj.SetActive(false);
+            StartCoroutine(SpawnTower());
+            return _returnObj;
+        }
+
+        public void ShutDownThreeSecond()
+        {
+            StartCoroutine(ShutdownTower());
+        }
+
+        private IEnumerator ShutdownTower()
+        {
+            TowerStateChange.SendEventMessage(TowerState.SHUTDOWN);
+            yield return new WaitForSeconds(4f);
+            TowerStateChange.SendEventMessage(TowerState.IDLE);
+        }
+
+        private IEnumerator SpawnTower()
+        {
+            yield return new WaitForSeconds(4f);
+            _returnObj.SetActive(true);
+            Destroy(gameObject);
         }
     }
     public static class TowerStrings
