@@ -1,4 +1,6 @@
 using System;
+using _Script.ScriptableObject.Event;
+using _Scripts.UI;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -7,6 +9,8 @@ namespace _Scripts.Managers.LifeManager
 {
     public class LifeViewer : MonoBehaviour
     {
+        
+        [field: SerializeField] public EventChannelSO GameEventChannel;
         [SerializeField] private TextMeshProUGUI lifeText;
         private Vector2 _originPos;
         private void Start()
@@ -18,7 +22,7 @@ namespace _Scripts.Managers.LifeManager
 
         private void OnDestroy()
         {
-            if(LifeManager.Instance != null)
+            if(LifeManager.Instance != null && LifeManager.Instance.OnLifeChanged != null)
                 LifeManager.Instance.OnLifeChanged -= HandleLifeChanged;
             if (lifeText != null)
                 lifeText.DOKill();
@@ -32,6 +36,9 @@ namespace _Scripts.Managers.LifeManager
             lifeText.rectTransform.DOShakePosition(0.2f, 20f, 20, 90f);
             
             lifeText.text = life.ToString();
+            
+            if(life <= 0)
+                GameEventChannel.RaiseEvent(InGameEvents.GameEndEvent.Init(true));
         }
     }
 }

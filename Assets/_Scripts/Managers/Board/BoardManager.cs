@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using _Script.ScriptableObject.Event;
@@ -18,7 +19,6 @@ namespace _Scripts.Managers.Board
         [field: SerializeField] public EventChannelSO ShowMountainEventChannelSO { get; private set; }
         [field: SerializeField] public EventChannelSO ViewUIEventChannelSO { get; private set; }
         [SerializeField] private LayerMask groundLayer;
-
         [SerializeField] private LayerMask mountainLayer;
 
         private Dictionary<Vector2Int, AbstractOperator> _operators = new Dictionary<Vector2Int, AbstractOperator>();
@@ -26,6 +26,8 @@ namespace _Scripts.Managers.Board
 
         private bool _isSpawning = false;
         private OperatorWrapper _currentOperatorInfo = null;
+        
+        private bool _isPlacementRequested = false;
 
         [field: SerializeField] public int MaxOperatorCount = 8;
         public event Action<int> OnOperatorCountChanged; 
@@ -51,6 +53,15 @@ namespace _Scripts.Managers.Board
         private void Start()
         {
             CurrentOperatorCount = MaxOperatorCount;
+        }
+        
+        private void Update()
+        {
+            if (_isPlacementRequested) //이거 관련한 내용은 InfoManager 참고
+            {
+                _isPlacementRequested = false;
+                PlacementLogic();
+            }
         }
 
         [ContextMenu("Spawn 0")]
@@ -116,8 +127,13 @@ namespace _Scripts.Managers.Board
             
             ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentInfoUI.Init(_currentOperatorInfo.operatorPrefab, true));
         }
-
+        
         private void HandlePlacement()
+        {
+            _isPlacementRequested = true;
+        }
+        
+        private void PlacementLogic()
         {
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             {
@@ -183,6 +199,7 @@ namespace _Scripts.Managers.Board
             InputSO.OnLeftBtnClick -= HandlePlacement;
             _isSpawning = false;
             _currentOperatorInfo = null;
+            _isPlacementRequested = false;
         }
         
         private void CancelSpawning()

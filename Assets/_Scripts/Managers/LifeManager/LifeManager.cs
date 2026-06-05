@@ -8,7 +8,7 @@ namespace _Scripts.Managers.LifeManager
     public class LifeManager : MonoSingleton<LifeManager>
     {
         public UnityEvent OnLifeDamaged;
-        public event Action<int> OnLifeChanged;
+        public Action<int> OnLifeChanged;
         [field:SerializeField] public int MaxLife { get; private set; }
 
         private int _currentLife;
@@ -37,6 +37,14 @@ namespace _Scripts.Managers.LifeManager
         {
             base.Awake();
             _currentLife = MaxLife;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            
+            OnLifeDamaged = null;
+            OnLifeChanged = null;
         }
     }
 }
