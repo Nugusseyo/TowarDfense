@@ -20,7 +20,11 @@ public partial class CanUseSkillCondition : Condition
 
     public override void OnStart()
     {
-        if (Agent.Value == null) return;
+        if (Agent == null || Agent.Value == null)
+        {
+            _skillModule = null;
+            return;
+        }
         _skillModule = Agent.Value.GetModule<IAgentSkillModule>();
     }
 }

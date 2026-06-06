@@ -15,8 +15,10 @@ namespace _Script.Tools.Utility
                     _instance = FindFirstObjectByType<T>();
                     if (_instance == null)
                     {
-                        GameObject singleton = new GameObject(typeof(T).Name);
-                        _instance = singleton.AddComponent<T>();
+                        Debug.LogWarning("Singleton이 존재하지 않습니다!");
+                        return null;
+                        //GameObject singleton = new GameObject(typeof(T).Name);
+                        //_instance = singleton.AddComponent<T>();
                     }
                 }
                 return _instance;

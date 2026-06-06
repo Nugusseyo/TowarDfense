@@ -1,17 +1,21 @@
+using System.Collections.Generic;
+using _Script.Tools.Utility;
 using _Scripts.Managers.Board;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 namespace _Scripts.UI
 {
-    public class OperatorInfoInjector : MonoBehaviour
+    public class OperatorInfoInjector : MonoSingleton<OperatorInfoInjector>
     {
         [field: SerializeField] public HoldOperListSO HoldOperator { get; private set; }
+        public readonly Dictionary<int, CharacterButton> Buttons = new Dictionary<int, CharacterButton>(); //index , charBtn
         public GameObject buttonPrefab;
         public Transform buttonParent;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             if (buttonPrefab == null || buttonParent == null)
             {
                 Debug.LogError("오퍼레이터 버튼들 준비가 아직 안된 것 같네요.");
@@ -27,9 +31,18 @@ namespace _Scripts.UI
                 CharacterButton charBtn = button.GetComponent<CharacterButton>();
                 charBtn.Portrait.sprite = data.portrait;
                 charBtn.TopText.text = data.cost.ToString();
+
+                Buttons.TryAdd(index, charBtn); //Try Add : 해당 Key가 없으면 할당.
                 
                 buttonScript.onClick.AddListener(() => BoardManager.Instance.SpawnOperator(index));
             }
+        }
+
+        public void ActiveButton(int index, bool isActive)
+        {
+            if (!Buttons.TryGetValue(index, out CharacterButton charBtn)) return;
+
+            charBtn.gameObject.SetActive(isActive);
         }
     }
 }

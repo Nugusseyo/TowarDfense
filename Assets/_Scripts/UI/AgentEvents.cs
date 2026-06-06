@@ -4,8 +4,8 @@ namespace _Scripts.UI
 {
     public static class AgentEvents
     {
-        public static AgentOnUI AgentOnUI = new AgentOnUI();
-        public static AgentInfoUI AgentInfoUI = new AgentInfoUI();
+        public static readonly AgentOnUI AgentOnUI = new AgentOnUI();
+        public static readonly AgentInfoUI AgentInfoUI = new AgentInfoUI();
     }
 
     public class AgentOnUI : _Script.ScriptableObject.Event.GameEvent

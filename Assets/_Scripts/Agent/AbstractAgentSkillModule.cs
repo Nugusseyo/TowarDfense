@@ -37,6 +37,11 @@ namespace _Scripts.Agent
             Debug.Assert(_targetCaster != null, $"Target Caster가 누락되었습니다. Target : {gameObject.name}");
             
             _cooldown = _agent.AgentStatusSO.SkillAttackCooldown;
+            
+            if (SkillData != null)
+            {
+                SkillData = Instantiate(SkillData);
+            }
         }
 
         private void Update()
@@ -58,6 +63,14 @@ namespace _Scripts.Agent
         {
             OnSkill?.Invoke();
             _timer = 0;
+        }
+        
+        protected virtual void OnDestroy()
+        {
+            if (SkillData != null)
+            {
+                Destroy(SkillData);
+            }
         }
 
     }

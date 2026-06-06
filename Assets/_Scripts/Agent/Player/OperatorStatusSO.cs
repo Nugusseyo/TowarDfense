@@ -12,5 +12,12 @@ namespace _Scripts.Agent.Player
         [field: SerializeField] public int MaxTargetCount { get; private set; } = 2;
         [field: SerializeField] public int AttackCount { get; private set; } = 1;
         [field: SerializeField] public int Damage { get; private set; } = 200;
+
+        public void SetDamage(int damage)
+        {
+            if (damage <= 0 || damage > 99999) return;
+            int dmg = Mathf.Clamp(damage, 0, 99999);
+            Damage = dmg;
+        }
     }
 }

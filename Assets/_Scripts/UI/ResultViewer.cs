@@ -13,6 +13,8 @@ namespace _Scripts.UI
         
         [field: SerializeField] public GameObject[] HideObjects { get; private set; }
         [field: SerializeField] public GameObject ViewParent { get; private set; }
+        [field: SerializeField] public GameObject WinInfo { get; private set; }
+        [field: SerializeField] public GameObject LostInfo { get; private set; }
 
         [SerializeField] private Image backGroundImage;
 
@@ -33,6 +35,8 @@ namespace _Scripts.UI
             GameEventChannelSO.AddListener<GameEndEvent>(HandleResultEvent);
             nextButton.onClick.AddListener(HandleNextButtonClick);
             ViewParent.SetActive(false);
+            WinInfo.SetActive(false);
+            LostInfo.SetActive(false);
         }
         private void OnDestroy()
         {
@@ -57,15 +61,21 @@ namespace _Scripts.UI
         private void HandleResultEvent(GameEndEvent evt)
         {
             ViewParent.SetActive(true);
+            foreach (GameObject hide in HideObjects)
+            {
+                hide.SetActive(false);
+            }
             if (evt.IsLost) //이게 졌을때임.
             {
                 //backGroundImage.color = Color.red; //이거 변수로 빼놓을까
                 //빼놓자 회사가면 이렇게 하겠지
                 backGroundImage.color = lostBackGroundColor;
+                LostInfo.SetActive(true);
             }
             else
             {
                 backGroundImage.color = winBackGroundColor;
+                WinInfo.SetActive(true);
             }
             //여기서 페이드 (알파값 0->1) 해줌.
             _canvasGroup.DOKill();

@@ -22,6 +22,11 @@ namespace _Scripts.Managers.Board
         [SerializeField] private LayerMask mountainLayer;
 
         private Dictionary<Vector2Int, AbstractOperator> _operators = new Dictionary<Vector2Int, AbstractOperator>();
+        
+        private Dictionary<AbstractOperator, int> _spawnedOperatorIndex = new Dictionary<AbstractOperator, int>();
+        
+        private int _curOperatorIndex = -1;
+
         public Grid Grid { get; private set; }
 
         private bool _isSpawning = false;
@@ -112,6 +117,8 @@ namespace _Scripts.Managers.Board
             _currentOperatorInfo = operatorWrapper;
             _isSpawning = true;
             
+            _curOperatorIndex = index;
+            
             ShowMountainEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(false));
             ShowGroundEventChannelSO.RaiseEvent(DecalEvents.DecalShow.Init(false));
             
@@ -169,6 +176,15 @@ namespace _Scripts.Managers.Board
                 
                 _operators.Add(gridPos, newOperator);
                 Debug.Log($"[{gridPos}] 칸에 {newOperator.name} 배치 완료!");
+                
+                if (_curOperatorIndex != -1)
+                {
+                    if (OperatorInfoInjector.Instance != null)
+                        OperatorInfoInjector.Instance.ActiveButton(_curOperatorIndex, false);
+                        
+                    _spawnedOperatorIndex.Add(newOperator, _curOperatorIndex);
+                    _curOperatorIndex = -1;
+                }
 
                 CurrentOperatorCount--;
                 CostManager.CostManager.Instance.Cost -= newOperator.UIData.cost;
@@ -200,6 +216,7 @@ namespace _Scripts.Managers.Board
             _isSpawning = false;
             _currentOperatorInfo = null;
             _isPlacementRequested = false;
+            _curOperatorIndex = -1;
         }
         
         private void CancelSpawning()
@@ -218,6 +235,15 @@ namespace _Scripts.Managers.Board
                 Debug.Log("죽은 Operator가 Dictionary에 포함되어있음. 제거 시작");
                 KeyValuePair<Vector2Int, AbstractOperator> pair = _operators.FirstOrDefault(x => x.Value ==  abstractOperator);
                 _operators.Remove(pair.Key);
+                
+                if (_spawnedOperatorIndex.TryGetValue(abstractOperator, out int targetIndex))
+                {
+                    if (OperatorInfoInjector.Instance != null)
+                        OperatorInfoInjector.Instance.ActiveButton(targetIndex, true);
+                        
+                    _spawnedOperatorIndex.Remove(abstractOperator);
+                }
+
                 CurrentOperatorCount++;
             }
         }

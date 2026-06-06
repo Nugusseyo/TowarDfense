@@ -27,10 +27,8 @@ namespace _Scripts.UI
 
             if (isFreeze)
             {
-                if (Time.timeScale > 0f)
-                {
-                    _prevTimeScale = Time.timeScale;
-                }
+                _prevTimeScale = Time.timeScale;
+                
                 Time.timeScale = 0f;
             }
             

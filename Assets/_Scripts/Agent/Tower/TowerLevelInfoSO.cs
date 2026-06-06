@@ -7,6 +7,5 @@ namespace _Scripts.Agent.Tower
     public class TowerLevelInfoSO : ScriptableObject
     {
         public GameObject[] levelVisuals;
-        public OperatorStatusSO[] statSO;
     }
 }

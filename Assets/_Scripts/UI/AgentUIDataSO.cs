@@ -17,4 +17,7 @@ public class AgentUIDataSO : ScriptableObject
 
     [Header("Cost UI")] 
     public int cost;
+
+    [Header("Other")]
+    public string health;
 }

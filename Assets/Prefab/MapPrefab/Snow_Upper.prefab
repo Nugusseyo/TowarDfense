@@ -104,6 +104,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0d1f799ef1da1444aa1348c0b3e5b84e, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 257
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0d1f799ef1da1444aa1348c0b3e5b84e, type: 3}
       propertyPath: m_Name
       value: dirt_with_snow
@@ -165,6 +169,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ab32726f21abe1040944414d787fc1d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ab32726f21abe1040944414d787fc1d2, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 257
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ab32726f21abe1040944414d787fc1d2, type: 3}
       propertyPath: m_Name

@@ -21,7 +21,8 @@ namespace _Scripts.UI
 
         private void OnDisable()
         {
-            BoardManager.Instance.OnOperatorCountChanged -= HandleOperatorCountChanged;
+            if(BoardManager.Instance != null)
+                BoardManager.Instance.OnOperatorCountChanged -= HandleOperatorCountChanged;
         }
 
         private void HandleOperatorCountChanged(int count)

@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: OHealer Controller
+  m_Controller: {fileID: 9100000, guid: ba98a5fd9d0012b4d9b284ab58d78016, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 9a2c9af417f753b4897eb18ba4149021, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bb7dc018ec9308d449ffaa8a29353ae1, type: 2}

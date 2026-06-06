@@ -29,7 +29,7 @@ namespace _Scripts.Managers.LifeManager
                 
                 OnLifeChanged?.Invoke(life);
                 
-                _currentLife = value;
+                _currentLife = life;
             }
         }
 
@@ -43,7 +43,7 @@ namespace _Scripts.Managers.LifeManager
         {
             base.OnDestroy();
             
-            OnLifeDamaged = null;
+            OnLifeDamaged.RemoveAllListeners();
             OnLifeChanged = null;
         }
     }

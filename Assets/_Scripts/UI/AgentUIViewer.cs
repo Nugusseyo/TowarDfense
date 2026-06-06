@@ -3,6 +3,7 @@ using System;
 using _Script.ScriptableObject.Event;
 using _Scripts.Agent;
 using _Scripts.Agent.Player;
+using _Scripts.Agent.Tower;
 using GameModules._Script.Agent;
 using TMPro;
 using UnityEngine;
@@ -47,8 +48,7 @@ namespace _Scripts.UI
 
         private bool _isActive;
         private Coroutine _removeWaitCoroutine;
-
-        // 💡 투명도 제어를 위한 CanvasGroup 변수
+        
         private CanvasGroup _uiParentCG;
         private CanvasGroup _worldCanvasCG;
 
@@ -118,8 +118,14 @@ namespace _Scripts.UI
         {
             if (evt.NextAgent == null)
             {
-                if (_removeWaitCoroutine != null) StopCoroutine(_removeWaitCoroutine);
-                _removeWaitCoroutine = StartCoroutine(RemoveWaitSecond());
+                if (gameObject.activeSelf)
+                {
+                    if (_removeWaitCoroutine != null) StopCoroutine(_removeWaitCoroutine);
+                    _removeWaitCoroutine = StartCoroutine(RemoveWaitSecond());
+                }
+                else
+                    ClearCurrentAgent();
+                
                 return;
             }
             
@@ -169,7 +175,8 @@ namespace _Scripts.UI
 
             _worldCanvasCG.DOKill();
             _worldCanvasCG.alpha = 0f;
-            worldCanvas.SetActive(true);
+            if(agent is not Tower)
+                worldCanvas.SetActive(true);
             _worldCanvasCG.DOFade(1f, 0.1f).SetEase(Ease.OutQuad);
         }
 

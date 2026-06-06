@@ -20,6 +20,7 @@ namespace _Scripts.Agent
         [field:SerializeField] public TagSO AgentTag { get; private set; }
         protected override void Awake()
         {
+            AgentStatusSO = Instantiate(AgentStatusSO);
             base.Awake();
             AgentBT = GetComponent<BehaviorGraphAgent>();
             Debug.Assert(AgentBT != null, $"BT가 없잖아요 멍충아ㅏㅏ 정신차려 조윤규. Target : {gameObject.name}");
@@ -44,6 +45,9 @@ namespace _Scripts.Agent
         {
             if(HealthModule != null)
                 HealthModule.OnDeath.RemoveListener(OnDeath);
+
+            if (AgentStatusSO != null)
+                Destroy(AgentStatusSO);
         }
 
         public void SetVariable<T>(string variableName, T value)

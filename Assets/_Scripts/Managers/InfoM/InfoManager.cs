@@ -4,6 +4,7 @@ using _Script.Tools.Utility;
 using _Scripts.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering.Universal;
 
 namespace _Scripts.Managers.InfoM
 {
@@ -14,6 +15,9 @@ namespace _Scripts.Managers.InfoM
         
         [SerializeField] private LayerMask infoTargetLayer;
         
+        [SerializeField] private GameObject rangeDecal;
+        private DecalProjector _decal;
+        
         public Agent.Agent TargetInfo { get; private set; }
         
         private bool _isClickRequested = false;
@@ -22,6 +26,12 @@ namespace _Scripts.Managers.InfoM
         {
             base.Awake();
             InputSO.OnInGameClick += HandleInGameClick;
+
+            if (rangeDecal != null)
+            {
+                rangeDecal.SetActive(false);
+                _decal = rangeDecal.GetComponent<DecalProjector>();
+            }
         }
 
         protected override void OnDestroy()
@@ -29,13 +39,11 @@ namespace _Scripts.Managers.InfoM
             base.OnDestroy();
             InputSO.OnInGameClick -= HandleInGameClick;
         }
-
         
         private void HandleInGameClick()
         {
             _isClickRequested = true; //자꾸 EventSystem이랑 충돌나서 이렇게 처리해야됨;;
         }
-
         
         private void Update()
         {
@@ -63,7 +71,9 @@ namespace _Scripts.Managers.InfoM
             
             if (target == null) 
             {
+                TargetInfo = null;
                 ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(null));
+                HideRangeDecal();
                 return;
             }
             
@@ -75,10 +85,35 @@ namespace _Scripts.Managers.InfoM
             if (TargetInfo == null) 
             {
                 ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(null));
+                HideRangeDecal();
                 return;
             }
             
             ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(TargetInfo));
+            ShowRangeDecal(TargetInfo);
+        }
+        
+        private void ShowRangeDecal(Agent.Agent agent)
+        {
+            if (rangeDecal == null) return;
+
+            Vector3 decalPos = agent.transform.position;
+            decalPos.y += 0.2f;
+            rangeDecal.transform.position = decalPos;
+            
+            float range = agent.AgentStatusSO.DetectRadius;
+            float size = range * 2f;
+            
+            _decal.size = new Vector3(size, size, size);
+            rangeDecal.SetActive(true);
+        }
+        
+        private void HideRangeDecal()
+        {
+            if (rangeDecal != null)
+            {
+                rangeDecal.SetActive(false);
+            }
         }
     }
 }

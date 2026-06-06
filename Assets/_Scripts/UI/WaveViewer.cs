@@ -23,7 +23,8 @@ namespace _Scripts.UI
 
         private void OnDestroy()
         {
-            CreatureService.Instance.OnWaveChanged -= HandleWaveChanged;
+            if(CreatureService.Instance != null)
+                CreatureService.Instance.OnWaveChanged -= HandleWaveChanged;
         }
         
         private void HandleWaveChanged(int wave)

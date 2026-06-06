@@ -41,7 +41,8 @@ public partial class CitizenWaitSecondAction : Action
     protected override void OnEnd()
     {
         base.OnEnd();
-        _navAgent.isStopped = false;
+        if(_navAgent != null && _navAgent.isActiveAndEnabled && _navAgent.isOnNavMesh)
+            _navAgent.isStopped = false;
     }
 }
 

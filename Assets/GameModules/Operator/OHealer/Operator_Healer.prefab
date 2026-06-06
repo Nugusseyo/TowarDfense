@@ -168,6 +168,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5874618420489228507, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+      propertyPath: <SkillData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 88ddbebcf12a6874c9d4d218edf1a655, type: 2}
+    - target: {fileID: 5874618420489228507, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+      propertyPath: OnSkill.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 117287102339900655}
+    - target: {fileID: 5874618420489228507, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+      propertyPath: OnSkill.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
     - target: {fileID: 6099490578498413363, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: targetLayer.m_Bits
       value: 64
@@ -180,6 +192,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 6364d0990d4d4d847b004d0eddf3d986, type: 2}
+    - target: {fileID: 7430527221601756615, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 8b947e60afb58464d960f116a3fa4034, type: 2}
     - target: {fileID: 7436463482002126071, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -205,7 +221,99 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 1790951287373149606, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8676139529455906726, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7841987180989684197}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+--- !u!4 &6846141194823621463 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8676139529455906726, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+  m_PrefabInstance: {fileID: 2838877226883151089}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4061140123775834010
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6846141194823621463}
+    m_Modifications:
+    - target: {fileID: 1788308193097546003, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622558406301834685, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178424094926762869, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881016478713103911, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: m_Name
+      value: LevelupNovaGreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091193976255155839, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0067698956
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091193976255155839, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.8664
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091193976255155839, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.50000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091193976255155839, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091193976255155839, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091193976255155839, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091193976255155839, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091193976255155839, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091193976255155839, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091193976255155839, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6428329121734058009, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+--- !u!198 &117287102339900655 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4178424094926762869, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+  m_PrefabInstance: {fileID: 4061140123775834010}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7841987180989684197 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6091193976255155839, guid: d13a6f43dbf17f6419ebe0374db2c2fd, type: 3}
+  m_PrefabInstance: {fileID: 4061140123775834010}
+  m_PrefabAsset: {fileID: 0}
