@@ -4,6 +4,7 @@ using _Script.ScriptableObject.Event;
 using _Scripts.Agent;
 using _Scripts.Agent.Player;
 using _Scripts.Agent.Tower;
+using _Scripts.Managers.InfoM;
 using GameModules._Script.Agent;
 using TMPro;
 using UnityEngine;
@@ -96,6 +97,8 @@ namespace _Scripts.UI
             _worldCanvasCG.DOKill();
             uiParent.SetActive(false);
             worldCanvas.SetActive(false);
+            if(InfoManager.Instance != null)
+                InfoManager.Instance.HideRangeDecal();
 
             ClearCurrentAgent();
         }

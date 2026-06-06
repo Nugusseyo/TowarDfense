@@ -1,5 +1,6 @@
 using System;
 using _Script.ScriptableObject.Event;
+using _Scripts.Agent.Tower;
 using _Scripts.UI;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace _Scripts.Managers.InfoM
 {
     public class InfoHealthViewer : MonoBehaviour
     {
+        private const string TowerOnly = "∞/∞";
         [field: SerializeField] public EventChannelSO ViewUIEventChannel { get; private set; }
         [SerializeField] private TextMeshProUGUI healthText;
         private Image _healthImage;
@@ -43,9 +45,17 @@ namespace _Scripts.Managers.InfoM
         private void Update()
         {
             if (_holdAgent == null || _holdAgent.HealthModule == null) return;
-            
-            _healthImage.fillAmount = _holdAgent.HealthModule.GetHealthNormal;
-            healthText.text = _holdAgent.HealthModule.Health + "/" + _holdAgent.HealthModule.MaxHealth;
+
+            if (_holdAgent is not Tower)
+            {
+                _healthImage.fillAmount = _holdAgent.HealthModule.GetHealthNormal;
+                healthText.text = _holdAgent.HealthModule.Health + "/" + _holdAgent.HealthModule.MaxHealth;
+            }
+            else
+            {
+                _healthImage.fillAmount = 1f;
+                healthText.text = TowerOnly;
+            }
         }
 
         private void HandleViewHealth(AgentInfoUI evt)
@@ -54,7 +64,8 @@ namespace _Scripts.Managers.InfoM
             {
                 return;
             }
-
+            _holdAgent = evt.Agent;
+            
             _healthImage.fillAmount = 1;
             healthText.text = evt.Agent.UIData.health + "/" + evt.Agent.UIData.health;
         }

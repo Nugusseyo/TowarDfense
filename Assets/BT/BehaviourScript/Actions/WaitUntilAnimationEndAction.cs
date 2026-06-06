@@ -15,7 +15,9 @@ namespace BT.BehaviourScript.Actions
         [SerializeReference] public BlackboardVariable<Agent> Agent;
 
         private IAnimationTrigger _trigger;
+        private Animator _animator;
         private bool _isAnimationEnd = false;
+        
         protected override Status OnStart()
         {
             if (Agent.Value == null)
@@ -25,6 +27,9 @@ namespace BT.BehaviourScript.Actions
             }
         
             _trigger = Agent.Value.GetModule<IAnimationTrigger>();
+            
+            _animator = Agent.Value.GetModule<AgentRenderer>().Animator; 
+
             if (_trigger == null)
             {
                 Debug.LogError("Trigger is Null!!!");
@@ -32,7 +37,6 @@ namespace BT.BehaviourScript.Actions
             }
             
             _trigger.ResetEndTrigger();
-
             _isAnimationEnd = false;
             _trigger.OnAnimationEnd += HandleAnimationEnd;
         
@@ -47,6 +51,16 @@ namespace BT.BehaviourScript.Actions
             {
                 return Status.Success;
             }
+            
+            if (_animator != null)
+            {
+                AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+                if (stateInfo.normalizedTime >= 1.0f && !_animator.IsInTransition(0))
+                {
+                    //normalizedTime이 1 이상이면 끝난거임.
+                    return Status.Success;
+                }
+            }
         
             return Status.Running;
         }
@@ -58,4 +72,3 @@ namespace BT.BehaviourScript.Actions
         }
     }
 }
-

@@ -21,6 +21,7 @@ namespace _Scripts.Managers.InfoM
         public Agent.Agent TargetInfo { get; private set; }
         
         private bool _isClickRequested = false;
+        private bool _wasDecal = false;
 
         protected override void Awake()
         {
@@ -31,6 +32,9 @@ namespace _Scripts.Managers.InfoM
             {
                 rangeDecal.SetActive(false);
                 _decal = rangeDecal.GetComponent<DecalProjector>();
+                ViewUIEventChannelSO.AddListener<AgentInfoUI>(HideRangeDecal);
+
+                _wasDecal = true;
             }
         }
 
@@ -38,6 +42,9 @@ namespace _Scripts.Managers.InfoM
         {
             base.OnDestroy();
             InputSO.OnInGameClick -= HandleInGameClick;
+            
+            if(_wasDecal)
+                ViewUIEventChannelSO.AddListener<AgentInfoUI>(HideRangeDecal);
         }
         
         private void HandleInGameClick()
@@ -108,7 +115,14 @@ namespace _Scripts.Managers.InfoM
             rangeDecal.SetActive(true);
         }
         
-        private void HideRangeDecal()
+        public void HideRangeDecal()
+        {
+            if (rangeDecal != null)
+            {
+                rangeDecal.SetActive(false);
+            }
+        }
+        private void HideRangeDecal(AgentInfoUI evt)
         {
             if (rangeDecal != null)
             {

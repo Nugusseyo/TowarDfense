@@ -51,7 +51,7 @@ namespace _Scripts.Managers.Board
         {
             base.Awake();
             Grid = GetComponent<Grid>();
-            if(InputSO != null)
+            if (InputSO != null)
                 InputSO.ChangeInput(true);
         }
 
