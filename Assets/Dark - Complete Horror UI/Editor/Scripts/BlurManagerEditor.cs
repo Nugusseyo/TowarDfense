@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(BlurManager))]
-    public class BlurManagerEditor : Editor
+    public class BlurManagerEditor : UnityEditor.Editor
     {
         private GUISkin customSkin;
         private BlurManager bmTarget;

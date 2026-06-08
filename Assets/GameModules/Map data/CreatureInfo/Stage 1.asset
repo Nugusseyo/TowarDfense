@@ -15,16 +15,16 @@ MonoBehaviour:
   CreatureInfos:
   - creature: {fileID: 5782135197438909392, guid: 118267c5a55c0bb42a6913062df0cb39, type: 3}
     wave: 0
-    spawnTime: 1
-  - creature: {fileID: 5782135197438909392, guid: 118267c5a55c0bb42a6913062df0cb39, type: 3}
-    wave: 0
     spawnTime: 4
   - creature: {fileID: 5782135197438909392, guid: 118267c5a55c0bb42a6913062df0cb39, type: 3}
     wave: 0
-    spawnTime: 5
+    spawnTime: 6
   - creature: {fileID: 5782135197438909392, guid: 118267c5a55c0bb42a6913062df0cb39, type: 3}
     wave: 0
     spawnTime: 7
+  - creature: {fileID: 5782135197438909392, guid: 118267c5a55c0bb42a6913062df0cb39, type: 3}
+    wave: 0
+    spawnTime: 9
   - creature: {fileID: 5782135197438909392, guid: 118267c5a55c0bb42a6913062df0cb39, type: 3}
     wave: 1
     spawnTime: 2

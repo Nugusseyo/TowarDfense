@@ -6,7 +6,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(BackgroundFilter))]
-    public class BackgroundFilterEditor : Editor
+    public class BackgroundFilterEditor : UnityEditor.Editor
     {
         private GUISkin customSkin;
         private int currentTab;

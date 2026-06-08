@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(SwitchManager))]
-    public class SwitchManagerEditor : Editor
+    public class SwitchManagerEditor : UnityEditor.Editor
     {
         private GUISkin customSkin;
         private SwitchManager smTarget;

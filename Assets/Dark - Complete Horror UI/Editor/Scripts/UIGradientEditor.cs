@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(UIGradient))]
-    public class UIGradientEditor : Editor
+    public class UIGradientEditor : UnityEditor.Editor
     {
         private int currentTab;
 

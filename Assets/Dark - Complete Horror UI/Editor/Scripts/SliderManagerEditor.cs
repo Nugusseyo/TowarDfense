@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(SliderManager))]
-    public class SliderManagerEditor : Editor
+    public class SliderManagerEditor : UnityEditor.Editor
     {
         private GUISkin customSkin;
         private SliderManager slmTarget;

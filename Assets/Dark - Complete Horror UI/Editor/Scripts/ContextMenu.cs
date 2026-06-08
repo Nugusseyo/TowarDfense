@@ -5,7 +5,7 @@ using UnityEditor.SceneManagement;
 
 namespace Michsky.UI.Dark
 {
-    public class ContextMenu : Editor
+    public class ContextMenu : UnityEditor.Editor
     {
         static string objectPath;
 

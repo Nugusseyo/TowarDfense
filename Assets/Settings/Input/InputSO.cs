@@ -9,6 +9,7 @@ public class InputSO : ScriptableObject, Controls.IPlayerActions, Controls.IInGa
     private Controls _controls;
 
     public Action OnLeftBtnClick;
+    public Action OnLeftBtnClickEnd;
     public bool IsInGame { get; private set; } = true;
 
     [SerializeField] private LayerMask groundLayer;
@@ -27,6 +28,7 @@ public class InputSO : ScriptableObject, Controls.IPlayerActions, Controls.IInGa
 
     private Vector3 _worldPos;
     private Vector3 _camPos;
+    public Vector2 MousePos => _camPos;
 
     private void OnEnable()
     {
@@ -55,6 +57,10 @@ public class InputSO : ScriptableObject, Controls.IPlayerActions, Controls.IInGa
         if (context.performed)
         {
             OnLeftBtnClick?.Invoke();
+        }
+        if(context.canceled)
+        {
+            OnLeftBtnClickEnd?.Invoke();
         }
     }
 

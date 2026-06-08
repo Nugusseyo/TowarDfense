@@ -24,6 +24,7 @@ public partial class AgentUseSkillAction : Action
         
         if(_skillModule == null || _trigger == null) return Status.Failure;
 
+        _trigger.ResetAttackTrigger();
         _trigger.OnAttackTrigger += HandleOperatorUseSkill;
 
         return Status.Success;

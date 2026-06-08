@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(UIDissolveEffect))]
-    public class UIDissolveEffectEditor : Editor
+    public class UIDissolveEffectEditor : UnityEditor.Editor
     {
         private GUISkin customSkin;
         private UIDissolveEffect uideTarget;

@@ -31,6 +31,7 @@ namespace _Scripts.Agent.Player
 
         public override void OnDeath()
         {
+            base.OnDeath();
             Debug.Log("OnDeath Start");
             BoardManager.Instance.RemoveDictionary(this);
             _playerStateChange.SendEventMessage(OperatorStateEnum.DEAD);

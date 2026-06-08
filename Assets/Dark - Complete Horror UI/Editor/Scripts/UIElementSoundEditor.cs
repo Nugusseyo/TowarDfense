@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(UIElementSound))]
-    public class UIElementSoundEditor : Editor
+    public class UIElementSoundEditor : UnityEditor.Editor
     {
         private GUISkin customSkin;
         private UIElementSound uisTarget;

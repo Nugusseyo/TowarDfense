@@ -9,7 +9,7 @@ using GameModules._Script.Agent;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening; // 💡 DOTween 네임스페이스 추가
+using DG.Tweening;
 
 namespace _Scripts.UI
 {
@@ -100,6 +100,8 @@ namespace _Scripts.UI
             if(InfoManager.Instance != null)
                 InfoManager.Instance.HideRangeDecal();
 
+            ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(null)); //카메라 기본 위치로 되돌리기 위함.
+
             ClearCurrentAgent();
         }
 
@@ -174,13 +176,13 @@ namespace _Scripts.UI
             _uiParentCG.DOKill();
             _uiParentCG.alpha = 0f;
             uiParent.SetActive(true);
-            _uiParentCG.DOFade(1f, 0.1f).SetEase(Ease.OutQuad);
+            _uiParentCG.DOFade(1f, 0.25f).SetEase(Ease.OutQuad);
 
             _worldCanvasCG.DOKill();
             _worldCanvasCG.alpha = 0f;
             if(agent is not Tower)
                 worldCanvas.SetActive(true);
-            _worldCanvasCG.DOFade(1f, 0.1f).SetEase(Ease.OutQuad);
+            _worldCanvasCG.DOFade(1f, 0.25f).SetEase(Ease.OutQuad);
         }
 
         private IEnumerator RemoveWaitSecond()
@@ -190,9 +192,14 @@ namespace _Scripts.UI
             {
                 _uiParentCG.DOKill();
                 _worldCanvasCG.DOKill();
-                uiParent.SetActive(false);
-                worldCanvas.SetActive(false);
-
+                
+                _worldCanvasCG.DOFade(0f, 0.25f).SetEase(Ease.OutQuad);
+                _uiParentCG.DOFade(0f, 0.25f).SetEase(Ease.OutQuad)
+                    .OnComplete(() =>
+                    {
+                        uiParent.SetActive(false);
+                        worldCanvas.SetActive(false);
+                    });
                 ClearCurrentAgent();
             }
             _removeWaitCoroutine = null;
@@ -240,7 +247,7 @@ namespace _Scripts.UI
             if (_isActive)
             {
                 _uiParentCG.alpha = 0f;
-                _uiParentCG.DOFade(1f, 0.1f).SetEase(Ease.OutQuad);
+                _uiParentCG.DOFade(1f, 0.5f).SetEase(Ease.OutQuad);
             }
             
             _worldCanvasCG.DOKill();

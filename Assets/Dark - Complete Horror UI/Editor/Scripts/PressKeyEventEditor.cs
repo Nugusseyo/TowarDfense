@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(PressKeyEvent))]
-    public class PressKeyEventEditor : Editor
+    public class PressKeyEventEditor : UnityEditor.Editor
     {
         private GUISkin customSkin;
         private PressKeyEvent pkeTarget;

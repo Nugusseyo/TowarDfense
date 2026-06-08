@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(SplashScreenManager))]
-    public class SplashScreenManagerEditor : Editor
+    public class SplashScreenManagerEditor : UnityEditor.Editor
     {
         private GUISkin customSkin;
         private SplashScreenManager ssmTarget;

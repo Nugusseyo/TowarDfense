@@ -20,6 +20,11 @@ namespace _Scripts.Agent
             OnAnimationEnd = null;
         }
 
+        public void ResetAttackTrigger()
+        {
+            OnAttackTrigger = null;
+        }
+
         public void OnAnimationEndEvent() => OnAnimationEnd?.Invoke();
         public void OnAttackTriggerEvent() => OnAttackTrigger?.Invoke();
     }

@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(DropdownManager))]
-    public class DropdownManagerEditor : Editor
+    public class DropdownManagerEditor : UnityEditor.Editor
     {
         private GUISkin customSkin;
         private DropdownManager dTarget;

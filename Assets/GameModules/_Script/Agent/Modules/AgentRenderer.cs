@@ -38,6 +38,11 @@ namespace _Script.Agent.Modules
             
         }
 
+        public void ResetAttackTrigger()
+        {
+            
+        }
+
         private void EndTrigger() => OnAnimationEnd?.Invoke();
         private void AttackTrigger() => OnAttackTrigger?.Invoke();
 

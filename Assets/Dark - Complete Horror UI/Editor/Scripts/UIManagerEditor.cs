@@ -6,7 +6,7 @@ namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(UIManager))]
     [System.Serializable]
-    public class UIManagerEditor : Editor
+    public class UIManagerEditor : UnityEditor.Editor
     {
         GUISkin customSkin;
         protected static string buildID = "B16-20220221";

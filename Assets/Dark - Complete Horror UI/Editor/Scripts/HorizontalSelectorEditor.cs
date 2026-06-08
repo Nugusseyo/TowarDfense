@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(HorizontalSelector))]
-    public class HorizontalSelectorEditor : Editor
+    public class HorizontalSelectorEditor : UnityEditor.Editor
     {
         private GUISkin customSkin;
         private HorizontalSelector hsTarget;

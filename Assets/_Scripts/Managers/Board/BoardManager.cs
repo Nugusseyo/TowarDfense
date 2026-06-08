@@ -5,6 +5,7 @@ using System.Linq;
 using _Script.ScriptableObject.Event;
 using _Script.Tools.Utility;
 using _Scripts.Agent.Player;
+using _Scripts.Managers.InfoM;
 using _Scripts.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -235,6 +236,8 @@ namespace _Scripts.Managers.Board
                 Debug.Log("죽은 Operator가 Dictionary에 포함되어있음. 제거 시작");
                 KeyValuePair<Vector2Int, AbstractOperator> pair = _operators.FirstOrDefault(x => x.Value ==  abstractOperator);
                 _operators.Remove(pair.Key);
+
+
                 
                 if (_spawnedOperatorIndex.TryGetValue(abstractOperator, out int targetIndex))
                 {
@@ -243,7 +246,7 @@ namespace _Scripts.Managers.Board
                         
                     _spawnedOperatorIndex.Remove(abstractOperator);
                 }
-
+                
                 CurrentOperatorCount++;
             }
         }

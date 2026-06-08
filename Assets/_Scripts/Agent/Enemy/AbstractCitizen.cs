@@ -43,6 +43,7 @@ namespace _Scripts.Agent.Enemy
 
         public override void OnDeath()
         {
+            base.OnDeath();
             Mover.NavAgent.isStopped = true;
             _stateChange.SendEventMessage(CitizenState.DEAD);
         }

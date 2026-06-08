@@ -8,27 +8,22 @@ public class SpeedButton : MonoBehaviour
     [SerializeField] private Sprite defaultImage; 
     [SerializeField] private Sprite doubleImage; 
     private bool isDouble = false;
-    private Image _image;
+    [SerializeField] private Image image;
     
     public void SpeedDefault() => Time.timeScale = 1f;
     public void SpeedDouble() => Time.timeScale = 2f;
-
-    private void Awake()
-    {
-        _image = GetComponent<Image>();
-    }
 
     public void ButtonClick()
     {
         if (isDouble)
         {
             Time.timeScale = 1f;
-            _image.sprite = defaultImage;
+            image.sprite = defaultImage;
         }
         else
         {
             Time.timeScale = 2f;
-            _image.sprite = doubleImage;
+            image.sprite = doubleImage;
         }
 
         isDouble = !isDouble;

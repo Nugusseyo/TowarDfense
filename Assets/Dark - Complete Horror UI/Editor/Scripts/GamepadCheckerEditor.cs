@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(GamepadChecker))]
-    public class GamepadCheckerEditor : Editor
+    public class GamepadCheckerEditor : UnityEditor.Editor
     {
         private GUISkin customSkin;
         private GamepadChecker gcTarget;

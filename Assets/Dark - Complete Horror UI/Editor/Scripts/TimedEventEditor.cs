@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(TimedEvent))]
-    public class TimedEventEditor : Editor
+    public class TimedEventEditor : UnityEditor.Editor
     {
         private TimedEvent teTarget;
         private int currentTab;

@@ -25,12 +25,14 @@ namespace _Scripts.UI
         [SerializeField] private float fadeDuration = 0.5f;
 
         private CanvasGroup _canvasGroup;
+        private SceneChanger _sceneChanger;
         
         private bool _isActive = false;
 
         private void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
+            _sceneChanger = GetComponent<SceneChanger>();
             
             GameEventChannelSO.AddListener<GameEndEvent>(HandleResultEvent);
             nextButton.onClick.AddListener(HandleNextButtonClick);
@@ -81,7 +83,11 @@ namespace _Scripts.UI
             _canvasGroup.DOKill();
             _canvasGroup.alpha = 0f;
             
-            _canvasGroup.DOFade(1f, fadeDuration).SetUpdate(true);
+            _canvasGroup.DOFade(1f, fadeDuration).SetUpdate(true).OnComplete(() =>
+            {
+                _sceneChanger.NextScene();
+                Time.timeScale = 1f;
+            });
             //아니 이거 코루틴으로 해야하는줄 알았는데 DOTween 되는거였어? 인생
 
             Time.timeScale = 0;

@@ -26,7 +26,7 @@ namespace _Scripts.Agent.Tower
     
         public override void OnDeath()
         {
-            
+            base.OnDeath();
         }
 
         private GameObject _returnObj;
@@ -61,6 +61,7 @@ namespace _Scripts.Agent.Tower
         private IEnumerator SpawnTower()
         {
             yield return new WaitForSeconds(4f);
+            OnDeath();
             _returnObj.SetActive(true);
             Destroy(gameObject);
         }

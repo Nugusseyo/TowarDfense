@@ -15188,6 +15188,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2402910930195422431, guid: 065c5037fe7de644783905f31cd8f4c9, type: 3}
+      propertyPath: <UIData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 67e7ea12632a6534d8a77958cc619345, type: 2}
+    - target: {fileID: 2402910930195422431, guid: 065c5037fe7de644783905f31cd8f4c9, type: 3}
       propertyPath: <AgentStatusSO>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 2f9deb8af9cb11642a8ebb39461ae4b1, type: 2}

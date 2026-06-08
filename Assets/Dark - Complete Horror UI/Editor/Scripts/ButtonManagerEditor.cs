@@ -6,7 +6,7 @@ namespace Michsky.UI.Dark
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(ButtonManager))]
-    public class ButtonManagerEditor : Editor
+    public class ButtonManagerEditor : UnityEditor.Editor
     {
         private ButtonManager bTarget;
         private int currentTab;

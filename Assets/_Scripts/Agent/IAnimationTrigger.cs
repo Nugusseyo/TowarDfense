@@ -7,5 +7,6 @@ namespace _Scripts.Agent
         event Action OnAnimationEnd;
         event Action OnAttackTrigger;
         void ResetEndTrigger();
+        void ResetAttackTrigger();
     }
 }

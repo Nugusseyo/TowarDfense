@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(ModalWindowManager))]
-    public class ModalWindowManagerEditor : Editor
+    public class ModalWindowManagerEditor : UnityEditor.Editor
     {
         private GUISkin customSkin;
         private ModalWindowManager mwTarget;

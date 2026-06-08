@@ -129,5 +129,13 @@ namespace _Scripts.Managers.InfoM
                 rangeDecal.SetActive(false);
             }
         }
+
+        public void AgentDeathLogic(Agent.Agent deathTarget)
+        {
+            if (deathTarget != TargetInfo) return;
+
+            HideRangeDecal();
+            ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(null));
+        }
     }
 }

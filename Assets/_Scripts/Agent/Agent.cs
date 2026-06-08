@@ -2,6 +2,7 @@ using System;
 using _Script.Agent.Modules;
 using _Script.Agent.Modules.StatSystem;
 using _Scripts.Agent.Player;
+using _Scripts.Managers.InfoM;
 using GameModules._Script.Agent;
 using Unity.Behavior;
 using UnityEngine;
@@ -80,7 +81,11 @@ namespace _Scripts.Agent
             HealthModule.TakeDamage(damageAmount);
         }
 
-        public abstract void OnDeath();
+        public virtual void OnDeath()
+        {
+            if(InfoManager.Instance != null)
+                InfoManager.Instance.AgentDeathLogic(this);
+        }
         public virtual void UseSkill() => AttackModule.UseSkill();
     }
 }

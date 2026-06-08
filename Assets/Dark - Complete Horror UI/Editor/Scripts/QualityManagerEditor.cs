@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(QualityManager))]
-    public class QualityManagerEditor : Editor
+    public class QualityManagerEditor : UnityEditor.Editor
     {
         private GUISkin customSkin;
         private QualityManager qmTarget;

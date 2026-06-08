@@ -4,7 +4,7 @@ using UnityEditor;
 namespace Michsky.UI.Dark
 {
     [CustomEditor(typeof(MainPanelManager))]
-    public class MainPanelManagerEditor : Editor
+    public class MainPanelManagerEditor : UnityEditor.Editor
     {
         private GUISkin customSkin;
         private MainPanelManager mpmTarget;

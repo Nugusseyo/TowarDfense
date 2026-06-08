@@ -10260,7 +10260,7 @@ MonoBehaviour:
   m_UVBias: {x: 0, y: 0}
   m_RenderingLayerMask:
     serializedVersion: 0
-    m_Bits: 1
+    m_Bits: 256
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0}
   m_Size: {x: 1.5, y: 1.5, z: 0.03}
@@ -10349,7 +10349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.Tower.Tower
   <AgentStatusSO>k__BackingField: {fileID: 11400000, guid: 898a00b06a890794391b9348977caccb, type: 2}
-  <UIData>k__BackingField: {fileID: 11400000, guid: 8ad70afbd947d6144a0ea997a82c02dc, type: 2}
+  <UIData>k__BackingField: {fileID: 11400000, guid: 1afcfad65c2b6044392c980823432b9d, type: 2}
   <AgentTag>k__BackingField: {fileID: 11400000, guid: a76737bb089502a47b56e14f4b86bb54, type: 2}
   upgradePrefab: {fileID: 6004980668003603285, guid: 394cddd526c706e48b5819f75c607c7d, type: 3}
 --- !u!65 &6094827317497767575
@@ -15811,6 +15811,10 @@ PrefabInstance:
     - target: {fileID: 4099271241231170, guid: 5940923b77c2e41448526ff737dafe21, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95854137331143582, guid: 5940923b77c2e41448526ff737dafe21, type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

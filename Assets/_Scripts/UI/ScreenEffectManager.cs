@@ -15,7 +15,7 @@ namespace _Scripts.UI
 
         private void Start()
         {
-            ScreenFade(false, 0.25f, true);
+            ScreenFade(false, 4f, true);
         }
 
         public void ScreenFade(bool isFadeIn, float duration, bool isFreeze)
