@@ -1,51 +1,54 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class SpeedButton : MonoBehaviour
+namespace _Scripts.UI
 {
-    [SerializeField] private Sprite defaultImage; 
-    [SerializeField] private Sprite doubleImage; 
-    private bool isDouble = false;
-    [SerializeField] private Image image;
+    public class SpeedButton : MonoBehaviour
+    {
+        [SerializeField] private Sprite defaultImage; 
+        [SerializeField] private Sprite doubleImage; 
+        private bool _isDouble = false;
+        [SerializeField] private Image image;
     
-    public void SpeedDefault() => Time.timeScale = 1f;
-    public void SpeedDouble() => Time.timeScale = 2f;
+        public void SpeedDefault() => Time.timeScale = 1f;
+        public void SpeedDouble() => Time.timeScale = 1.5f;
 
-    public void ButtonClick()
-    {
-        if (isDouble)
+        public void ButtonClick()
         {
-            Time.timeScale = 1f;
-            image.sprite = defaultImage;
-        }
-        else
-        {
-            Time.timeScale = 2f;
-            image.sprite = doubleImage;
-        }
+            if (_isDouble)
+            {
+                Time.timeScale = 1f;
+                image.sprite = defaultImage;
+            }
+            else
+            {
+                Time.timeScale = 1.5f;
+                image.sprite = doubleImage;
+            }
 
-        isDouble = !isDouble;
-    }
-
-    #if UNITY_EDITOR
-    void Update()
-    {
-        if (Keyboard.current.pKey.wasPressedThisFrame)
-        {
-            Time.timeScale += 1f;
+            _isDouble = !_isDouble;
         }
 
-        if (Keyboard.current.oKey.wasPressedThisFrame)
+#if UNITY_EDITOR
+        void Update()
         {
-            Time.timeScale -= 1f;
-        }
-    }
-    #endif
+            if (Keyboard.current.pKey.wasPressedThisFrame)
+            {
+                Time.timeScale += 1f;
+            }
 
-    private void OnDisable()
-    {
-        Time.timeScale = 1f;
+            if (Keyboard.current.oKey.wasPressedThisFrame)
+            {
+                Time.timeScale -= 1f;
+            }
+        }
+#endif
+
+        private void OnDisable()
+        {
+            if(Mathf.Approximately(Time.timeScale, 1.5f))
+                Time.timeScale = 1f;
+        }
     }
 }
