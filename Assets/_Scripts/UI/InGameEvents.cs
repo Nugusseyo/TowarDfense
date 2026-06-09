@@ -22,11 +22,13 @@ namespace _Scripts.UI
 
     public class GameSwapEvent : GameEvent
     {
-        public float NormalFade { get; private set; }
+        public bool FadeIn { get; private set; }
+        public float Height { get; private set; }
 
-        public GameSwapEvent Init(float normalFade)
+        public GameSwapEvent Init(bool fadeIn, float height)
         {
-            NormalFade = Mathf.Clamp01(normalFade);
+            FadeIn = fadeIn;
+            Height = height;
             return this;
         }
     }

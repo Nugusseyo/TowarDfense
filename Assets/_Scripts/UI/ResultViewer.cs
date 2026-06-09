@@ -54,7 +54,7 @@ namespace _Scripts.UI
             if (_isActive) return;
             _isActive = true;           //한번만 야르딱딱 누르게 해줘야지.
             
-            ScreenEffectManager.Instance.ScreenFade(true, 0.25f, true);
+            //ScreenEffectManager.Instance.ScreenFade(true, 0.25f, true);
             Debug.Log("버튼 눌리긴 하네;");
         }
 

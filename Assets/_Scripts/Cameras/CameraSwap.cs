@@ -15,11 +15,13 @@ namespace _Scripts.Cameras
         private void Awake()
         {
             ViewUIEventChannel.AddListener<AgentOnUI>(HandleAgentOnUI);
+            ViewUIEventChannel.AddListener<AgentInfoUI>(HandleAgentInfoUI);
         }
 
         private void OnDestroy()
         {
             ViewUIEventChannel.RemoveListener<AgentOnUI>(HandleAgentOnUI);
+            ViewUIEventChannel.AddListener<AgentInfoUI>(HandleAgentInfoUI);
         }
 
         private void HandleAgentOnUI(AgentOnUI evt)
@@ -36,15 +38,7 @@ namespace _Scripts.Cameras
         }
         private void HandleAgentInfoUI(AgentInfoUI evt)
         {
-            if (evt.Agent == null || evt.IsActive == false)
-            {
-                FollowCam.Priority = 0;
-            }
-            else
-            {
-                FollowCam.Follow = evt.Agent.transform;
-                FollowCam.Priority = 20;
-            }
+            FollowCam.Priority = 0;
         }
     }
 }

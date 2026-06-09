@@ -8,7 +8,6 @@ public class AgentUIDataSO : ScriptableObject
     public Sprite portrait;
     
     [Header("Left UI")] 
-    public Sprite positionTypeIcon;
     public string agentName;
     
     [Header("Skills")]
@@ -20,4 +19,14 @@ public class AgentUIDataSO : ScriptableObject
 
     [Header("Other")]
     public string health;
+
+    public PlayerType playerType;
+
+}
+
+public enum PlayerType
+{
+    HEALER,
+    TANKER,
+    SURPPORT
 }

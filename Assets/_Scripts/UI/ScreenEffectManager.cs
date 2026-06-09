@@ -2,7 +2,10 @@ using System;
 using System.Collections;
 using _Script.ScriptableObject.Event;
 using _Script.Tools.Utility;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 namespace _Scripts.UI
 {
@@ -10,59 +13,59 @@ namespace _Scripts.UI
     {
         [field: SerializeField] public EventChannelSO GameEventChannel { get; private set; }
 
-        private Coroutine _fadeCoroutine;
-        private float _prevTimeScale = 1f;
+        [SerializeField] private float leaveBar = 150f;
+        
+        [Header("UI 및 포스트 프로세싱")]
+        [SerializeField] private RectTransform gameStartText;       // 위치 초기화용 (중앙 세팅)
+        [SerializeField] private CanvasGroup gameStartCanvasGroup; // 💡 글자를 서서히 사라지게 만들기 위한 컴포넌트!
+        [SerializeField] private Volume globalVolume;
 
-        private void Start()
+        protected override void Awake()
         {
-            ScreenFade(false, 4f, true);
+            base.Awake();
+            GetComponent<CanvasGroup>().alpha = 1;
         }
 
-        public void ScreenFade(bool isFadeIn, float duration, bool isFreeze)
+        public void ScreenFade(bool isFadeIn, float height)
         {
-            if (_fadeCoroutine != null)
-            {
-                StopCoroutine(_fadeCoroutine);
-            }
-
-            if (isFreeze)
-            {
-                _prevTimeScale = Time.timeScale;
-                
-                Time.timeScale = 0f;
-            }
-            
-            _fadeCoroutine = StartCoroutine(FadeValue(isFadeIn, duration, isFreeze));
+            GameEventChannel.RaiseEvent(InGameEvents.GameSwapEvent.Init(isFadeIn, height));
         }
 
-        private IEnumerator FadeValue(bool isFadeIn, float duration, bool isFreeze)
+        public void GameStartFade()
         {
-            float curTime = 0;
-            
-            float startValue = isFadeIn ? 0f : 1f;
-            float endValue = isFadeIn ? 1f : 0f;
+            StartCoroutine(GameStartRoutine());
+        }
 
-            while (curTime < duration)
+        private IEnumerator GameStartRoutine()
+        {
+            //Init
+            if (gameStartText != null) gameStartText.anchoredPosition = Vector2.zero;
+            if (gameStartCanvasGroup != null) gameStartCanvasGroup.alpha = 1f;
+
+            //위아래 시네마틱 바 닫기
+            GameEventChannel.RaiseEvent(InGameEvents.GameSwapEvent.Init(false, leaveBar));
+            yield return new WaitForSecondsRealtime(1.0f); 
+            
+            if (globalVolume != null)
             {
-                curTime += Time.unscaledDeltaTime;
-                //시간의 영향을 받지 않고 ㄹㅇ 현실 시간 기준으로 deltaTime반환.
-                //deltaTime은 Scale 변하면 값이 변하지만, 얘는 영원히 deltaTime을 반환해줌.
-                
-                float t = Mathf.Clamp01(curTime / duration);
-                float normal = Mathf.Lerp(startValue, endValue, t);
-                
-                GameEventChannel.RaiseEvent(InGameEvents.GameSwapEvent.Init(normal));
-                yield return null;
+                DOTween.To(() => globalVolume.weight, x => globalVolume.weight = x, 1f, 1f)
+                       .SetUpdate(true);
             }
             
-            GameEventChannel.RaiseEvent(InGameEvents.GameSwapEvent.Init(endValue));
+            yield return new WaitForSecondsRealtime(4.0f);
             
-            if (isFreeze)
+            if (gameStartCanvasGroup != null)
             {
-                Time.timeScale = _prevTimeScale;
+                gameStartCanvasGroup.DOFade(0f, 2f)
+                    .SetUpdate(true);
+            }
+            if (globalVolume != null)
+            {
+                DOTween.To(() => globalVolume.weight, x => globalVolume.weight = x, 0f, 2.5f)
+                    .SetUpdate(true);
             }
             
-            _fadeCoroutine = null;
+            GameEventChannel.RaiseEvent(InGameEvents.GameSwapEvent.Init(true, 0));
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System;
+using System.Diagnostics;
 using _Script.ScriptableObject.Event;
 using _Scripts.Agent;
 using _Scripts.Agent.Player;
@@ -10,6 +11,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Debug = UnityEngine.Debug;
 
 namespace _Scripts.UI
 {
@@ -22,8 +24,9 @@ namespace _Scripts.UI
         [SerializeField] private GameObject uiParent;
         [SerializeField] private GameObject worldCanvas;
         
-        [SerializeField] private Image positionIcon;
+        [SerializeField] private Image portrait;
         [SerializeField] private TextMeshProUGUI agentName;
+        [SerializeField] private TextMeshProUGUI agentPosition;
         
         [Header("Skills")]
         [SerializeField] private Image skillIcon;
@@ -52,6 +55,11 @@ namespace _Scripts.UI
         
         private CanvasGroup _uiParentCG;
         private CanvasGroup _worldCanvasCG;
+
+        private const string HEALER = "치유가";
+        private const string TANKER = "선봉가";
+        private const string SURPPORT = "지원가";
+        private const string NONE = "특수가";
 
         private void Awake()
         {
@@ -162,8 +170,15 @@ namespace _Scripts.UI
                 return;
             }
             
-            positionIcon.sprite = data.positionTypeIcon;
             agentName.text = data.agentName;
+            agentPosition.text = data.playerType switch
+            {
+                PlayerType.HEALER => HEALER,
+                PlayerType.TANKER => TANKER,
+                PlayerType.SURPPORT => SURPPORT,
+                _ => NONE
+            };
+            portrait.sprite = data.portrait;
             
             skillIcon.sprite = data.skillIcon;
             skillDesc.text = data.skillDesc;
@@ -180,8 +195,12 @@ namespace _Scripts.UI
 
             _worldCanvasCG.DOKill();
             _worldCanvasCG.alpha = 0f;
+            
             if(agent is not Tower)
                 worldCanvas.SetActive(true);
+            else
+                worldCanvas.gameObject.SetActive(false);
+            
             _worldCanvasCG.DOFade(1f, 0.25f).SetEase(Ease.OutQuad);
         }
 
@@ -257,7 +276,6 @@ namespace _Scripts.UI
             
             AgentUIDataSO data = evt.Agent.UIData;
             
-            positionIcon.sprite = data.positionTypeIcon;
             agentName.text = data.agentName;
             
             skillIcon.sprite = data.skillIcon;

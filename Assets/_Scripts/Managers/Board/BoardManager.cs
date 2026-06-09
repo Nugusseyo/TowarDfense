@@ -19,6 +19,7 @@ namespace _Scripts.Managers.Board
         [field: SerializeField] public EventChannelSO ShowGroundEventChannelSO { get; private set; }
         [field: SerializeField] public EventChannelSO ShowMountainEventChannelSO { get; private set; }
         [field: SerializeField] public EventChannelSO ViewUIEventChannelSO { get; private set; }
+        [field: SerializeField] public EventChannelSO CameraEventChannelSO { get; private set; }
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private LayerMask mountainLayer;
 
