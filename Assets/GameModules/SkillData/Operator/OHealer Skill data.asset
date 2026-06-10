@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.Combat.Skills.Operator.OHealerSkillData
   <SkillRadius>k__BackingField: 10
   description: 
-  <DamageValue>k__BackingField: 200
+  <DamageValue>k__BackingField: 1000

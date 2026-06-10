@@ -28,10 +28,14 @@ namespace _Scripts.UI
         [SerializeField] private TextMeshProUGUI agentName;
         [SerializeField] private TextMeshProUGUI agentPosition;
         
+        [SerializeField] private TextMeshProUGUI costText;
+        [SerializeField] private TextMeshProUGUI reloadText;
+        
         [Header("Skills")]
         [SerializeField] private Image skillIcon;
         [SerializeField] private Image skillCooldownCover;
         [SerializeField] private TextMeshProUGUI skillDesc;
+        [SerializeField] private TextMeshProUGUI skillName;
         #endregion
         
         #region Middle_Center UI
@@ -59,7 +63,7 @@ namespace _Scripts.UI
         private const string HEALER = "치유가";
         private const string TANKER = "선봉가";
         private const string SURPPORT = "지원가";
-        private const string NONE = "특수가";
+        private const string NONE = "적군";
 
         private void Awake()
         {
@@ -180,8 +184,12 @@ namespace _Scripts.UI
             };
             portrait.sprite = data.portrait;
             
+            costText.text = "코스트 " + data.cost;
+            reloadText.text = data.respawnTimer + "초";
+            
             skillIcon.sprite = data.skillIcon;
             skillDesc.text = data.skillDesc;
+            skillName.text = data.skillName;
             _skillBtnImage.sprite = data.skillIcon;
 
             Vector3 fixPos = agent.transform.position;
@@ -277,9 +285,14 @@ namespace _Scripts.UI
             AgentUIDataSO data = evt.Agent.UIData;
             
             agentName.text = data.agentName;
+            portrait.sprite = data.portrait;
+            
+            costText.text = "코스트 " + data.cost;
+            reloadText.text = data.respawnTimer + "초";
             
             skillIcon.sprite = data.skillIcon;
             skillDesc.text = data.skillDesc;
+            skillName.text = data.skillName;
         }
         
         private void ClearCurrentAgent()

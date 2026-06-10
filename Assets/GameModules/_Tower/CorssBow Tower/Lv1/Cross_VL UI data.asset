@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a48560bf467baa409b9ddefca2eef1e, type: 3}
   m_Name: Cross_VL UI data
   m_EditorClassIdentifier: Assembly-CSharp::AgentUIDataSO
-  portrait: {fileID: 0}
-  positionTypeIcon: {fileID: 21300000, guid: ea3b42e54d2092a4487e5a2d2f15fde3, type: 3}
+  portrait: {fileID: 21300000, guid: 85c87136882e254478e2fe9cdc36054d, type: 3}
   agentName: "\uB098\uC57D\uD55C \uC11D\uAD81"
-  skillIcon: {fileID: 21300000, guid: 85c87136882e254478e2fe9cdc36054d, type: 3}
+  skillIcon: {fileID: 21300000, guid: ea3b42e54d2092a4487e5a2d2f15fde3, type: 3}
   skillDesc: "Lv1. \uC11D\uAD81\uC785\uB2C8\uB2E4.\n\uC2DC\uBBFC\uACFC \uC694\uC6D0\uC744
     \uACF5\uACA9\uD569\uB2C8\uB2E4!"
-  cost: 0
+  skillName: Coming Soon
+  cost: 99
+  respawnTimer: 90
   health: "\u221E"
+  playerType: 3

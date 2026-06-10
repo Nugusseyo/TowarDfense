@@ -27,7 +27,7 @@ namespace _Scripts.UI
 
         private void HandleOperatorCountChanged(int count)
         {
-            _limitText.text = $"Limit : {count}";
+            _limitText.text = $"배치 가능 요원 : {count}";
         }
     }
 }

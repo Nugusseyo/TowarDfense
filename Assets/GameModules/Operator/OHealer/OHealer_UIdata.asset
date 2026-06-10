@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: OHealer_UIdata
   m_EditorClassIdentifier: Assembly-CSharp::AgentUIDataSO
   portrait: {fileID: 21300000, guid: a3ab2a0e1cc4beb468026056b5a9c631, type: 3}
-  positionTypeIcon: {fileID: 21300000, guid: 7f89ba7db7ecee5488093ddbd590cf5c, type: 3}
   agentName: "\uB2E8\uC77C \uC624\uD37C\uB808\uC774\uD130 \uD790\uB7EC"
   skillIcon: {fileID: 21300000, guid: f71053e9446063c4ba8f0d66f0bacd74, type: 3}
   skillDesc: "\uC694\uC6D0 \uB300\uC0C1 \uCE58\uB8CC \uC694\uC6D0\uC785\uB2C8\uB2E4.\\n\\n1000\uC758
     \uCD94\uAC00 \uD68C\uBCF5 \uD6A8\uACFC\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  skillName: "\uC99D\uD3ED"
   cost: 19
+  respawnTimer: 50
   health: 1000
+  playerType: 0

@@ -52,16 +52,16 @@ namespace _Scripts.UI
                        .SetUpdate(true);
             }
             
-            yield return new WaitForSecondsRealtime(4.0f);
+            yield return new WaitForSecondsRealtime(3.0f);
             
             if (gameStartCanvasGroup != null)
             {
-                gameStartCanvasGroup.DOFade(0f, 2f)
+                gameStartCanvasGroup.DOFade(0f, 1.5f)
                     .SetUpdate(true);
             }
             if (globalVolume != null)
             {
-                DOTween.To(() => globalVolume.weight, x => globalVolume.weight = x, 0f, 2.5f)
+                DOTween.To(() => globalVolume.weight, x => globalVolume.weight = x, 0f, 1.5f)
                     .SetUpdate(true);
             }
             

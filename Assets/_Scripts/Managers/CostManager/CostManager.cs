@@ -49,7 +49,7 @@ namespace _Scripts.Managers.CostManager
             _costTimer += Time.deltaTime;
             float interval = 1f / costPerSecond; 
             
-            while (_costTimer >= interval) //렉걸려서 deltaTime이 1을 넘어선 경우, while문으로 처리.
+            while (_costTimer >= interval) //렉걸려서 deltaTime이 1을 넘어선 경우, while문으로 처리 해야댐
             {
                 _costTimer -= interval;
                 Cost++;

@@ -13,9 +13,11 @@ public class AgentUIDataSO : ScriptableObject
     [Header("Skills")]
     public Sprite skillIcon;
     [TextArea] public string skillDesc;
+    [TextArea] public string skillName;
 
     [Header("Cost UI")] 
     public int cost;
+    public int respawnTimer;
 
     [Header("Other")]
     public string health;
@@ -28,5 +30,6 @@ public enum PlayerType
 {
     HEALER,
     TANKER,
-    SURPPORT
+    SURPPORT,
+    ENEMY
 }
