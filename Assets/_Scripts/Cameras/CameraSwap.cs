@@ -12,10 +12,13 @@ namespace _Scripts.Cameras
         [field: SerializeField] public CinemachineCamera DefaultCam { get; private set; }
         [field: SerializeField] public CinemachineCamera FollowCam { get; private set; }
 
+        [SerializeField] private Transform followTarget;
+
         private void Awake()
         {
             ViewUIEventChannel.AddListener<AgentOnUI>(HandleAgentOnUI);
             ViewUIEventChannel.AddListener<AgentInfoUI>(HandleAgentInfoUI);
+            FollowCam.Follow = followTarget;
         }
 
         private void OnDestroy()
@@ -32,7 +35,8 @@ namespace _Scripts.Cameras
             }
             else
             {
-                FollowCam.Follow = evt.NextAgent.transform;
+                Vector3 pos = new Vector3(evt.NextAgent.transform.position.x, 3.5f, evt.NextAgent.transform.position.z);
+                followTarget.transform.position = pos;
                 FollowCam.Priority = 20;
             }
         }
