@@ -26,5 +26,17 @@ namespace _Scripts.UI
 
             SceneManager.LoadScene(index);
         }
+
+        public void NextStage()
+        {
+            int curIdx = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(curIdx + 1);
+        }
+
+        public void Restart()
+        {
+            int curIdx = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(curIdx);
+        }
     }
 }

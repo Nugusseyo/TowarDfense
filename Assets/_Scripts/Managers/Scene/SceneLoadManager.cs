@@ -8,6 +8,7 @@ namespace _Scripts.Managers.Scene
     [DefaultExecutionOrder(-100)]
     public class SceneLoadManager : MonoBehaviour
     {
+        [SerializeField] private bool isFade;
         private void OnEnable()
         {
             SceneManager.sceneLoaded += HandleSceneLoad;
@@ -22,7 +23,8 @@ namespace _Scripts.Managers.Scene
         private void HandleSceneLoad(UnityEngine.SceneManagement.Scene arg0, LoadSceneMode arg1)
         {
             Debug.Log("이거 진짜 됨?");
-            ScreenEffectManager.Instance.GameStartFade();
+            if(isFade)
+                ScreenEffectManager.Instance.GameStartFade();
         }
     }
 }

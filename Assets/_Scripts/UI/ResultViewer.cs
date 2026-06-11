@@ -17,9 +17,6 @@ namespace _Scripts.UI
         [field: SerializeField] public GameObject LostInfo { get; private set; }
 
         [SerializeField] private Image backGroundImage;
-
-        [SerializeField] private Color lostBackGroundColor;
-        [SerializeField] private Color winBackGroundColor;
         [SerializeField] private Button nextButton;
         
         [SerializeField] private float fadeDuration = 0.5f;
@@ -71,12 +68,10 @@ namespace _Scripts.UI
             {
                 //backGroundImage.color = Color.red; //이거 변수로 빼놓을까
                 //빼놓자 회사가면 이렇게 하겠지
-                backGroundImage.color = lostBackGroundColor;
                 LostInfo.SetActive(true);
             }
             else
             {
-                backGroundImage.color = winBackGroundColor;
                 WinInfo.SetActive(true);
             }
             //여기서 페이드 (알파값 0->1) 해줌.
@@ -85,8 +80,6 @@ namespace _Scripts.UI
             
             _canvasGroup.DOFade(1f, fadeDuration).SetUpdate(true).OnComplete(() =>
             {
-                _sceneChanger.NextScene();
-                Time.timeScale = 1f;
             });
             //아니 이거 코루틴으로 해야하는줄 알았는데 DOTween 되는거였어? 인생
 
