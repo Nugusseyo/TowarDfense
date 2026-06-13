@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CheerLeader_Stat
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.Player.OperatorStatusSO
   <DetectRadius>k__BackingField: 5
-  <StartAttackDelay>k__BackingField: 1
+  <StartAttackDelay>k__BackingField: 0
   <NormalAttackCooldown>k__BackingField: 1
   <SkillAttackCooldown>k__BackingField: 4
-  <MaxTargetCount>k__BackingField: 6
-  <AttackCount>k__BackingField: 4
+  <MaxTargetCount>k__BackingField: 0
+  <AttackCount>k__BackingField: 0
   <Damage>k__BackingField: 0

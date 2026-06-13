@@ -27,9 +27,17 @@ public partial class WaitUntilCooldownEndAction : Action
 
     protected override Status OnUpdate()
     {
+        if (Agent.Value == null || Agent.Value.AgentStatusSO == null)
+            return Status.Failure;
+        
         if(_startTime + _waitTime < Time.time) return Status.Success;
         
         return Status.Running;
+    }
+    protected override void OnEnd()
+    {
+        _startTime = 0f;
+        _waitTime = 0f;
     }
 }
 

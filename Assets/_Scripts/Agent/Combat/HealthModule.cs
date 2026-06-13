@@ -6,6 +6,8 @@ namespace _Scripts.Agent.Combat
 {
     public class HealthModule : MonoBehaviour, IModule
     {
+        public delegate void OnHealthChangedEvent(int currentHealth);
+        public event OnHealthChangedEvent OnHealthChanged;
         [field: SerializeField] public int MaxHealth { get; private set; } = 1000;
         private int _health;
         public int Health
@@ -30,10 +32,15 @@ namespace _Scripts.Agent.Combat
         public UnityEvent OnHit;
         public UnityEvent OnHeal;
         public UnityEvent OnDeath;
+
+        private IAgentRenderer _agentRenderer;
         public void Initialize(ModuleAgent moduleAgent)
         {
             _moduleAgent = moduleAgent;
             Debug.Assert(_moduleAgent != null, $"HealthModule인데 ModuleAgent가 없어요. Target : {gameObject.name}");
+            
+            _agentRenderer = moduleAgent.GetModule<IAgentRenderer>();
+            
             Health = MaxHealth;
         }
 
@@ -43,6 +50,8 @@ namespace _Scripts.Agent.Combat
             if (damage == 0 || damage <= 0) return;
 
             Health -= damage;
+            OnHealthChanged?.Invoke(Health);
+            _agentRenderer.PlayHitFlash(Color.red, 0.1f, 1);
             if (Health <= 0)
             {
                 OnDeath?.Invoke();
@@ -58,6 +67,7 @@ namespace _Scripts.Agent.Combat
             
             Health += heal;
             OnHeal?.Invoke();
+            OnHealthChanged?.Invoke(Health);
         }
         
     }

@@ -27,12 +27,15 @@ public partial class AgentUseSkillAction : Action
         _trigger.ResetAttackTrigger();
         _trigger.OnAttackTrigger += HandleOperatorUseSkill;
 
+        _skillModule.UseSkillStart();
+
         return Status.Success;
     }
 
     private void HandleOperatorUseSkill()
     {
         _skillModule.UseSkill();
+        _skillModule.IsUsingSkill = false;
         _trigger.OnAttackTrigger -= HandleOperatorUseSkill;
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using _Scripts.Managers.InfoM;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +11,8 @@ namespace _Scripts.UI
 
         private void Awake()
         {
-            stageNumber.text = "1-1";
+            if(MapDataHolder.Instance != null)
+                stageNumber.text = $"{MapDataHolder.Instance.HoldData.BigStageNumber}-{MapDataHolder.Instance.HoldData.SmallStageNumber}";
         }
     }
 }

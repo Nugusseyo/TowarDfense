@@ -1,4 +1,5 @@
 using System;
+using _Scripts.UI;
 using Unity.Behavior;
 using UnityEngine;
 
@@ -22,10 +23,13 @@ namespace _Scripts.Agent.Enemy
             
             Mover = GetModule<ICitizenMover>();
             Debug.Assert(Mover != null, $"Citizen인데 Mover가 Null이면 어떡해요;;");
+            
+            
         }
 
         private void OnEnable()
         {
+            
             AgentBT.SetVariableValue(CitizenStrings.Citizen, this);
             
             if (!GetVariable(CitizenStrings.StateChange, out BlackboardVariable<CitizenStateChange> stateChannel))

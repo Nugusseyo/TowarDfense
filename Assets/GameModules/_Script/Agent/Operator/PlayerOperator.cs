@@ -29,7 +29,7 @@ namespace _Script.Agent.Operator
             base.AfterInitialize();
         }
 
-        protected override void HandleHealthChaged(float prevHealth, float currentHealth, float max)
+        protected override void HandleLegacyHealthChaged(float prevHealth, float currentHealth, float max)
         {
             if (currentHealth <= 0 && !IsDead)
             {
@@ -51,7 +51,7 @@ namespace _Script.Agent.Operator
             base.GetDamage(damageData);
             float attackValue = damageData.Amount - _skillModule.GetDefensiveValue();
             if (attackValue <= 100) attackValue = 100;
-            Health.GetDamage(attackValue);
+            LegacyHealth.GetDamage(attackValue);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -75,7 +75,7 @@ namespace _Script.Agent.Operator
         public GameObject GameObject => this == null ? null : gameObject;
         public void ResetItem()
         {
-            Health.ResetHealth();
+            LegacyHealth.ResetHealth();
             _statModule.ClearBuff();
         }
     }

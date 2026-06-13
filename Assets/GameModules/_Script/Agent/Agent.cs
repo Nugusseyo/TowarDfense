@@ -32,7 +32,7 @@ namespace _Script.Agent
         [SerializeField] protected SoundClipSO getDamageSound;
 
         public bool IsDead { get; protected set; }
-        protected Modules.HealthModule Health { get; private set; }
+        protected Modules.LegacyHealthModule LegacyHealth { get; private set; }
 
         protected override void Awake()
         {
@@ -45,9 +45,9 @@ namespace _Script.Agent
             base.Initialize();
             
             
-            Health = GetModule<Modules.HealthModule>();
+            LegacyHealth = GetModule<Modules.LegacyHealthModule>();
             
-            Debug.Assert(Health != null, $"Agent {gameObject.name}가 HealthModule이 존재하지 않습니다!");
+            Debug.Assert(LegacyHealth != null, $"Agent {gameObject.name}가 HealthModule이 존재하지 않습니다!");
             
             _skillModule = GetModule<ISkillModule>();
             Debug.Assert(_skillModule != null, $"{gameObject.name}의 SkillModule이 존재하지 않습니다!");
@@ -62,18 +62,18 @@ namespace _Script.Agent
             
             if(_stateMachine == null)
                 _stateMachine = new AgentStateMachine(this, stateList.states);
-            Health.OnHealthChanged += HandleHealthChaged;
+            LegacyHealth.OnHealthChanged += HandleLegacyHealthChaged;
         }
 
         
 
         private void OnDestroy()
         {
-            if(Health != null)
-                Health.OnHealthChanged -= HandleHealthChaged;
+            if(LegacyHealth != null)
+                LegacyHealth.OnHealthChanged -= HandleLegacyHealthChaged;
         }
 
-        protected abstract void HandleHealthChaged(float prevHealth, float currentHealth, float max); //Operator쪽에서 처리해줄거임.
+        protected abstract void HandleLegacyHealthChaged(float prevHealth, float currentHealth, float max); //Operator쪽에서 처리해줄거임.
         //각 오퍼레이터마다 가지고 있는 특징이나 패시브가 여기 안에 포함됨.
 
         public virtual void GetDamage(DamageData damageData)

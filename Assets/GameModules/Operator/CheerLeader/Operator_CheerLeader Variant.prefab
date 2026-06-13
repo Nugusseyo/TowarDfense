@@ -420,6 +420,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6099490578498413363, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+      propertyPath: targetLayer.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6102473053211972850, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_IsActive
       value: 0

@@ -9,6 +9,6 @@ namespace _Scripts.Agent
         void PlayFadeAcrossClip(int clipSource, float duration);
         void PlayClip(int clipSource);
         void SetAnimatorFloat(int id, float value);
-        void ReSearchingInit();
+        void PlayHitFlash(Color flashColor, float flashTime = 0.08f, int count = 2);
     }
 }

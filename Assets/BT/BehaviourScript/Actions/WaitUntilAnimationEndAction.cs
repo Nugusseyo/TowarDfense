@@ -47,12 +47,7 @@ namespace BT.BehaviourScript.Actions
 
         protected override Status OnUpdate()
         {
-            if (_isAnimationEnd)
-            {
-                return Status.Success;
-            }
-            
-            if (_animator != null)
+            if (_animator != null && _isAnimationEnd)
             {
                 AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
                 if (stateInfo.normalizedTime >= 1.0f && !_animator.IsInTransition(0))

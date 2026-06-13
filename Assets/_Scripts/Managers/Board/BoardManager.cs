@@ -81,6 +81,7 @@ namespace _Scripts.Managers.Board
         {
             if(CurrentOperatorCount == 0)
             {
+                ViewUIEventChannelSO.RaiseEvent(UIEvents.AlarmUI.Init("요원 배치 수 최대치 도달"));
                 Debug.LogWarning("Operator의 수가 없습니다.");
                 return;
             }
@@ -111,6 +112,7 @@ namespace _Scripts.Managers.Board
 
             if (operatorWrapper.operatorPrefab.UIData.cost > CostManager.CostManager.Instance.Cost)
             {
+                ViewUIEventChannelSO.RaiseEvent(UIEvents.AlarmUI.Init("코스트가 부족합니다"));
                 Debug.LogWarning("소환하려는 대상의 Cost가 현재 Cost보다 높은데 소환이 허락되었습니다.");
                 InputSO.ChangeInput(true);
                 return;

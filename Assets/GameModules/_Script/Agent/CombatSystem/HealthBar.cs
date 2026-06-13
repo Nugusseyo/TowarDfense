@@ -1,37 +1,40 @@
-using System;
-using _Script.Agent.Modules;
 using UnityEngine;
 using UnityEngine.UI;
 using HealthModule = _Script.Agent;
 
-namespace _Script.Agent.CombatSystem
+namespace GameModules._Script.Agent.CombatSystem
 {
     public class HealthBar : MonoBehaviour
     {
         [SerializeField] private Image healthBar;
+
+        private Transform _followTarget;
+        private HealthModule.Agent _agent;
+        private global::_Script.Agent.Modules.LegacyHealthModule _legacyHealthModule;
+
+
+        public float NormalizedHealthValue => Mathf.Clamp01(_legacyHealthModule.CurrentHealth / _legacyHealthModule.MaxHealth);
+
+        public void Initialize(HealthModule.Agent agent)
+        {
+            _agent = agent;
+
+            _followTarget = agent.transform;
+            
+            _legacyHealthModule = _agent.GetModule<global::_Script.Agent.Modules.LegacyHealthModule>();
+            Debug.Assert(_legacyHealthModule != null, $"{gameObject.name}이 Agent의 HealthModule을 찾지 못했습니다!");
+
+            UpdateLegacyHealthBar(0 ,_legacyHealthModule.CurrentHealth, _legacyHealthModule.MaxHealth);
+            _legacyHealthModule.OnHealthChanged += UpdateLegacyHealthBar;
+        }
         
-        private Agent _agent;
-        private Modules.HealthModule _healthModule;
-
-
-        public float NormalizedHealthValue => Mathf.Clamp01(_healthModule.CurrentHealth / _healthModule.MaxHealth);
-
-        private void Awake()
+        private void UpdateLegacyHealthBar(float prevHealth, float currentHealth, float max)
         {
-            _agent = GetComponentInParent<Agent>();
-        }
-
-        private void Start()
-        {
-            _healthModule = _agent.GetModule<Modules.HealthModule>();
-            Debug.Assert(_healthModule != null, $"{gameObject.name}이 Agent의 HealthModule을 찾지 못했습니다!");
-
-            UpdateHealthBar(0 ,_healthModule.CurrentHealth, _healthModule.MaxHealth);
-            _healthModule.OnHealthChanged += UpdateHealthBar;
-        }
-
-        private void UpdateHealthBar(float prevHealth, float currentHealth, float max)
-        {
+            if (currentHealth <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
             healthBar.fillAmount = currentHealth / max;
         }
     }

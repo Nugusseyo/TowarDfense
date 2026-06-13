@@ -82,7 +82,7 @@ namespace _Script.Agent.Enemy
 
         public void StartEnemyMove() => StartCoroutine(EnemyMove());
 
-        protected override void HandleHealthChaged(float prevHealth, float currentHealth, float max)
+        protected override void HandleLegacyHealthChaged(float prevHealth, float currentHealth, float max)
         {
             if (currentHealth <= 0 && !IsDead)
             {
@@ -105,7 +105,7 @@ namespace _Script.Agent.Enemy
             base.GetDamage(damageData);
             float attackValue = damageData.Amount - _skillModule.GetDefensiveValue();
             if (attackValue <= 100) attackValue = 100;
-            Health.GetDamage(attackValue);
+            LegacyHealth.GetDamage(attackValue);
         }
     }
 }

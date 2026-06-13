@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "New InputSO", menuName = "Input SO")]
+[DefaultExecutionOrder(-100)]
 public class InputSO : ScriptableObject, Controls.IPlayerActions, Controls.IInGameActions
 {
     private Controls _controls;

@@ -17,28 +17,41 @@ public partial class PlayAnimationClipAction : Action
 
     private IAgentRenderer _renderer;
     private Animator _animator;
+    private float _timer;
+    private float _duration;
     
     protected override Status OnStart()
     {
         if (Agent.Value == null || Clip.Value == null)
+        {
+            Debug.Log("기본값 누락");
             return Status.Failure;
-        
+        }
+    
         _renderer = Agent.Value.GetModule<IAgentRenderer>();
         if (_renderer == null || _renderer.Animator == null)
+        {
+            Debug.Log("Animator 누락");
             return Status.Failure;
+        }
         
-        _animator = _renderer.Animator;
-        
-        AnimatorStateInfo animInfo;
-        
-        if (_animator.IsInTransition(0))
-            animInfo = _animator.GetNextAnimatorStateInfo(0);
-        else
-            animInfo = _animator.GetCurrentAnimatorStateInfo(0);
-        
-        if(animInfo.shortNameHash != Clip.Value.AnimationHash) //똑같은거 또 하라고 하면 GET OUT
-            _renderer.PlayFadeAcrossClip(Clip.Value.AnimationHash, During);
-        return Status.Success;
+        _renderer.PlayFadeAcrossClip(Clip.Value.AnimationHash, During.Value);
+    
+        _timer = 0f;
+        _duration = During.Value; 
+    
+        return Status.Running;
+    }
+    protected override Status OnUpdate()
+    {
+        _timer += Time.deltaTime;
+    
+        if (_timer >= _duration)
+        {
+            return Status.Success;
+        }
+    
+        return Status.Running;
     }
 }
 

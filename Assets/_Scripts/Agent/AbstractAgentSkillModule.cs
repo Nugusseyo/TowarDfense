@@ -12,6 +12,8 @@ namespace _Scripts.Agent
         float GetCooldownNormal { get; }
         bool CanUseSkill();
         void UseSkill();
+        void UseSkillStart();
+        bool IsUsingSkill { get; set; }
     }
 
     public abstract class AgentSkillModule : MonoBehaviour, IModule, IAgentSkillModule
@@ -26,7 +28,9 @@ namespace _Scripts.Agent
         private float _cooldown;
         private float _timer;
         public float GetCooldownNormal => Mathf.Clamp01(_timer / _cooldown);
-        
+
+        public bool IsUsingSkill { get; set; } = false;
+
         protected ITargetCaster _targetCaster;
         public void Initialize(ModuleAgent moduleAgent)
         {
@@ -46,7 +50,7 @@ namespace _Scripts.Agent
 
         private void Update()
         {
-            if (_cooldown <= _timer || _agent.HealthModule.IsDead) return;
+            if (_cooldown <= _timer || _agent.HealthModule.IsDead || IsUsingSkill) return;
             
             _timer += Time.deltaTime;
         }
@@ -56,13 +60,19 @@ namespace _Scripts.Agent
             if (_timer < _cooldown || _agent.HealthModule.IsDead)
                 return false;
 
+            Debug.Log("CanUseSkill 허용됨");
             return SkillCondition.TryUseSkill(_agent, _targetCaster, SkillData);
         }
 
         public virtual void UseSkill()
         {
             OnSkill?.Invoke();
+        }
+
+        public void UseSkillStart()
+        {
             _timer = 0;
+            IsUsingSkill = true;
         }
         
         protected virtual void OnDestroy()

@@ -17,7 +17,7 @@ namespace GameModules._Script.Agent.Operator.AttackModule
         }
         public override bool TryTargeting()
         {
-            return true;
+            return false;
         }
 
         public override void UseSkill()

@@ -1,4 +1,5 @@
 using _Script.Tools.Utility;
+using _Scripts.Managers.InfoM;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -14,6 +15,15 @@ namespace _Scripts.UI
         [SerializeField] private Image mapImage;
         [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private float duration = 0.5f;
+        
+        [SerializeField] private TextMeshProUGUI subTitle;
+        
+        [Header("Three Text!")]
+        [SerializeField] private TextMeshProUGUI waveText;
+        [SerializeField] private TextMeshProUGUI enemyText;
+        [SerializeField] private TextMeshProUGUI lifeText;
+        
+        private MapData _prevData;
 
         protected override void Awake()
         {
@@ -21,23 +31,42 @@ namespace _Scripts.UI
             uiParent.SetActive(false);
         }
 
-        public void ButtonViewer(ButtonListener listener)
+        public void ButtonViewer(MapData mapData)
         {
-            if (string.IsNullOrEmpty(listener.stage) && listener.map == null && listener.index == 0)
+            canvasGroup.DOKill();
+            
+            if (mapData == null || (string.IsNullOrEmpty(mapData.Stage) && mapData.Map == null && mapData.Index == 0))
             {
-
-                canvasGroup.DOFade(0f, 0.5f).SetEase(Ease.InOutQuad).OnComplete(() => uiParent.SetActive(false));
+                _prevData = null; 
+                
+                canvasGroup.DOFade(0f, duration)
+                    .SetEase(Ease.InOutQuad)
+                    .OnComplete(() => uiParent.SetActive(false));
                 return;
             }
-
-            canvasGroup.alpha = 0f;
-            canvasGroup.DOFade(1f, 0.5f).SetEase(Ease.InOutQuad);
+            
+            if (_prevData != mapData)
+            {
+                uiParent.SetActive(true);
+                canvasGroup.alpha = 0f;
+                canvasGroup.DOFade(1f, duration).SetEase(Ease.InOutQuad);
+            }
+            else
+            {
+                uiParent.SetActive(true);
+            }
+            _prevData = mapData;
             
             
             uiParent.SetActive(true);
-            stageText.text = listener.stage;
-            sceneChanger.index = listener.index;
-            mapImage.sprite = listener.map;
+            stageText.text = mapData.Stage;
+            sceneChanger.index = mapData.Index;
+            mapImage.sprite = mapData.Map;
+            
+            subTitle.text = mapData.SubTitle;
+            waveText.text = "웨이브 : " + mapData.WaveCount;
+            lifeText.text = "목숨 : " + mapData.LifeCount;
+            enemyText.text = "시민 : " + mapData.EnemyCount + "명";
         }
     }
 }
