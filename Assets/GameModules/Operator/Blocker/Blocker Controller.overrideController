@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Blocker Controller
+  m_Controller: {fileID: 9100000, guid: ba98a5fd9d0012b4d9b284ab58d78016, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: a2c76335075f6bb4d81d2b8f0f1bde1f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d322f93aa9e7bd040b6ee468ea5a62fc, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cfe5a9a0352ac7647aad8e024efc648e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: eebc6d402e666d84db9b168fb6d63c04, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 78abcbd84fee87e458eaad86410721cf, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 938b3b9284d72cd44a8360b46e867a7d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9a2c9af417f753b4897eb18ba4149021, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 77f351aa2a7bce34e95d1409d860adcc, type: 2}

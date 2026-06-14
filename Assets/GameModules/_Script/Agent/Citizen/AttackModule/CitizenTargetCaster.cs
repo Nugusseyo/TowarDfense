@@ -23,6 +23,10 @@ namespace GameModules._Script.Agent.Citizen.AttackModule
             return false;
         }
 
+        public void ResetTargets()
+        {
+        }
+
         public void Initialize(ModuleAgent moduleAgent)
         {
             

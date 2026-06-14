@@ -38,24 +38,17 @@ namespace _Scripts.UI
                 _offset = transform.localPosition;
                 transform.SetParent(null);
             }
-
-            _healthModule.OnDeath.AddListener(HandleDeath);
-        }
-
-        private void HandleDeath()
-        {
-            if(_healthModule != null)
-                _healthModule.OnDeath.RemoveListener(HandleDeath);
-
-            Destroy(gameObject);
         }
 
         private void Update()
         {
-            if (_followTarget != null)
+            if (_followTarget == null)
             {
-                transform.position = _followTarget.position + _offset;
+                Destroy(gameObject);
+                return;
             }
+
+            transform.position = _followTarget.position + _offset;
             
             if (healthBar != null && _healthModule != null && !float.IsNaN(_healthModule.GetHealthNormal))
             {

@@ -30,8 +30,6 @@ namespace GameModules._Script.Agent.Operator.AttackModule
             int actualHitCount = Mathf.Min(_attackTargets.Count, _attackCount);
             for (int i = 0; i < actualHitCount; ++i)
             {
-                // AI : 여기서 실제 데미지를 주는 로직(예: _attackTargets[i].TakeDamage(...))을 실행하시면 됩니다.
-
                 if (_attackTargets[i].TryGetComponent(out IHealable healable))
                 {
                     healable.TakeHeal(_operator.AgentStatusSO.Damage);

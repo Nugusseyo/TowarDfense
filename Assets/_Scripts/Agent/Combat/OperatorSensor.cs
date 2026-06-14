@@ -71,5 +71,7 @@ namespace _Scripts.Agent
             HitCount = Physics.OverlapBoxNonAlloc(worldCenter, extents, SucceedColliders, Quaternion.identity, targetLayer);
             return HitCount > 0;
         }
+
+        public void ResetTargets() => HitCount = 0;
     }
 }

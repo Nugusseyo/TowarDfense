@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Speeder Controller
+  m_Controller: {fileID: 9100000, guid: ba98a5fd9d0012b4d9b284ab58d78016, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: a2c76335075f6bb4d81d2b8f0f1bde1f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: badff6cd262c6514492fed9eb6b1e810, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cfe5a9a0352ac7647aad8e024efc648e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c675218508300334486dfb2a4faf2525, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 78abcbd84fee87e458eaad86410721cf, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8430a22c0984f9d47991acd1e2147a10, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9a2c9af417f753b4897eb18ba4149021, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e16168f5e1166a94798270d66f9ef4f5, type: 2}

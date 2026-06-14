@@ -65,6 +65,18 @@ namespace _Scripts.Agent.Tower
             _returnObj.SetActive(true);
             Destroy(gameObject);
         }
+        
+        public void ShutDownTower()
+        {
+            Feedbacks.Feedbacks feedbacks = GetModule<Feedbacks.Feedbacks>();
+            if (feedbacks != null)
+            {
+                FeedbackPlayer player = feedbacks.GetFeedbackPlayer(FeedbackType.UPGRADE);
+                player.FeedbackPlay();
+            }
+            TowerStateChange.SendEventMessage(TowerState.SHUTDOWN);
+            GetModule<ITargetCaster>().ResetTargets();
+        }
     }
     public static class TowerStrings
     {

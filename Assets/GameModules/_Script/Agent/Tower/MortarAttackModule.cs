@@ -2,6 +2,7 @@ using System.Collections;
 using System.Numerics;
 using _Scripts.Agent;
 using UnityEngine;
+using UnityEngine.Events;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
@@ -14,6 +15,7 @@ namespace GameModules._Script.Agent.Tower
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private float bulletRadius;
         [SerializeField] private int bulletTargetCount;
+        public UnityEvent<Vector3> OnBulletExplosion;
         public override void AttackTarget()
         {
             base.AttackTarget();
@@ -48,6 +50,7 @@ namespace GameModules._Script.Agent.Tower
 
             //Particle Play 해줘야댐;;
             Destroy(bullet);
+            OnBulletExplosion?.Invoke(bullet.transform.position);
             
             if (!targetCaster.SearchTargetSphere(bullet.transform.position, bulletRadius) || targetCaster.HitCount <= 0) yield break;
             

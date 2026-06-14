@@ -52,7 +52,7 @@ namespace _Scripts.UI
                        .SetUpdate(true);
             }
             
-            yield return new WaitForSecondsRealtime(3.0f);
+            yield return new WaitForSecondsRealtime(1.0f);
             
             if (gameStartCanvasGroup != null)
             {

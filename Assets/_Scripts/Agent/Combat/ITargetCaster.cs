@@ -20,5 +20,7 @@ namespace _Scripts.Agent
         bool SearchTargetSphere(Vector3 pos, float radius, bool isResetOriginColliders = false);
 
         bool SearchTargetBox(Vector3 centerOffset, Vector3 size);
+
+        void ResetTargets();
     }
 }
