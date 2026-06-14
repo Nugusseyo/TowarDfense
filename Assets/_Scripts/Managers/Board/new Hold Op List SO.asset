@@ -25,3 +25,5 @@ MonoBehaviour:
     isMountain: 0
   - operatorPrefab: {fileID: 2293292576323634344, guid: a3a92a804ad739142ab4664320fd6d41, type: 3}
     isMountain: 1
+  - operatorPrefab: {fileID: 3784067612259112232, guid: 1c055ad8d8b99344b880f447c618e301, type: 3}
+    isMountain: 0
