@@ -12,6 +12,8 @@ namespace _Scripts.Agent
         public Collider[] SucceedColliders { get; } = new Collider[32]; //영원히 안바뀜. get만 하자 야르
         public int HitCount { get; private set; }
 
+        private float _size;
+
         public void Initialize(ModuleAgent moduleAgent)
         {
             _agent = moduleAgent as Agent;
@@ -35,7 +37,10 @@ namespace _Scripts.Agent
             }
             //미리 캐싱해둔걸 쥐어주고 할당시켜주는 NonAlloc OverlapSphere. 모르면 멍충이
             //hitCount : Return값으로 찾기에 성공한 갯수를 반환해준다.
-            HitCount = Physics.OverlapSphereNonAlloc(transform.position, radius, SucceedColliders, targetLayer);
+            //HitCount = Physics.OverlapSphereNonAlloc(transform.position, radius, SucceedColliders, targetLayer);
+            HitCount = Physics.OverlapBoxNonAlloc(transform.position, new Vector3(radius, radius, radius)
+                , SucceedColliders, Quaternion.identity, targetLayer);
+            _size = radius;
             //아무것도 없으니까 false
             if (HitCount == 0)
             {
@@ -73,5 +78,11 @@ namespace _Scripts.Agent
         }
 
         public void ResetTargets() => HitCount = 0;
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(transform.position, new Vector3(_size, _size, _size));
+        }
     }
 }

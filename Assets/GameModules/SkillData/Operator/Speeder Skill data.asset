@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.Combat.Skills.Operator.SpeederSkillData
   <SkillRadius>k__BackingField: 10
   description: 
-  SpeedModifier: 1.5
-  Duration: 3
+  SpeedModifier: 2
+  Duration: 2

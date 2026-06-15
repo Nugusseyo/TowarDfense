@@ -27,6 +27,7 @@ namespace GameLib.SoundSystem
 
         public void PlaySound(SoundClipSO clipData)
         {
+            if (clipData == null) return; 
             if (clipData.audioType == AudioTypes.Sfx)
             {
                 _audioSource.outputAudioMixerGroup = sfxGroup;

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaab0b40a4d4b84286b5331b6421c22, type: 3}
   m_Name: CheerLeader Skill data
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.Combat.Skills.Operator.CheerLeaderSkillData
-  <SkillRadius>k__BackingField: 12
+  <SkillRadius>k__BackingField: 7
   description: "\uC989\uC2DC \uCF54\uC2A4\uD2B8 \uD68C\uBCF5"

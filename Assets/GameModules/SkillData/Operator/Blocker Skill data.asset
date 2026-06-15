@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fed527db6e94a543bcbfa584c2c3560, type: 3}
   m_Name: Blocker Skill data
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.Combat.Skills.Operator.BlockerSkillData
-  <SkillRadius>k__BackingField: 10
+  <SkillRadius>k__BackingField: 4
   description: 

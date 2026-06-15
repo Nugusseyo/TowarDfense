@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a48560bf467baa409b9ddefca2eef1e, type: 3}
   m_Name: Speeder UI data
   m_EditorClassIdentifier: Assembly-CSharp::AgentUIDataSO
-  portrait: {fileID: 21300000, guid: 01d771f9a96bd4ffb8b1bb3d3c1d05ce, type: 3}
+  portrait: {fileID: 21300000, guid: 481c1039e0cdc384da7278076b1b3f0c, type: 3}
   agentName: "\uC2A4\uD53C\uB4DC \uC65C\uAC74"
   skillIcon: {fileID: 21300000, guid: 28833eb632d77bd4c949d16fb767a02d, type: 3}
-  skillDesc: "\uC2DC\uBBFC 1\uBA85\uC758 \uC774\uB3D9 \uC18D\uB3C4\uB97C \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4."
-  skillName: "\uCE58\uC720 \uD3ED\uBC1C"
+  skillDesc: "\uC77C\uC2DC\uC801\uC73C\uB85C \uC8FC\uC704 \uC2DC\uBBFC\uC758 \uC774\uB3D9\uC18D\uB3C4\uB97C
+    \uB300\uD3ED \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4."
+  skillName: "\uBB34\uB9AC \uC774\uB3D9"
   cost: 30
   respawnTimer: 30
   health: 250
