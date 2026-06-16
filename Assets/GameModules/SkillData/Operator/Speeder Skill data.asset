@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6fba5f896b08da4cbbbfc7fdaa5a070, type: 3}
   m_Name: Speeder Skill data
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.Combat.Skills.Operator.SpeederSkillData
-  <SkillRadius>k__BackingField: 10
+  <SkillRadius>k__BackingField: 4
   description: 
   SpeedModifier: 2
   Duration: 2

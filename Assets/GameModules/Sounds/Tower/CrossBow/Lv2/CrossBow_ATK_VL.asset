@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CrossBow_ATK_VL
   m_EditorClassIdentifier: Assembly-CSharp::GameLib.SoundSystem.SoundClipSO
   audioType: 0
-  audioClip: {fileID: 8300000, guid: 88d42249524da8e4bbf47d4ea3052386, type: 3}
+  audioClip: {fileID: 8300000, guid: a948180e887b7d94c92b7a2f4a8ae735, type: 3}
   isLoop: 0
   randomizePitch: 1
   randomPitchModifier: 0.1

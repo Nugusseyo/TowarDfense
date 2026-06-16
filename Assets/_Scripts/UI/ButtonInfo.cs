@@ -17,6 +17,7 @@ namespace _Scripts.UI
         [SerializeField] private float duration = 0.5f;
         
         [SerializeField] private TextMeshProUGUI subTitle;
+        [SerializeField] private TextMeshProUGUI numberTitle;
         
         [Header("Three Text!")]
         [SerializeField] private TextMeshProUGUI waveText;
@@ -67,6 +68,8 @@ namespace _Scripts.UI
             waveText.text = "웨이브 : " + mapData.WaveCount;
             lifeText.text = "목숨 : " + mapData.LifeCount;
             enemyText.text = "시민 : " + mapData.EnemyCount + "명";
+
+            numberTitle.text = $"Stage {mapData.BigStageNumber}-{mapData.SmallStageNumber}";
         }
     }
 }

@@ -15,10 +15,10 @@ MonoBehaviour:
   portrait: {fileID: 21300000, guid: dd650f87122727843b55bd4ab32d7576, type: 3}
   agentName: "\uBE14\uB85C\uD0A4"
   skillIcon: {fileID: 21300000, guid: a463ea773d117f248b763f43b56d91c3, type: 3}
-  skillDesc: "\uACF5\uACA9 \uBC94\uC704 \uB0B4 \uBAA8\uB4E0 \uD0C0\uC6CC\uB97C 1\uC6E8\uC774\uBE0C\uB3D9\uC548
-    \uBB34\uB825\uD654 \uC2DC\uD0B5\uB2C8\uB2E4."
+  skillDesc: "\uACF5\uACA9 \uBC94\uC704 \uB0B4 \uBAA8\uB4E0 \uD0C0\uC6CC 1\uC6E8\uC774\uBE0C\uB3D9\uC548
+    \uBB34\uB825\uD654"
   skillName: "\uD3ED\uC8FC"
-  cost: 1
+  cost: 35
   respawnTimer: 80
-  health: 1000
+  health: 800
   playerType: 2

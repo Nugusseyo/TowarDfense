@@ -185,7 +185,7 @@ namespace _Scripts.UI
             portrait.sprite = data.portrait;
             
             costText.text = "코스트 " + data.cost;
-            reloadText.text = data.respawnTimer + "초";
+            reloadText.text = agent.AgentStatusSO.SkillAttackCooldown + "초";
             
             skillIcon.sprite = data.skillIcon;
             skillDesc.text = data.skillDesc;

@@ -208,6 +208,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8419023310118412973, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+      propertyPath: <SoundClip>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: f8412b1b5494e2e449908be3236301dd, type: 2}
     - target: {fileID: 8479904843695637379, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
