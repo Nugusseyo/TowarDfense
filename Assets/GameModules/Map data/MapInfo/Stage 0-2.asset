@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70cabad43a09c5489bc0dcfd2e17355, type: 3}
   m_Name: Stage 0-2
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Managers.InfoM.MapData
-  <Map>k__BackingField: {fileID: 21300000, guid: b53be7579bfe81d43973e5fb818a66f6, type: 3}
+  <Map>k__BackingField: {fileID: 21300000, guid: 07a874086c5186044a407705722bdf52, type: 3}
   <Stage>k__BackingField: "\uC694\uC0C8"
   <Index>k__BackingField: 3
   <SubTitle>k__BackingField: "\uB300\uD3EC\uAC00 \uB450 \uBC30"

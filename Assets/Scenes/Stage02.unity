@@ -17288,7 +17288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57db0a35c0ac8c44db50211bdf0f4dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorInfoInjector
-  <HoldOperator>k__BackingField: {fileID: 11400000, guid: e564c089cd3dcf94593e5eacce023ecb, type: 2}
+  <HoldOperator>k__BackingField: {fileID: 11400000, guid: 44220543207b0fe41a739a64d2cac544, type: 2}
   buttonPrefab: {fileID: 6305654921800169104, guid: 5b938c24fdbc70444922f2aff5827fa9, type: 3}
   buttonParent: {fileID: 1262049974}
 --- !u!114 &1262049978
@@ -18889,7 +18889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Managers.CostManager.CostManager
   startCost: 8
   maxCost: 99
-  costPerSecond: 0.3
+  costPerSecond: 1
   _isRunning: 1
 --- !u!1001 &1413420019
 PrefabInstance:

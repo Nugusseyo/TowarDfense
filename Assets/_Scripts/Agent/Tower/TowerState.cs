@@ -9,6 +9,7 @@ namespace _Scripts.Agent.Tower
         IDLE,
         RELOAD,
         FIRE,
-        SHUTDOWN
+        SHUTDOWN,
+        DEAD
     }
 }

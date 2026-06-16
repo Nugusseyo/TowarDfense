@@ -13592,7 +13592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Managers.BoardManager
   <InputSO>k__BackingField: {fileID: 11400000, guid: b72d83271f2bf1b4eadf6c612374587a, type: 2}
-  <HoldOperatorListSO>k__BackingField: {fileID: 11400000, guid: e564c089cd3dcf94593e5eacce023ecb, type: 2}
+  <HoldOperatorListSO>k__BackingField: {fileID: 11400000, guid: 6024e5dc22c38d24aab5b4f586248004, type: 2}
   <ShowGroundEventChannelSO>k__BackingField: {fileID: 11400000, guid: 39f1acb74f653c4478eea56e0801e9e4, type: 2}
   <ShowMountainEventChannelSO>k__BackingField: {fileID: 11400000, guid: 0d62293fa2bafc241b50530e2cf9ed3a, type: 2}
   <ViewUIEventChannelSO>k__BackingField: {fileID: 11400000, guid: c09c6cee26169444696cb086e1122069, type: 2}
@@ -16426,7 +16426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57db0a35c0ac8c44db50211bdf0f4dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OperatorInfoInjector
-  <HoldOperator>k__BackingField: {fileID: 11400000, guid: e564c089cd3dcf94593e5eacce023ecb, type: 2}
+  <HoldOperator>k__BackingField: {fileID: 11400000, guid: 6024e5dc22c38d24aab5b4f586248004, type: 2}
   buttonPrefab: {fileID: 6305654921800169104, guid: 5b938c24fdbc70444922f2aff5827fa9, type: 3}
   buttonParent: {fileID: 1262049974}
 --- !u!114 &1262049978
@@ -18092,7 +18092,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Managers.CostManager.CostManager
   startCost: 8
   maxCost: 99
-  costPerSecond: 0.3
+  costPerSecond: 0.7
   _isRunning: 1
 --- !u!1001 &1405279329
 PrefabInstance:

@@ -2,6 +2,7 @@ using System;
 using _Script.Tools.Utility;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace _Scripts.Managers.LifeManager
 {
@@ -45,6 +46,14 @@ namespace _Scripts.Managers.LifeManager
             
             OnLifeDamaged.RemoveAllListeners();
             OnLifeChanged = null;
+        }
+        
+        private void Update()
+        {
+            if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                CurrentLife = 0;
+            }
         }
     }
 }

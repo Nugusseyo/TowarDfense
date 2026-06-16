@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: new Hold Op List SO
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Managers.Board.HoldOperListSO
   operators:
+  - operatorPrefab: {fileID: 1763910349294185633, guid: 90802b70f49b0744d9e32c2978e8637e, type: 3}
+    isMountain: 0
   - operatorPrefab: {fileID: 1809239370967080452, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
     isMountain: 1
   - operatorPrefab: {fileID: 6303502134168126947, guid: 22b4839372b9ef647a93c6dcdb644e27, type: 3}

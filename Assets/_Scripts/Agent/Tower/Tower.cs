@@ -27,6 +27,8 @@ namespace _Scripts.Agent.Tower
         public override void OnDeath()
         {
             base.OnDeath();
+            GetComponent<Collider>().enabled = false;
+            _towerStateChange.SendEventMessage(TowerState.DEAD);
         }
 
         private GameObject _returnObj;
@@ -36,13 +38,16 @@ namespace _Scripts.Agent.Tower
             if (feedbacks != null)
             {
                 FeedbackPlayer player = feedbacks.GetFeedbackPlayer(FeedbackType.UPGRADE);
-                player.FeedbackPlay();
+                if(player != null)
+                    player.FeedbackPlay();
             }
-            TowerStateChange.SendEventMessage(TowerState.SHUTDOWN);
+            if(TowerStateChange != null)
+                TowerStateChange.SendEventMessage(TowerState.SHUTDOWN);
             
             _returnObj = Instantiate(upgradePrefab, transform.position, Quaternion.identity);
             _returnObj.SetActive(false);
             StartCoroutine(SpawnTower());
+            
             return _returnObj;
         }
 

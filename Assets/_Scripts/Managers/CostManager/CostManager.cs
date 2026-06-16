@@ -2,6 +2,7 @@ using System;
 using _Script.ScriptableObject.Event;
 using _Script.Tools.Utility;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace _Scripts.Managers.CostManager
 {

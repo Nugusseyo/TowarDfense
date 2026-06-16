@@ -372,6 +372,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 6364d0990d4d4d847b004d0eddf3d986, type: 2}
+    - target: {fileID: 8419023310118412973, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+      propertyPath: <SoundClip>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 87c6cd0d882fa5443a6ee892d7c808c0, type: 2}
     - target: {fileID: 8435144689823251976, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 6.7129126

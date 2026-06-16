@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace _Scripts.Agent.Tower
@@ -10,8 +9,14 @@ namespace _Scripts.Agent.Tower
         public List<TowerSpawnInfo> towerSpawnInfos = new List<TowerSpawnInfo>();
         private Queue<TowerSpawnInfo> _towerPool;
         
-        private readonly List<Tower> _towers = new List<Tower>();
+        private readonly List<TowerSlot> _activeSlots = new List<TowerSlot>();
         
+        private class TowerSlot
+        {
+            public TowerSpawnInfo spawnInfo;
+            public Tower currentTower;
+        }
+
         private void Awake()
         {
             towerSpawnInfos.Sort((a, b) => a.wave.CompareTo(b.wave));
@@ -25,22 +30,30 @@ namespace _Scripts.Agent.Tower
 
         public void SpawnTower(int wave)
         {
-            //Upgrade 구간.
-            if (_towers.Count != 0)
+            foreach (TowerSlot slot in _activeSlots)
             {
-                int towersCount = _towers.Count;
-                for (int i = towersCount - 1; i >= 0; --i)
+                if (slot.currentTower == null)
                 {
-                    Tower tower = _towers[i];
-                    if (tower.upgradePrefab == null)
+                    Tower restoredTower = Instantiate(slot.spawnInfo.towerPrefab, slot.spawnInfo.spawnPos, Quaternion.identity)
+                        .GetComponent<Tower>();
+                    
+                    slot.currentTower = restoredTower;
+                    restoredTower.ShutDownThreeSecond();
+                    
+                    Debug.Log($"[TowerSpawner] {slot.spawnInfo.spawnPos} 위치의 부서진 타워를 복구했습니다.");
+                }
+                else
+                {
+                    if (slot.currentTower.upgradePrefab != null)
+                     {
+                         GameObject upgradedTowerObj = slot.currentTower.TowerUpgrade(); 
+                         slot.currentTower = upgradedTowerObj.GetComponent<Tower>();
+                         Debug.Log("Upgrade!!");
+                     }
+                    else
                     {
-                        tower.ShutDownThreeSecond();
-                        continue;
+                        slot.currentTower.ShutDownThreeSecond();
                     }
-                    Debug.Log("Upgrade!!");
-                    _towers.Remove(tower);
-                    GameObject newTower = tower.TowerUpgrade();
-                    _towers.Add(newTower.GetComponent<Tower>());
                 }
             }
             
@@ -59,10 +72,16 @@ namespace _Scripts.Agent.Tower
             while (spawnInfos.Count > 0)
             {
                 TowerSpawnInfo info = spawnInfos.Dequeue();
-                Tower tower = Instantiate(info.towerPrefab, info.spawnPos, Quaternion.identity)
+                Tower newTower = Instantiate(info.towerPrefab, info.spawnPos, Quaternion.identity)
                     .GetComponent<Tower>();
-                _towers.Add(tower);
-                tower.ShutDownThreeSecond();
+                
+                _activeSlots.Add(new TowerSlot 
+                { 
+                    spawnInfo = info, 
+                    currentTower = newTower 
+                });
+                
+                newTower.ShutDownThreeSecond();
             }
         }
 

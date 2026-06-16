@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cacf721fe22024989d967a20dc22b5, type: 3}
+  m_Name: Stage04
+  m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Managers.Board.HoldOperListSO
+  operators:
+  - operatorPrefab: {fileID: 1809239370967080452, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+    isMountain: 1
+  - operatorPrefab: {fileID: 6303502134168126947, guid: 22b4839372b9ef647a93c6dcdb644e27, type: 3}
+    isMountain: 0
+  - operatorPrefab: {fileID: 2297757330519968693, guid: 1bb24cc202c32564d8c1d853eabd598f, type: 3}
+    isMountain: 0
+  - operatorPrefab: {fileID: 4503039240328981237, guid: 9589d5e978b156542966f183c67550d9, type: 3}
+    isMountain: 1
+  - operatorPrefab: {fileID: 2893061466314090180, guid: f582eabaeb5450945bbb07451502c06c, type: 3}
+    isMountain: 0
+  - operatorPrefab: {fileID: 3784067612259112232, guid: 1c055ad8d8b99344b880f447c618e301, type: 3}
+    isMountain: 0
+  - operatorPrefab: {fileID: 2293292576323634344, guid: a3a92a804ad739142ab4664320fd6d41, type: 3}
+    isMountain: 1
