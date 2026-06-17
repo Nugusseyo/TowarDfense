@@ -11,23 +11,24 @@ namespace _Scripts.Agent
         private Agent _moduleAgent;
         private Animator _animator;
         public Animator Animator => _animator;
-
-        // 💡 피격 깜빡임 연출을 위한 내부 변수들
         private Renderer[] _renderers;
         private MaterialPropertyBlock _mpb;
         private Coroutine _flashCoroutine;
-
-        // 💡 Unitychan-Toonshader(UTS2)의 에미션 컬러 셰이더 프로퍼티 이름
+        
         private static readonly int EmissiveColorProp = Shader.PropertyToID("_Emissive_Color");
+        private static readonly int SubEmissiveColor = Shader.PropertyToID("_EmissionColor");
+        [SerializeField] private bool isUsingExtraShader;
+        private int _realEmissiveColorProp;
 
         public void Initialize(ModuleAgent moduleAgent)
         {
             _moduleAgent = moduleAgent as Agent;
             _animator = GetComponentInChildren<Animator>();
 
-            // 💡 최초 생성 시 본체 및 자식 오브젝트의 모든 렌더러 미리 캐싱
             _renderers = GetComponentsInChildren<Renderer>();
             _mpb = new MaterialPropertyBlock();
+            
+            _realEmissiveColorProp = isUsingExtraShader ? EmissiveColorProp : SubEmissiveColor;
         }
 
         public void PlayFadeAcrossClip(int clipSource, float duration)
@@ -44,13 +45,8 @@ namespace _Scripts.Agent
         public void SetAnimatorFloat(int id, float value) => _animator.SetFloat(id, value);
 
         #region Hit Flash (UTS2 Emission)
-
-        /// <summary>
-        /// 외부에서 캐릭터가 맞았을 때 호출하는 피격 깜빡임 메서드
-        /// </summary>
         public void PlayHitFlash(Color flashColor, float flashTime = 0.08f, int count = 2)
         {
-            // 연타로 맞았을 때 이전 깜빡임 연출이 도는 중이면 끄고 새로 시작
             if (_flashCoroutine != null)
             {
                 StopCoroutine(_flashCoroutine);
@@ -62,11 +58,9 @@ namespace _Scripts.Agent
         {
             for (int i = 0; i < count; i++)
             {
-                // 에미션 켜기
                 SetEmissiveColor(flashColor);
                 yield return new WaitForSeconds(flashTime);
-
-                // 에미션 끄기 (UTS2는 검은색을 주면 불이 꺼집니다)
+                
                 SetEmissiveColor(Color.black);
                 yield return new WaitForSeconds(flashTime);
             }
@@ -80,7 +74,6 @@ namespace _Scripts.Agent
 
             foreach (var r in _renderers)
             {
-                // 리서칭이나 오브젝트 풀 과정에서 혹시 모를 Null 방어
                 if (r == null) continue; 
 
                 r.GetPropertyBlock(_mpb);

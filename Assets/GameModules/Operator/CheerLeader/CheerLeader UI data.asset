@@ -19,5 +19,5 @@ MonoBehaviour:
   skillName: "\uC0AC\uAE30 \uC99D\uC9C4"
   cost: 8
   respawnTimer: 40
-  health: 600
+  health: 900
   playerType: 0

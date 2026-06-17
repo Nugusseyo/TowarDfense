@@ -41,23 +41,29 @@ namespace _Scripts.Agent.Tower
                 if(player != null)
                     player.FeedbackPlay();
             }
-            if(TowerStateChange != null)
-                TowerStateChange.SendEventMessage(TowerState.SHUTDOWN);
-            
+    
             _returnObj = Instantiate(upgradePrefab, transform.position, Quaternion.identity);
-            _returnObj.SetActive(false);
-            StartCoroutine(SpawnTower());
+    
+            if (_returnObj.TryGetComponent(out Tower newTower))
+            {
+                newTower.ShutDownThreeSecond();
+            }
             
+            OnDeath();
+            Destroy(gameObject);
+    
             return _returnObj;
         }
 
         public void ShutDownThreeSecond()
         {
-            StartCoroutine(ShutdownTower());
+            if(gameObject.activeSelf)
+                StartCoroutine(ShutdownTower());
         }
 
         private IEnumerator ShutdownTower()
         {
+            yield return new WaitForSeconds(0.3f);
             TowerStateChange.SendEventMessage(TowerState.SHUTDOWN);
             yield return new WaitForSeconds(4f);
             TowerStateChange.SendEventMessage(TowerState.IDLE);

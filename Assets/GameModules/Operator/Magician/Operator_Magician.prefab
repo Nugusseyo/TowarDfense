@@ -1844,6 +1844,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3247294876424170745, guid: aba1b6f0e51f89843957d3c7d572224a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7700123622971412262}
+    - targetCorrespondingSourceObject: {fileID: 3247294876424170745, guid: aba1b6f0e51f89843957d3c7d572224a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 427411786008395367}
   m_SourcePrefab: {fileID: 100100000, guid: aba1b6f0e51f89843957d3c7d572224a, type: 3}
 --- !u!4 &6959240507932691294 stripped
 Transform:
@@ -1867,6 +1870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5013c18086bf0f04ab98e8fca955851b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.AgentRenderer
+  isUsingExtraShader: 0
 --- !u!114 &7700123622971412262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1879,6 +1883,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0bc07c7cb06daa43b7fb76d2ccda240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.AgentTrigger
+--- !u!114 &427411786008395367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7773178813317779940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df14258a78e5cf14fa01b249b6595cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Scripts.EventLists
+  eventList: []
 --- !u!1001 &5933369899051419496
 PrefabInstance:
   m_ObjectHideFlags: 0

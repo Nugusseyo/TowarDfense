@@ -335,6 +335,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7354070457364417901, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7430527221601756615, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_Controller
       value: 
@@ -424,8 +428,10 @@ MonoBehaviour:
       m_Calls: []
   <SortingRule>k__BackingField: {fileID: 11400000, guid: 8cb240d76d7f77746ace7f0e8dff4231, type: 2}
   attackTrm: {fileID: 7550653089607213754}
-  bulletPrefab: {fileID: 919132149155446097, guid: 1a7fc9bc899aa6f42adbb0e82f082ec4, type: 3}
+  bulletPrefab: {fileID: 8327939456536472467, guid: 2ea4ed6dab0d44d4495c4244af4c5405, type: 3}
   bulletSpeed: 15
+  destroyTime: 3
+  isUsingSkill: 0
   targetCount: 3
 --- !u!95 &3862428684036902661 stripped
 Animator:

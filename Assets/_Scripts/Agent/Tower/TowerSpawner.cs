@@ -52,7 +52,8 @@ namespace _Scripts.Agent.Tower
                      }
                     else
                     {
-                        slot.currentTower.ShutDownThreeSecond();
+                        if(slot.currentTower.gameObject.activeSelf)
+                            slot.currentTower.ShutDownThreeSecond();
                     }
                 }
             }

@@ -11,6 +11,7 @@ namespace GameModules._Script.Agent.Operator.AttackModule
         [SerializeField] private Transform attackTrm;
         [SerializeField] private GameObject bulletPrefab; 
         [SerializeField] private float bulletSpeed = 15f;
+        [SerializeField] private float destroyTime = 3f;
 
         [SerializeField] private bool isUsingSkill;
 
@@ -19,15 +20,13 @@ namespace GameModules._Script.Agent.Operator.AttackModule
         
         private int _counter = 0;
         private IAgentSkillModule _skillModule;
+        private PlayerStateChange _playerStateChange;
+        private AbstractOperator _operator;
 
         private void Start()
         {
             _operator = agent as AbstractOperator;
         }
-
-
-        private PlayerStateChange _playerStateChange;
-        private AbstractOperator _operator;
 
         public override void AttackTarget()
         {
@@ -58,7 +57,10 @@ namespace GameModules._Script.Agent.Operator.AttackModule
             while (curTime <= duration)
             {
                 if (targetAgent == null || !targetAgent.gameObject.activeInHierarchy)
+                {
+                    DestroyImmediate(bullet);
                     break;
+                }
                 
                 targetPos = targetAgent.transform.position;
 
@@ -72,7 +74,20 @@ namespace GameModules._Script.Agent.Operator.AttackModule
                 yield return null;
             }
             
-            Destroy(bullet);
+            if (bullet != null)
+            {
+                if (bullet.TryGetComponent(out MeshRenderer mainMesh))
+                {
+                    mainMesh.enabled = false;
+                }
+                else if (bullet.GetComponentInChildren<MeshRenderer>() != null)
+                {
+                    bullet.GetComponentInChildren<MeshRenderer>().enabled = false;
+                }
+                
+                Destroy(bullet, destroyTime);
+            }
+            
             if (targetAgent != null && targetAgent.gameObject.activeInHierarchy)
             {
                 targetAgent.TakeDamage(damage);
