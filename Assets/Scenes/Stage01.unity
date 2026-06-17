@@ -12006,7 +12006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Managers.BoardManager
   <InputSO>k__BackingField: {fileID: 11400000, guid: b72d83271f2bf1b4eadf6c612374587a, type: 2}
-  <HoldOperatorListSO>k__BackingField: {fileID: 11400000, guid: e564c089cd3dcf94593e5eacce023ecb, type: 2}
+  <HoldOperatorListSO>k__BackingField: {fileID: 11400000, guid: 154d9f39ff8a90a4baeabe16940bff3d, type: 2}
   <ShowGroundEventChannelSO>k__BackingField: {fileID: 11400000, guid: 39f1acb74f653c4478eea56e0801e9e4, type: 2}
   <ShowMountainEventChannelSO>k__BackingField: {fileID: 11400000, guid: 0d62293fa2bafc241b50530e2cf9ed3a, type: 2}
   <ViewUIEventChannelSO>k__BackingField: {fileID: 11400000, guid: c09c6cee26169444696cb086e1122069, type: 2}
@@ -15504,7 +15504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1e5353d3a4eed4c88d62a6e6db8ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Managers.CostManager.CostManager
-  startCost: 8
+  startCost: 20
   maxCost: 99
   costPerSecond: 0.3
   _isRunning: 1

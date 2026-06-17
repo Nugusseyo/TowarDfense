@@ -736,6 +736,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4341996698942364949, guid: 118267c5a55c0bb42a6913062df0cb39, type: 3}
+      propertyPath: m_Speed
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341996698942364949, guid: 118267c5a55c0bb42a6913062df0cb39, type: 3}
+      propertyPath: m_Acceleration
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341996698942364949, guid: 118267c5a55c0bb42a6913062df0cb39, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 900
+      objectReference: {fileID: 0}
     - target: {fileID: 5082720760602108442, guid: 118267c5a55c0bb42a6913062df0cb39, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0

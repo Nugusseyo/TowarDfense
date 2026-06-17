@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: Stage02
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Managers.Board.HoldOperListSO
   operators:
+  - operatorPrefab: {fileID: 2297757330519968693, guid: 1bb24cc202c32564d8c1d853eabd598f, type: 3}
+    isMountain: 0
   - operatorPrefab: {fileID: 5008810120000260311, guid: 167f05e0aaa37a24382cd61a93892bbe, type: 3}
+    isMountain: 1
+  - operatorPrefab: {fileID: 4503039240328981237, guid: 9589d5e978b156542966f183c67550d9, type: 3}
     isMountain: 1
   - operatorPrefab: {fileID: 6303502134168126947, guid: 22b4839372b9ef647a93c6dcdb644e27, type: 3}
     isMountain: 0
-  - operatorPrefab: {fileID: 2297757330519968693, guid: 1bb24cc202c32564d8c1d853eabd598f, type: 3}
-    isMountain: 0
-  - operatorPrefab: {fileID: 4503039240328981237, guid: 9589d5e978b156542966f183c67550d9, type: 3}
-    isMountain: 1
   - operatorPrefab: {fileID: 2893061466314090180, guid: f582eabaeb5450945bbb07451502c06c, type: 3}
     isMountain: 0
+  - operatorPrefab: {fileID: 1763910349294185633, guid: 90802b70f49b0744d9e32c2978e8637e, type: 3}
+    isMountain: 1
+  - operatorPrefab: {fileID: 3366236467346342907, guid: e4f2c3e2f6e863840a6657053de0d9a7, type: 3}
+    isMountain: 1

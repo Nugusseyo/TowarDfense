@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Stage 0-0
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Managers.InfoM.MapData
   <Map>k__BackingField: {fileID: 21300000, guid: 8c8b35934d9a71e48b6ce49518083c56, type: 3}
-  <Stage>k__BackingField: "\uD611\uACE1"
+  <Stage>k__BackingField: "\uB9C8\uC744"
   <Index>k__BackingField: 2
-  <SubTitle>k__BackingField: "\uC57C\uB974\uB531\uB531\uB760"
+  <SubTitle>k__BackingField: "\uAE30\uCD08"
   <WaveCount>k__BackingField: 4
   <EnemyCount>k__BackingField: 8
-  <LifeCount>k__BackingField: 5
+  <LifeCount>k__BackingField: 2
   <BigStageNumber>k__BackingField: 0
   <SmallStageNumber>k__BackingField: 0

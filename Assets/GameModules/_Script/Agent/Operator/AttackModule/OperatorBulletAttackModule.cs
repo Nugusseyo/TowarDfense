@@ -3,11 +3,13 @@ using System.Collections;
 using _Scripts.Agent;
 using _Scripts.Agent.Player;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace GameModules._Script.Agent.Operator.AttackModule
 {
     public class OperatorBulletAttackModule : AbstractAgentAttackModule
     {
+        public UnityEvent<Vector3> OnBulletExplosion;
         [SerializeField] private Transform attackTrm;
         [SerializeField] private GameObject bulletPrefab; 
         [SerializeField] private float bulletSpeed = 15f;
@@ -84,7 +86,8 @@ namespace GameModules._Script.Agent.Operator.AttackModule
                 {
                     bullet.GetComponentInChildren<MeshRenderer>().enabled = false;
                 }
-                
+
+                OnBulletExplosion?.Invoke(bullet.transform.position);
                 Destroy(bullet, destroyTime);
             }
             

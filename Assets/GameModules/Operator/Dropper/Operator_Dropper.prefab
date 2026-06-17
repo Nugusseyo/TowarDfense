@@ -210,7 +210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5413803054091776839, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: <MaxHealth>k__BackingField
-      value: 5000
+      value: 8000
       objectReference: {fileID: 0}
     - target: {fileID: 5413803054091776839, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: OnHit.m_PersistentCalls.m_Calls.Array.size
