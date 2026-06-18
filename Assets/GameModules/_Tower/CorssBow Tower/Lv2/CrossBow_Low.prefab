@@ -10169,7 +10169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8867719076660477689}
   - component: {fileID: 1284987248326275638}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Module_Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10204,6 +10204,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.Tower.TowerSkillModule
   OnSkill:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSkillStart:
     m_PersistentCalls:
       m_Calls: []
   <SkillData>k__BackingField: {fileID: 11400000, guid: be56ca06ce208674ea328cb7e67c621c, type: 2}
@@ -15898,6 +15901,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerInfoBar
       objectReference: {fileID: 0}
+    - target: {fileID: 3057145061210917594, guid: ee36ba4c59cc0c34cb1ff5069fa7dad9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640179836025035651, guid: ee36ba4c59cc0c34cb1ff5069fa7dad9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3958795827518474880, guid: ee36ba4c59cc0c34cb1ff5069fa7dad9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -15978,6 +15989,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4611033581750979632, guid: ee36ba4c59cc0c34cb1ff5069fa7dad9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5594690209758550514, guid: ee36ba4c59cc0c34cb1ff5069fa7dad9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5976722596459167156, guid: ee36ba4c59cc0c34cb1ff5069fa7dad9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -16024,6 +16043,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6423927573554701998, guid: ee36ba4c59cc0c34cb1ff5069fa7dad9, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6891526772869301543, guid: ee36ba4c59cc0c34cb1ff5069fa7dad9, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -16303,3 +16326,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5013c18086bf0f04ab98e8fca955851b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.AgentRenderer
+  isUsingExtraShader: 0

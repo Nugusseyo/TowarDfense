@@ -9,7 +9,7 @@ namespace _Scripts.Agent.Combat.Skills.Operator
 
         private Agent _agent;
         
-        private AgentTrigger _agentTrigger;
+        private IAnimationTrigger _agentTrigger;
         private int _prevDamage;
         public override void UseSkill(Agent agent, ITargetCaster caster)
         {
@@ -17,7 +17,7 @@ namespace _Scripts.Agent.Combat.Skills.Operator
             _prevDamage = agent.AgentStatusSO.Damage;
             agent.AgentStatusSO.SetDamage(damage + _prevDamage);
             agent.AttackModule.AttackTarget();
-            _agentTrigger = agent.GetModule<AgentTrigger>();
+            _agentTrigger = agent.GetModule<IAnimationTrigger>();
             _agentTrigger.OnAttackTrigger += HandleAttack;
         }
 

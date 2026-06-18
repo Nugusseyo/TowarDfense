@@ -246,7 +246,7 @@ PrefabInstance:
     - target: {fileID: 5874618420489228507, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: OnSkill.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 3645878557084045098}
+      objectReference: {fileID: 8000684594195903149}
     - target: {fileID: 5874618420489228507, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: OnSkill.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
@@ -274,5 +274,10 @@ PrefabInstance:
 --- !u!4 &2665776062552226165 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8676139529455906726, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+  m_PrefabInstance: {fileID: 6672482913044109011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8000684594195903149 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3715839011804619902, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
   m_PrefabInstance: {fileID: 6672482913044109011}
   m_PrefabAsset: {fileID: 0}

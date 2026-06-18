@@ -33,6 +33,8 @@ namespace _Script.Agent.Modules
 
         public event Action OnAnimationEnd;
         public event Action OnAttackTrigger;
+        public event Action OnSkillStartTrigger;
+
         public void ResetEndTrigger()
         {
             

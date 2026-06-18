@@ -6,6 +6,7 @@ namespace _Scripts.Agent
     {
         event Action OnAnimationEnd;
         event Action OnAttackTrigger;
+        event Action OnSkillStartTrigger;
         void ResetEndTrigger();
         void ResetAttackTrigger();
     }

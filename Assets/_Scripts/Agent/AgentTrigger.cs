@@ -14,6 +14,7 @@ namespace _Scripts.Agent
         
         public event Action OnAnimationEnd;
         public event Action OnAttackTrigger;
+        public event Action OnSkillStartTrigger;
         
         public void ResetEndTrigger()
         {
@@ -27,5 +28,6 @@ namespace _Scripts.Agent
 
         public void OnAnimationEndEvent() => OnAnimationEnd?.Invoke();
         public void OnAttackTriggerEvent() => OnAttackTrigger?.Invoke();
+        public void OnSkillTriggerEvent() => OnSkillStartTrigger?.Invoke();
     }
 }
