@@ -21,3 +21,4 @@ MonoBehaviour:
   <LifeCount>k__BackingField: 5
   <BigStageNumber>k__BackingField: 0
   <SmallStageNumber>k__BackingField: 1
+  <HoldOperatorList>k__BackingField: {fileID: 11400000, guid: 154d9f39ff8a90a4baeabe16940bff3d, type: 2}

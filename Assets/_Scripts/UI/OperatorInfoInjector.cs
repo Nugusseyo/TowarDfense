@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using _Script.Tools.Utility;
 using _Scripts.Managers.Board;
+using _Scripts.Managers.InfoM;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +22,10 @@ namespace _Scripts.UI
                 Debug.LogError("오퍼레이터 버튼들 준비가 아직 안된 것 같네요.");
                 return;
             }
+
+            if (MapDataHolder.Instance != null)
+                HoldOperator = MapDataHolder.Instance.HoldData.HoldOperatorList;
+            
             for (int i = 0; i < HoldOperator.OperatorCount; ++i)
             {
                 int index = i;

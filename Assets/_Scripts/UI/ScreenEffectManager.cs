@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using _Script.ScriptableObject.Event;
 using _Script.Tools.Utility;
+using _Scripts.Managers.InfoM;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -16,14 +18,16 @@ namespace _Scripts.UI
         [SerializeField] private float leaveBar = 150f;
         
         [Header("UI 및 포스트 프로세싱")]
-        [SerializeField] private RectTransform gameStartText;       // 위치 초기화용 (중앙 세팅)
-        [SerializeField] private CanvasGroup gameStartCanvasGroup; // 💡 글자를 서서히 사라지게 만들기 위한 컴포넌트!
+        [SerializeField] private RectTransform gameStartText;
+        [SerializeField] private CanvasGroup gameStartCanvasGroup;
         [SerializeField] private Volume globalVolume;
 
         protected override void Awake()
         {
             base.Awake();
             GetComponent<CanvasGroup>().alpha = 1;
+            if (MapDataHolder.Instance != null)
+                GetComponentInChildren<TextMeshProUGUI>().text = MapDataHolder.Instance.HoldData.Stage;
         }
 
         public void ScreenFade(bool isFadeIn, float height)

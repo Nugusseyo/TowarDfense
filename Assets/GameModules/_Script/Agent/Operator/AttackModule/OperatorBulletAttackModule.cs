@@ -46,11 +46,13 @@ namespace GameModules._Script.Agent.Operator.AttackModule
             Vector3 startPos = attackTrm != null ? attackTrm.position : transform.position;
             GameObject bullet = Instantiate(bulletPrefab, startPos, Quaternion.identity);
             
-            int damage = base.agent.AgentStatusSO.Damage;
+            int damage = agent.AgentStatusSO.Damage;
             Vector3 targetPos = targetAgent.transform.position;
             float distance = Vector3.Distance(startPos, targetPos);
             float duration = distance / bulletSpeed;
             float curTime = 0;
+
+            Debug.Log($"<color=#44D7BE> Target : {targetPos} </color>");
 
             if (duration <= 0) duration = 0.1f;
 

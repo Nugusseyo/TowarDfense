@@ -32,18 +32,23 @@ namespace _Scripts.UI
 
 
         private float _prevTimeScale;
+        private bool _isRunning = true;
 
         private void Awake()
         {
+            GetComponent<CanvasGroup>().alpha = 1f;
             if (settingsPanel != null)
             {
                 settingsPanel.SetActive(false);
             }
+            if(warningPopup != null)
+                warningPopup.SetActive(false);
 
             if (yesBtn != null)
             {
                 yesBtn.onClick.AddListener(() =>
                 {
+                    _isRunning = false;
                     OnButtonYes?.Invoke();
                     OnButtonYes = null;
                     CloseAllPopUp();
@@ -88,7 +93,8 @@ namespace _Scripts.UI
         
         public void CloseSettings()
         {
-            Time.timeScale = _prevTimeScale;
+            if(_isRunning)
+                Time.timeScale = _prevTimeScale;
             
             bgCanvasGroup.DOKill();
             windowTransform.DOKill();
