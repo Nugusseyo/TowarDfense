@@ -13994,7 +13994,7 @@ MonoBehaviour:
   mountainLayer:
     serializedVersion: 2
     m_Bits: 1024
-  MaxOperatorCount: 3
+  MaxOperatorCount: 7
 --- !u!1001 &961435481
 PrefabInstance:
   m_ObjectHideFlags: 0

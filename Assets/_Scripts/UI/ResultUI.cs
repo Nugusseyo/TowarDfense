@@ -9,7 +9,7 @@ namespace _Scripts.UI
     {
         [SerializeField] private TextMeshProUGUI stageNumber;
 
-        private void Awake()
+        private void Start()
         {
             if(MapDataHolder.Instance != null)
                 stageNumber.text = $"{MapDataHolder.Instance.HoldData.BigStageNumber}-{MapDataHolder.Instance.HoldData.SmallStageNumber}";
