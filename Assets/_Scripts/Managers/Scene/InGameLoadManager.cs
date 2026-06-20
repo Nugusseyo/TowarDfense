@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace _Scripts.Managers.Scene
 {
-    [DefaultExecutionOrder(-100)]
+    [DefaultExecutionOrder(-50)]
     public class InGameLoadManager : MonoBehaviour
     {
         [SerializeField] private bool isFade;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using _Scripts.Agent.Player;
+using _Scripts.Managers.InfoM;
 using UnityEngine;
 
 namespace _Scripts.Managers.Board

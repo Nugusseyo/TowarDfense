@@ -80,13 +80,13 @@ namespace GameModules._Script.Agent.Operator.AttackModule
             
             if (bullet != null)
             {
-                if (bullet.TryGetComponent(out MeshRenderer mainMesh))
+                if (bullet.TryGetComponent(out Renderer mainMesh))
                 {
                     mainMesh.enabled = false;
                 }
-                else if (bullet.GetComponentInChildren<MeshRenderer>() != null)
+                else if (bullet.GetComponentInChildren<Renderer>() != null)
                 {
-                    bullet.GetComponentInChildren<MeshRenderer>().enabled = false;
+                    bullet.GetComponentInChildren<Renderer>().enabled = false;
                 }
 
                 OnBulletExplosion?.Invoke(bullet.transform.position);

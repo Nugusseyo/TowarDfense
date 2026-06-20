@@ -9966,6 +9966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.UI.SceneChanger
   index: 1
   second: 0.5
+  uiEventChannel: {fileID: 0}
 --- !u!1 &4870325033613667167
 GameObject:
   m_ObjectHideFlags: 0
@@ -11265,6 +11266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.UI.SceneChanger
   index: 0
   second: 0.5
+  uiEventChannel: {fileID: 0}
 --- !u!1 &5650540145708361859
 GameObject:
   m_ObjectHideFlags: 0
@@ -11579,6 +11581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.UI.SceneChanger
   index: 1
   second: 0
+  uiEventChannel: {fileID: 0}
 --- !u!1 &5831239556895138541
 GameObject:
   m_ObjectHideFlags: 0
@@ -13482,6 +13485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.UI.SceneChanger
   index: 1
   second: 0
+  uiEventChannel: {fileID: 11400000, guid: c09c6cee26169444696cb086e1122069, type: 2}
 --- !u!1 &6906153886432781086
 GameObject:
   m_ObjectHideFlags: 0

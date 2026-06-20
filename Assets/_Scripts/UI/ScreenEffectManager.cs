@@ -8,16 +8,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 namespace _Scripts.UI
 {
+    [DefaultExecutionOrder(-100)]
     public class ScreenEffectManager : MonoSingleton<ScreenEffectManager>
     {
         [field: SerializeField] public EventChannelSO GameEventChannel { get; private set; }
 
         [SerializeField] private float leaveBar = 150f;
-        
-        [Header("UI 및 포스트 프로세싱")]
+
+        [Header("UI 및 포스트 프로세싱")] 
+        [SerializeField] private GraphicRaycaster graphicRaycaster;
         [SerializeField] private RectTransform gameStartText;
         [SerializeField] private CanvasGroup gameStartCanvasGroup;
         [SerializeField] private Volume globalVolume;
@@ -43,6 +46,7 @@ namespace _Scripts.UI
         private IEnumerator GameStartRoutine()
         {
             //Init
+            graphicRaycaster.enabled = true;
             if (gameStartText != null) gameStartText.anchoredPosition = Vector2.zero;
             if (gameStartCanvasGroup != null) gameStartCanvasGroup.alpha = 1f;
 
@@ -66,7 +70,7 @@ namespace _Scripts.UI
             if (globalVolume != null)
             {
                 DOTween.To(() => globalVolume.weight, x => globalVolume.weight = x, 0f, 1.5f)
-                    .SetUpdate(true);
+                    .OnComplete(() => graphicRaycaster.enabled = false).SetUpdate(true);
             }
             
             GameEventChannel.RaiseEvent(InGameEvents.GameSwapEvent.Init(true, 0));

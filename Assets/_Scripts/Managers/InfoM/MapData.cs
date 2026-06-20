@@ -16,5 +16,6 @@ namespace _Scripts.Managers.InfoM
         [field: SerializeField] public int BigStageNumber { get; private set; }
         [field: SerializeField] public int SmallStageNumber { get; private set; }
         [field: SerializeField] public HoldOperListSO HoldOperatorList { get; private set; }
+        [field: SerializeField] public MapData NextMapData { get; private set; }
     }
 }

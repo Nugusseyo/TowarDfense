@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Numerics;
 using _Scripts.Agent;
@@ -16,6 +17,8 @@ namespace GameModules._Script.Agent.Tower
         [SerializeField] private float bulletRadius;
         [SerializeField] private int bulletTargetCount;
         public UnityEvent<Vector3> OnBulletExplosion;
+
+        private GameObject _prevBullet;
         public override void AttackTarget()
         {
             base.AttackTarget();
@@ -30,6 +33,7 @@ namespace GameModules._Script.Agent.Tower
         private IEnumerator ShootTarget(Vector3 targetPos)
         {
             GameObject bullet = Instantiate(bulletPrefab, attackTrm.position, Quaternion.identity);
+            _prevBullet = bullet;
             float duration = Vector3.Distance(transform.position, targetPos) / 10f;
             float curTime = 0;
 
@@ -69,6 +73,12 @@ namespace GameModules._Script.Agent.Tower
         public override void UseSkill()
         {
             
+        }
+
+        private void OnDestroy()
+        {
+            if (_prevBullet != null)
+                Destroy(_prevBullet);
         }
     }
 }

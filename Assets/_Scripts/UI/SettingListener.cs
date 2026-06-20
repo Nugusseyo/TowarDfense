@@ -36,5 +36,10 @@ namespace _Scripts.UI
             if(_sceneChanger != null)
                 _sceneChanger.Restart();
         }
+
+        public void ExitGame()
+        {
+            Application.Quit();
+        }
     }
 }

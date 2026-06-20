@@ -159,12 +159,6 @@ namespace _Scripts.UI
             {
                 removeBtn.gameObject.SetActive(true);
                 _curOperator = abstractOperator;
-                if(abstractOperator == null)
-                    Debug.LogError("AbstractOperator가 아닙니다!");
-            }
-            else
-            {
-                Debug.LogWarning("AbstractOperator가 아닙니다!");
             }
             AgentUIDataSO data = agent.UIData;
 

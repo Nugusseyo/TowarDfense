@@ -25,5 +25,11 @@ namespace _Scripts.Managers.InfoM
             else
                 Debug.Log("데이터 미확인");
         }
+
+        public void ChangeNextData()
+        {
+            Debug.Log("Data Change!!");
+            HoldData = HoldData.NextMapData;
+        }
     }
 }

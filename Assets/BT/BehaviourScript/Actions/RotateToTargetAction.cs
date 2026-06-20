@@ -1,6 +1,7 @@
 using _Script.Agent.Operator;
 using System;
 using _Scripts.Agent;
+using _Scripts.Agent.Combat;
 using _Scripts.Agent.Player;
 using GameModules._Script.Agent;
 using Unity.Behavior;
@@ -20,6 +21,7 @@ public partial class RotateToTargetAction : Action
     private Transform _targetTrm;
     
     private IAgentAttackModule _attackModule;
+    private HealthModule _healthModule;
     private Transform _visual;
     
     protected override Status OnStart()
@@ -28,11 +30,18 @@ public partial class RotateToTargetAction : Action
             return Status.Failure;
 
         _attackModule = Agent.Value.GetModule<IAgentAttackModule>();
+        _healthModule = Agent.Value.GetModule<HealthModule>();
         _visual = Agent.Value.GetModule<IAgentRenderer>().Animator.gameObject.transform;
 
         if (_attackModule == null)
         {
             Debug.Log("아니 어택 모듈이 없잖아여");
+            return Status.Failure;
+        }
+
+        if (_healthModule == null)
+        {
+            Debug.Log("Health Module 누락됨");
             return Status.Failure;
         }
 
@@ -45,8 +54,7 @@ public partial class RotateToTargetAction : Action
 
     protected override Status OnUpdate()
     {
-        //if (_startTime + _rotateTime < Time.time) return Status.Success;
-        if (_attackModule?.AttackTargetList == null || _attackModule.AttackTargetList.Count == 0)
+        if (_attackModule.AttackTargetList == null || _attackModule.AttackTargetList.Count == 0)
         {
             _targetTrm = null;
         }
@@ -56,18 +64,20 @@ public partial class RotateToTargetAction : Action
             _targetTrm = firstTarget != null ? firstTarget.transform : null;
         }
         
-        Vector3 direction;
-        if (_targetTrm == null) //대상이 없다;;
-            direction = Vector3.forward;
-        //정면이나 보자.
-        else
-            direction = _targetTrm.position
-                        - Agent.Value.transform.position;
+        if (_targetTrm == null || _healthModule == null)
+        {
+            return Status.Running;
+        }
+
+        if (_healthModule.IsDead)
+            return Status.Failure;
+        
+        Vector3 direction = _targetTrm.position - Agent.Value.transform.position;
         direction.y = 0;
-        direction.Normalize();
         
         if (direction != Vector3.zero)
         {
+            direction.Normalize();
             Quaternion rotation = Quaternion.LookRotation(direction);
             _visual.rotation = Quaternion.Lerp(
                 _visual.rotation, 
@@ -75,6 +85,7 @@ public partial class RotateToTargetAction : Action
                 20 * Time.deltaTime
             );
         }
+        
         return Status.Running;
     }
 }

@@ -39,11 +39,20 @@ namespace _Scripts.UI
 
         private void Start()
         {
-            if (audioMixer.GetFloat(volumeParameterName, out float currentDb))
+            if (PlayerPrefs.HasKey(volumeParameterName))
             {
-                // 데시벨(dB)을 다시 0~1 사이의 비율 값으로
-                _slider.value = Mathf.Pow(10f, currentDb / 20f);
-                UpdateValueText(_slider.value);
+                float savedValue = PlayerPrefs.GetFloat(volumeParameterName);
+                
+                _slider.value = savedValue;
+                OnSliderValueChanged(savedValue);
+            }
+            else
+            {
+                if (audioMixer.GetFloat(volumeParameterName, out float currentDb))
+                {
+                    _slider.value = Mathf.Pow(10f, currentDb / 20f);
+                    UpdateValueText(_slider.value);
+                }
             }
         }
 
@@ -53,6 +62,8 @@ namespace _Scripts.UI
             
             audioMixer.SetFloat(volumeParameterName, dbVolume);
             UpdateValueText(value);
+            
+            PlayerPrefs.SetFloat(volumeParameterName, value);
         }
 
         private void UpdateValueText(float value)

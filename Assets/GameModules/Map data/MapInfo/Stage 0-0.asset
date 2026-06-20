@@ -22,3 +22,4 @@ MonoBehaviour:
   <BigStageNumber>k__BackingField: 0
   <SmallStageNumber>k__BackingField: 0
   <HoldOperatorList>k__BackingField: {fileID: 11400000, guid: 23ef0dd1638d3bf448466c00a4223b98, type: 2}
+  <NextMapData>k__BackingField: {fileID: 11400000, guid: 4aac4f39742e4ed4a93417f1d15859fd, type: 2}

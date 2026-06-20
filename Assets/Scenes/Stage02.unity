@@ -891,7 +891,8 @@ PrefabInstance:
       value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8398300313449843505, guid: 5a2ed66399d7bb942944b998d13268f3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a2ed66399d7bb942944b998d13268f3, type: 3}
@@ -3526,7 +3527,8 @@ PrefabInstance:
       value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8398300313449843505, guid: 5a2ed66399d7bb942944b998d13268f3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a2ed66399d7bb942944b998d13268f3, type: 3}
@@ -6373,6 +6375,10 @@ PrefabInstance:
     - target: {fileID: 8411921875406456057, guid: 5e6277df1e5ab4c45a573d0006015ddd, type: 3}
       propertyPath: m_Name
       value: UIPack
+      objectReference: {fileID: 0}
+    - target: {fileID: 8411921875406456057, guid: 5e6277df1e5ab4c45a573d0006015ddd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8438479144233754051, guid: 5e6277df1e5ab4c45a573d0006015ddd, type: 3}
       propertyPath: m_AnchorMax.y

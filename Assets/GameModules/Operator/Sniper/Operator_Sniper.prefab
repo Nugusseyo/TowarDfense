@@ -766,7 +766,7 @@ MonoBehaviour:
   attackTrm: {fileID: 7323119072759449499}
   bulletPrefab: {fileID: 7645866721139886919, guid: 1db614aadeb4bef40be456b2f0118886, type: 3}
   bulletSpeed: 30
-  destroyTime: 3
+  destroyTime: 2
   isUsingSkill: 1
   targetCount: 0
 --- !u!114 &3945465076615712769

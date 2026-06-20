@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70cabad43a09c5489bc0dcfd2e17355, type: 3}
   m_Name: Stage 0-2
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Managers.InfoM.MapData
-  <Map>k__BackingField: {fileID: 21300000, guid: 07a874086c5186044a407705722bdf52, type: 3}
+  <Map>k__BackingField: {fileID: 21300000, guid: 1c6dcfca9e6161e47ab15b1c4b22fe66, type: 3}
   <Stage>k__BackingField: "\uC694\uC0C8"
   <Index>k__BackingField: 4
-  <SubTitle>k__BackingField: "\uB300\uD3EC\uAC00 \uB450 \uBC30"
+  <SubTitle>k__BackingField: "\uC2B9\uB9AC\uC758 \uC804\uB7B5\uC744 \uB9CC\uB4DC\uC138\uC694."
   <WaveCount>k__BackingField: 4
   <EnemyCount>k__BackingField: 14
   <LifeCount>k__BackingField: 5
   <BigStageNumber>k__BackingField: 0
   <SmallStageNumber>k__BackingField: 2
   <HoldOperatorList>k__BackingField: {fileID: 11400000, guid: 44220543207b0fe41a739a64d2cac544, type: 2}
+  <NextMapData>k__BackingField: {fileID: 11400000, guid: 59782a3690829d448a319423899dc716, type: 2}

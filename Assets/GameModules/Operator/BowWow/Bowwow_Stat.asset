@@ -15,7 +15,7 @@ MonoBehaviour:
   <DetectRadius>k__BackingField: 6
   <StartAttackDelay>k__BackingField: 0.5
   <NormalAttackCooldown>k__BackingField: 0
-  <SkillAttackCooldown>k__BackingField: 15
+  <SkillAttackCooldown>k__BackingField: 0
   <MaxTargetCount>k__BackingField: 3
   <AttackCount>k__BackingField: 1
   <Damage>k__BackingField: 30

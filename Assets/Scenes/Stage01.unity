@@ -6847,6 +6847,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIPack
       objectReference: {fileID: 0}
+    - target: {fileID: 8411921875406456057, guid: 5e6277df1e5ab4c45a573d0006015ddd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8438479144233754051, guid: 5e6277df1e5ab4c45a573d0006015ddd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

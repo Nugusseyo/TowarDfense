@@ -11,7 +11,6 @@ namespace _Scripts.Managers.InfoM
 {
     public class InfoHealthViewer : MonoBehaviour
     {
-        private const string TowerOnly = "∞/∞";
         [field: SerializeField] public EventChannelSO ViewUIEventChannel { get; private set; }
         [SerializeField] private TextMeshProUGUI healthText;
         private Image _healthImage;
@@ -46,16 +45,8 @@ namespace _Scripts.Managers.InfoM
         {
             if (_holdAgent == null || _holdAgent.HealthModule == null) return;
 
-            if (_holdAgent is not Tower)
-            {
-                _healthImage.fillAmount = _holdAgent.HealthModule.GetHealthNormal;
-                healthText.text = _holdAgent.HealthModule.Health + "/" + _holdAgent.HealthModule.MaxHealth;
-            }
-            else
-            {
-                _healthImage.fillAmount = 1f;
-                healthText.text = TowerOnly;
-            }
+            _healthImage.fillAmount = _holdAgent.HealthModule.GetHealthNormal;
+            healthText.text = _holdAgent.HealthModule.Health + "/" + _holdAgent.HealthModule.MaxHealth;
         }
 
         private void HandleViewHealth(AgentInfoUI evt)
