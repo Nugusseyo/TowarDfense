@@ -17,5 +17,5 @@ MonoBehaviour:
   isLoop: 0
   randomizePitch: 0
   randomPitchModifier: 0.1
-  volume: 1.4
+  volume: 1.25
   pitch: 1

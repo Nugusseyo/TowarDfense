@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.Combat.Skills.Operator.MagicianSkillData
   <SkillRadius>k__BackingField: 12
   description: "\uC2A4\uD0AC \uBC94\uC704 \uB0B4 \uC804\uCCB4 \uD68C\uBCF5"
-  healValue: 500
+  healValue: 2000

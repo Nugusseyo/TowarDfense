@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace _Scripts.Cameras
 {
@@ -60,7 +61,7 @@ namespace _Scripts.Cameras
         private void Update()
         {
             if (startTrm == null || endTrm == null || MainCam == null || inputSO == null) return;
-
+            
             if (_isDragging)
             {
                 Vector2 currentMousePos = inputSO.MousePos;

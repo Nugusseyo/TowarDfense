@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Blocker UI data
   m_EditorClassIdentifier: Assembly-CSharp::AgentUIDataSO
   portrait: {fileID: 21300000, guid: dd650f87122727843b55bd4ab32d7576, type: 3}
-  agentName: "\uBE14\uB85C\uD0A4"
+  agentName: "\uC554\uD751 \uB9C8\uB140"
   skillIcon: {fileID: 21300000, guid: a463ea773d117f248b763f43b56d91c3, type: 3}
   skillDesc: "\uACF5\uACA9 \uBC94\uC704 \uB0B4 \uBAA8\uB4E0 \uD0C0\uC6CC 1\uC6E8\uC774\uBE0C\uB3D9\uC548
     \uBB34\uB825\uD654"
-  skillName: "\uD3ED\uC8FC"
+  skillName: "\uBD09\uC1C4"
   cost: 35
   respawnTimer: 80
   health: 800

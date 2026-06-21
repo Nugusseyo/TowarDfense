@@ -7,6 +7,7 @@ using _Script.Tools.Utility;
 using _Scripts.Agent.Player;
 using _Scripts.Managers.InfoM;
 using _Scripts.UI;
+using GameLib.SoundSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -19,9 +20,9 @@ namespace _Scripts.Managers.Board
         [field: SerializeField] public EventChannelSO ShowGroundEventChannelSO { get; private set; }
         [field: SerializeField] public EventChannelSO ShowMountainEventChannelSO { get; private set; }
         [field: SerializeField] public EventChannelSO ViewUIEventChannelSO { get; private set; }
-        [field: SerializeField] public EventChannelSO CameraEventChannelSO { get; private set; }
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private LayerMask mountainLayer;
+        [SerializeField] private AudioSource wrongAudio;
 
         private Dictionary<Vector2Int, AbstractOperator> _operators = new Dictionary<Vector2Int, AbstractOperator>();
         
@@ -84,8 +85,8 @@ namespace _Scripts.Managers.Board
             if(CurrentOperatorCount == 0)
             {
                 ViewUIEventChannelSO.RaiseEvent(UIEvents.AlarmUI.Init("요원 배치 수 최대치 도달"));
-                ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(null));
-                Debug.LogWarning("Operator의 수가 없습니다.");
+                CancelSpawning();
+                wrongAudio.Play();
                 return;
             }
             OperatorWrapper operatorWrapper = HoldOperatorListSO.GetOperator(index);
@@ -110,14 +111,16 @@ namespace _Scripts.Managers.Board
             {
                 Debug.LogWarning("이미 소환된 오퍼레이터입니다!");
                 InputSO.ChangeInput(true);
+                wrongAudio.Play();
                 return;
             }
 
             if (operatorWrapper.operatorPrefab.UIData.cost > CostManager.CostManager.Instance.Cost)
             {
                 ViewUIEventChannelSO.RaiseEvent(UIEvents.AlarmUI.Init("코스트가 부족합니다"));
-                ViewUIEventChannelSO.RaiseEvent(AgentEvents.AgentOnUI.Init(null));
+                CancelSpawning();
                 InputSO.ChangeInput(true);
+                wrongAudio.Play();
                 return;
             }
             
@@ -170,7 +173,7 @@ namespace _Scripts.Managers.Board
                 
                 if (_operators.ContainsKey(gridPos))
                 {
-                    Debug.LogWarning($"[{gridPos}] 칸에는 이미 오퍼레이터가 배치되어 있습니다!");
+                    ViewUIEventChannelSO.RaiseEvent(UIEvents.AlarmUI.Init("해당 칸에는 다른 요원이 존재합니다."));
                     return;
                 }
                 

@@ -73,7 +73,6 @@ namespace _Scripts.Managers.InfoM
         
         private void InGameClickLogic()
         {
-            Debug.Log("야루");
             GameObject target = InputSO.GetGameObject(infoTargetLayer);
             
             if (target == null) 

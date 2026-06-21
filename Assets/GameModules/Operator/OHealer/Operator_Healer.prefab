@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 314790081952184684, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 4.0621543
+      value: 2.5333853
       objectReference: {fileID: 0}
     - target: {fileID: 314790081952184684, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.04452765
+      value: 12.591006
       objectReference: {fileID: 0}
     - target: {fileID: 314790081952184684, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 5.8411083
+      value: 15.305353
       objectReference: {fileID: 0}
     - target: {fileID: 408149428336567999, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_IsActive
@@ -30,15 +30,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1412748227455372464, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.601867
+      value: 3.5043344
       objectReference: {fileID: 0}
     - target: {fileID: 1412748227455372464, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 10.031418
+      value: 5.24527
       objectReference: {fileID: 0}
     - target: {fileID: 1412748227455372464, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -1.7122574
+      value: 11.793867
       objectReference: {fileID: 0}
     - target: {fileID: 1500069725675283258, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_IsActive
@@ -210,19 +210,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6441787123675241383, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 8.8625345
+      value: 9.948801
       objectReference: {fileID: 0}
     - target: {fileID: 6441787123675241383, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -168.94966
+      value: 176.68163
       objectReference: {fileID: 0}
     - target: {fileID: 6441787123675241383, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -38.176624
+      value: -53.47865
       objectReference: {fileID: 0}
     - target: {fileID: 6869443435443938003, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 4.773009
+      value: 4.7730093
       objectReference: {fileID: 0}
     - target: {fileID: 6959321719310365726, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_IsActive
@@ -254,7 +254,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: f8412b1b5494e2e449908be3236301dd, type: 2}
     - target: {fileID: 8435144689823251976, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 3.4491146
+      value: 1.3059989
       objectReference: {fileID: 0}
     - target: {fileID: 8479904843695637379, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -262,15 +262,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6364d0990d4d4d847b004d0eddf3d986, type: 2}
     - target: {fileID: 8781540472254963729, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 6.760755
+      value: 24.325304
       objectReference: {fileID: 0}
     - target: {fileID: 8781540472254963729, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -170.24426
+      value: 157.13383
       objectReference: {fileID: 0}
     - target: {fileID: 8781540472254963729, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 109.49081
+      value: 110.05521
       objectReference: {fileID: 0}
     - target: {fileID: 8824595688953008809, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_IsActive
@@ -298,6 +298,22 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1987416220503238529}
   m_SourcePrefab: {fileID: 100100000, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+--- !u!198 &1516681645237843195 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3632683202869542922, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+  m_PrefabInstance: {fileID: 2838877226883151089}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4872069596300480466 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7275748507039333155, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+  m_PrefabInstance: {fileID: 2838877226883151089}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244139f55c6c1db42aaa643cc3374f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameModules.Sounds.SoundPlayFeedback
 --- !u!1 &5528827397731181845 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7773178813317779940, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
@@ -316,6 +332,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.EventLists
   eventList:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1516681645237843195}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4872069596300480466}
+        m_TargetAssemblyTypeName: GameModules.Sounds.SoundPlayFeedback, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3324843640318606999}

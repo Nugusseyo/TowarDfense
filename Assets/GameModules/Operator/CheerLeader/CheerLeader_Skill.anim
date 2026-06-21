@@ -79951,14 +79951,14 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 1
     messageOptions: 0
   - time: 1.6
     functionName: InvokeEvent
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 1
+    intParameter: 2
     messageOptions: 0
   - time: 1.6333333
     functionName: OnAttackTriggerEvent

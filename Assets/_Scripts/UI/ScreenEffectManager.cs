@@ -24,6 +24,10 @@ namespace _Scripts.UI
         [SerializeField] private RectTransform gameStartText;
         [SerializeField] private CanvasGroup gameStartCanvasGroup;
         [SerializeField] private Volume globalVolume;
+        
+        [Header("배경음악")]
+        [SerializeField] private AudioSource bgmSource;
+        [SerializeField] private float maxBgmVolume = 1f;
 
         protected override void Awake()
         {
@@ -36,6 +40,12 @@ namespace _Scripts.UI
         public void ScreenFade(bool isFadeIn, float height)
         {
             GameEventChannel.RaiseEvent(InGameEvents.GameSwapEvent.Init(isFadeIn, height));
+            
+            if (bgmSource != null)
+            {
+                float targetVolume = isFadeIn ? maxBgmVolume : 0f;
+                bgmSource.DOFade(targetVolume, 0.3f).SetUpdate(true);
+            }
         }
 
         public void GameStartFade()
@@ -45,10 +55,11 @@ namespace _Scripts.UI
 
         private IEnumerator GameStartRoutine()
         {
-            //Init
             graphicRaycaster.enabled = true;
             if (gameStartText != null) gameStartText.anchoredPosition = Vector2.zero;
             if (gameStartCanvasGroup != null) gameStartCanvasGroup.alpha = 1f;
+
+            if (bgmSource != null) bgmSource.volume = 0f;
 
             //위아래 시네마틱 바 닫기
             GameEventChannel.RaiseEvent(InGameEvents.GameSwapEvent.Init(false, leaveBar));
@@ -71,6 +82,11 @@ namespace _Scripts.UI
             {
                 DOTween.To(() => globalVolume.weight, x => globalVolume.weight = x, 0f, 1.5f)
                     .OnComplete(() => graphicRaycaster.enabled = false).SetUpdate(true);
+            }
+            
+            if (bgmSource != null)
+            {
+                bgmSource.DOFade(maxBgmVolume, 1.5f).SetUpdate(true);
             }
             
             GameEventChannel.RaiseEvent(InGameEvents.GameSwapEvent.Init(true, 0));

@@ -26,6 +26,8 @@ namespace _Scripts.UI
         
         [Header("Warning Animation Settings")]
         [SerializeField] private float warningDuration = 0.3f;     // 애니메이션 속도
+        [SerializeField] private InputSO inputSO;
+        [SerializeField] private bool isBlockInput;
 
         public event Action OnButtonYes;
         public event Action OnButtonNo;
@@ -37,13 +39,6 @@ namespace _Scripts.UI
         private void Awake()
         {
             GetComponent<CanvasGroup>().alpha = 1f;
-            if (settingsPanel != null)
-            {
-                settingsPanel.SetActive(false);
-            }
-            if(warningPopup != null)
-                warningPopup.SetActive(false);
-
             if (yesBtn != null)
             {
                 yesBtn.onClick.AddListener(() =>
@@ -66,6 +61,16 @@ namespace _Scripts.UI
             }
         }
 
+        private void Start()
+        {
+            if (settingsPanel != null)
+            {
+                settingsPanel.SetActive(false);
+            }
+            if(warningPopup != null)
+                warningPopup.SetActive(false);
+        }
+
         private void CloseAllPopUp()
         {
             WarningPopClose();
@@ -73,6 +78,8 @@ namespace _Scripts.UI
         }
         public void OpenSettings()
         {
+            if(isBlockInput)
+                inputSO.ChangeInput(true);
             _prevTimeScale = Time.timeScale;
             Time.timeScale = 0;
             
@@ -95,6 +102,8 @@ namespace _Scripts.UI
         {
             if(_isRunning)
                 Time.timeScale = _prevTimeScale;
+            if(isBlockInput)
+                inputSO.ChangeInput(false);
             
             bgCanvasGroup.DOKill();
             windowTransform.DOKill();

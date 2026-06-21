@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OHealer_UIdata
   m_EditorClassIdentifier: Assembly-CSharp::AgentUIDataSO
   portrait: {fileID: 21300000, guid: a3ab2a0e1cc4beb468026056b5a9c631, type: 3}
-  agentName: "\uB2E8\uC77C \uC624\uD37C\uB808\uC774\uD130 \uD790\uB7EC"
+  agentName: "\uC758\uBB34\uBCD1"
   skillIcon: {fileID: 21300000, guid: f71053e9446063c4ba8f0d66f0bacd74, type: 3}
   skillDesc: "\uB2E4\uC74C \uD68C\uBCF5\uB7C9 \uB300\uD3ED \uC99D\uAC00"
   skillName: "\uC99D\uD3ED"

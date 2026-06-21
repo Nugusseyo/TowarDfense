@@ -34,6 +34,8 @@ namespace _Scripts.UI
 
         public void ButtonViewer(MapData mapData)
         {
+            if (_prevData == mapData) return;
+            
             canvasGroup.DOKill();
             
             if (mapData == null || (string.IsNullOrEmpty(mapData.Stage) && mapData.Map == null && mapData.Index == 0))
@@ -46,20 +48,8 @@ namespace _Scripts.UI
                 return;
             }
             
-            if (_prevData != mapData)
-            {
-                uiParent.SetActive(true);
-                canvasGroup.alpha = 0f;
-                canvasGroup.DOFade(1f, duration).SetEase(Ease.InOutQuad);
-            }
-            else
-            {
-                uiParent.SetActive(true);
-            }
             _prevData = mapData;
             
-            
-            uiParent.SetActive(true);
             stageText.text = mapData.Stage;
             sceneChanger.index = mapData.Index;
             mapImage.sprite = mapData.Map;
@@ -68,8 +58,10 @@ namespace _Scripts.UI
             waveText.text = "웨이브 : " + mapData.WaveCount;
             lifeText.text = "목숨 : " + mapData.LifeCount;
             enemyText.text = "시민 : " + mapData.EnemyCount + "명";
-
             numberTitle.text = $"Stage {mapData.BigStageNumber}-{mapData.SmallStageNumber}";
+
+            uiParent.SetActive(true);
+            canvasGroup.DOFade(1f, duration).SetEase(Ease.InOutQuad);
         }
     }
 }

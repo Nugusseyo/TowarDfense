@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Operator Skill_Magician
   m_EditorClassIdentifier: Assembly-CSharp::GameLib.SoundSystem.SoundClipSO
   audioType: 0
-  audioClip: {fileID: 8300000, guid: de204cdbf3210124d87283d9535d0185, type: 3}
+  audioClip: {fileID: 8300000, guid: 4512aa40da020144386959edeebf639f, type: 3}
   isLoop: 0
   randomizePitch: 0
   randomPitchModifier: 0.1

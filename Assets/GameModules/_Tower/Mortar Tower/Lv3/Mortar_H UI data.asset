@@ -16,7 +16,7 @@ MonoBehaviour:
   agentName: "\uAC15\uB825\uD55C \uBC15\uACA9\uD3EC"
   skillIcon: {fileID: 21300000, guid: 6c4e1b1090f1cce429a4f5a7ba0c36d3, type: 3}
   skillDesc: "Lv3. \uBC15\uACA9\uD3EC\uC785\uB2C8\uB2E4.\n\uC694\uC6D0\uC744 \uACF5\uACA9\uD569\uB2C8\uB2E4!"
-  skillName: Coming Soon
+  skillName: 
   cost: 99
   respawnTimer: 90
   health: "\u221E"

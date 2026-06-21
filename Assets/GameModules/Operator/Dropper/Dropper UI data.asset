@@ -17,8 +17,8 @@ MonoBehaviour:
   skillIcon: {fileID: 21300000, guid: 7acbc406503b5aa46b40d3c064c0ead2, type: 3}
   skillDesc: "\uBC30\uCE58 \uC989\uC2DC, \uADFC\uCC98\uC758 \uC2DC\uBBFC \uD68C\uBCF5\n\uC790\uC2E0\uC758
     \uCCB4\uB825\uC740 \uB9E4 \uCD08 5%\uC529(\uCD5C\uB300 50%) \uAC10\uC18C"
-  skillName: "\uD76C\uC0DD"
+  skillName: "\uC774 \uBAB8 \uD1F4\uC7A5"
   cost: 17
   respawnTimer: 40
-  health: 5000
+  health: 8000
   playerType: 0

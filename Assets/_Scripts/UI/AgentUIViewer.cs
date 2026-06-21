@@ -278,6 +278,14 @@ namespace _Scripts.UI
             
             AgentUIDataSO data = evt.Agent.UIData;
             
+            agentPosition.text = data.playerType switch
+            {
+                PlayerType.HEALER => HEALER,
+                PlayerType.TANKER => TANKER,
+                PlayerType.SURPPORT => SURPPORT,
+                _ => NONE
+            };
+            
             agentName.text = data.agentName;
             portrait.sprite = data.portrait;
             

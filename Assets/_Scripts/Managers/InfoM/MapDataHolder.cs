@@ -29,6 +29,10 @@ namespace _Scripts.Managers.InfoM
         public void ChangeNextData()
         {
             Debug.Log("Data Change!!");
+            if (HoldData.NextMapData == null)
+            {
+                return;
+            }
             HoldData = HoldData.NextMapData;
         }
     }

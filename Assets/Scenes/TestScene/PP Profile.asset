@@ -58,7 +58,7 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.6
   intensity:
     m_OverrideState: 1
     m_Value: 0.15
@@ -106,6 +106,35 @@ MonoBehaviour:
   - {fileID: -3440224466258152481}
   - {fileID: -4631029226385988486}
   - {fileID: 4218080071193483599}
+  - {fileID: 1867045607748092628}
+--- !u!114 &1867045607748092628
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
+  m_Name: ColorAdjustments
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.ColorAdjustments
+  active: 1
+  postExposure:
+    m_OverrideState: 1
+    m_Value: 0.5
+  contrast:
+    m_OverrideState: 1
+    m_Value: 1
+  colorFilter:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  hueShift:
+    m_OverrideState: 1
+    m_Value: 5
+  saturation:
+    m_OverrideState: 1
+    m_Value: 15
 --- !u!114 &4218080071193483599
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -127,7 +156,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.27
+    m_Value: 0.35
   smoothness:
     m_OverrideState: 1
     m_Value: 0.3

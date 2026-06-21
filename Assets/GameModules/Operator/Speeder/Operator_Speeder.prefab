@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4154866280479446, guid: 63614b5f8f093ed4e91bf11509e5f760, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.62424004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4154866280479446, guid: 63614b5f8f093ed4e91bf11509e5f760, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4154866280479446, guid: 63614b5f8f093ed4e91bf11509e5f760, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.08151007
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4154866280479446, guid: 63614b5f8f093ed4e91bf11509e5f760, type: 3}
       propertyPath: m_LocalRotation.w
@@ -69,6 +69,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63614b5f8f093ed4e91bf11509e5f760, type: 3}
+--- !u!198 &2684220317736039759 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198262186560693630, guid: 63614b5f8f093ed4e91bf11509e5f760, type: 3}
+  m_PrefabInstance: {fileID: 2846303830098661425}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2850453748556360423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4154866280479446, guid: 63614b5f8f093ed4e91bf11509e5f760, type: 3}
@@ -278,6 +283,10 @@ PrefabInstance:
       propertyPath: <SoundClip>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 61e393deb00357f44894e3f63c6bc754, type: 2}
+    - target: {fileID: 8510266511719403665, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+      propertyPath: <SoundClip>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 4809a01f562034f4ba4a30f90fb8b6b5, type: 2}
     - target: {fileID: 8949598396927776034, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -295,7 +304,7 @@ PrefabInstance:
       addedObject: {fileID: 5556165353643290480}
     - targetCorrespondingSourceObject: {fileID: 3242698692484167051, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6669151947705577211}
+      addedObject: {fileID: 8501694506785618749}
   m_SourcePrefab: {fileID: 100100000, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
 --- !u!1 &2035042966183415115 stripped
 GameObject:
@@ -317,7 +326,19 @@ MonoBehaviour:
   OnAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6669151947705577211}
+      - m_Target: {fileID: 5127075228573329489}
+        m_TargetAssemblyTypeName: GameModules.Sounds.SoundPlayFeedback, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8501694506785618749}
         m_TargetAssemblyTypeName: GameModules._Script.Agent.PlayParticle, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 0
@@ -332,7 +353,7 @@ MonoBehaviour:
   <SortingRule>k__BackingField: {fileID: 11400000, guid: 8cb240d76d7f77746ace7f0e8dff4231, type: 2}
   speedIncreaseAmount: 1
   buffDuration: 1
---- !u!114 &6669151947705577211
+--- !u!114 &8501694506785618749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -346,7 +367,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameModules._Script.Agent.PlayParticle
   PlayParticleEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2684220317736039759}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5127075228573329489 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8510266511719403665, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}
+  m_PrefabInstance: {fileID: 3548147714160163008}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244139f55c6c1db42aaa643cc3374f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameModules.Sounds.SoundPlayFeedback
 --- !u!4 &7611944734025438784 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6385685271519473280, guid: 51c36310efb9abc4badd33bfcbc8af82, type: 3}

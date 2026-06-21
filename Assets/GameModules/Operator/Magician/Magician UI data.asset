@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Magician UI data
   m_EditorClassIdentifier: Assembly-CSharp::AgentUIDataSO
   portrait: {fileID: 21300000, guid: 983541e7068294f4d90c464ac1e32ee5, type: 3}
-  agentName: "\uBB34\uB9BC \uACE0\uC218"
+  agentName: "\uC5F0\uAE08\uC220\uC0AC"
   skillIcon: {fileID: 21300000, guid: 14713c4133a327f4783ae2b502c463d0, type: 3}
-  skillDesc: "\uBC94\uC704 \uB0B4 \uC2DC\uBBFC\uC774 \uC788\uC744 \uB54C, \uAD11\uC5ED\uC73C\uB85C
-    \uC2DC\uBBFC\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+  skillDesc: "\uBC94\uC704 \uB0B4 \uB2EC\uAC40\uC774 \uC788\uC744 \uB54C, \uAD11\uC5ED\uC73C\uB85C
+    \uB2EC\uAC40\uC744 \uD68C\uBCF5"
   skillName: "\uCE58\uC720 \uD3ED\uBC1C"
   cost: 16
   respawnTimer: 40

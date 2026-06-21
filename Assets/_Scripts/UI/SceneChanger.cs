@@ -16,10 +16,10 @@ namespace _Scripts.UI
         public void NextScene()
         {
             StopAllCoroutines();
-            if(isChangeNextData)
+            if(isChangeNextData && MapDataHolder.Instance != null)
                 MapDataHolder.Instance.ChangeNextData();
             
-            if (MapDataHolder.Instance.HoldData == null)
+            if (MapDataHolder.Instance != null && MapDataHolder.Instance.HoldData == null)
             {
                 uiEventChannel.RaiseEvent(UIEvents.AlarmUI.Init("다음 스테이지가 없습니다."));
                 return;
@@ -54,6 +54,10 @@ namespace _Scripts.UI
         {
             int curIdx = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(curIdx);
+        }
+        public void SelectScene()
+        {
+            SceneManager.LoadScene(1);
         }
     }
 }
