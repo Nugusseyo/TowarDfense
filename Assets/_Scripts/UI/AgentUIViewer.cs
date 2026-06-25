@@ -60,10 +60,13 @@ namespace _Scripts.UI
         private CanvasGroup _uiParentCG;
         private CanvasGroup _worldCanvasCG;
 
-        private const string HEALER = "치유가";
-        private const string TANKER = "선봉가";
+        private const string EGGHEALER = "달걀 힐러";
+        private const string OPHEALER = "요원 힐러";
+        private const string TANKER = "탱커";
         private const string SURPPORT = "지원가";
-        private const string NONE = "적군";
+        private const string DEALER = "공격수";
+        private const string ENEMY = "적군";
+        private const string NONE = "???";
 
         private void Awake()
         {
@@ -171,9 +174,12 @@ namespace _Scripts.UI
             agentName.text = data.agentName;
             agentPosition.text = data.playerType switch
             {
-                PlayerType.HEALER => HEALER,
+                PlayerType.EGGHEALER => EGGHEALER,
                 PlayerType.TANKER => TANKER,
                 PlayerType.SURPPORT => SURPPORT,
+                PlayerType.OPHEALER => OPHEALER,
+                PlayerType.DEALER => DEALER,
+                PlayerType.ENEMY => ENEMY,
                 _ => NONE
             };
             portrait.sprite = data.portrait;
@@ -280,9 +286,12 @@ namespace _Scripts.UI
             
             agentPosition.text = data.playerType switch
             {
-                PlayerType.HEALER => HEALER,
+                PlayerType.EGGHEALER => EGGHEALER,
                 PlayerType.TANKER => TANKER,
                 PlayerType.SURPPORT => SURPPORT,
+                PlayerType.OPHEALER => OPHEALER,
+                PlayerType.DEALER => DEALER,
+                PlayerType.ENEMY => ENEMY,
                 _ => NONE
             };
             

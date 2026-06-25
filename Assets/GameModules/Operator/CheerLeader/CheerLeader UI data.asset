@@ -20,4 +20,4 @@ MonoBehaviour:
   cost: 8
   respawnTimer: 40
   health: 900
-  playerType: 0
+  playerType: 3

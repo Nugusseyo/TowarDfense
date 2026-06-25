@@ -28,8 +28,10 @@ public class AgentUIDataSO : ScriptableObject
 
 public enum PlayerType
 {
-    HEALER,
+    EGGHEALER,
+    OPHEALER,
     TANKER,
     SURPPORT,
+    DEALER,
     ENEMY
 }

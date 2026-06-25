@@ -21,4 +21,4 @@ MonoBehaviour:
   cost: 99
   respawnTimer: 90
   health: "\u221E"
-  playerType: 3
+  playerType: 5
