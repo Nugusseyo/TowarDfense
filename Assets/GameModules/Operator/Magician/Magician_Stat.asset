@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae489dc93416ae478c26d720832e98f, type: 3}
   m_Name: Magician_Stat
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Agent.Player.OperatorStatusSO
-  <DetectRadius>k__BackingField: 8
+  <DetectRadius>k__BackingField: 10
   <StartAttackDelay>k__BackingField: 0.5
-  <NormalAttackCooldown>k__BackingField: 2
+  <NormalAttackCooldown>k__BackingField: 1.5
   <SkillAttackCooldown>k__BackingField: 15
   <MaxTargetCount>k__BackingField: 3
   <AttackCount>k__BackingField: 2
-  <Damage>k__BackingField: 200
+  <Damage>k__BackingField: 300
+  <RespawnDelay>k__BackingField: 20

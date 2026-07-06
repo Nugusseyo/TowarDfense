@@ -15,9 +15,6 @@ namespace _Scripts.UI
         [field: SerializeField] public GameObject ViewParent { get; private set; }
         [field: SerializeField] public GameObject WinInfo { get; private set; }
         [field: SerializeField] public GameObject LostInfo { get; private set; }
-
-        [SerializeField] private Image backGroundImage;
-        [SerializeField] private Button nextButton;
         
         [SerializeField] private float fadeDuration = 0.5f;
 
@@ -32,7 +29,6 @@ namespace _Scripts.UI
             _sceneChanger = GetComponent<SceneChanger>();
             
             GameEventChannelSO.AddListener<GameEndEvent>(HandleResultEvent);
-            nextButton.onClick.AddListener(HandleNextButtonClick);
             ViewParent.SetActive(false);
             WinInfo.SetActive(false);
             LostInfo.SetActive(false);
@@ -40,21 +36,8 @@ namespace _Scripts.UI
         private void OnDestroy()
         {
             GameEventChannelSO.RemoveListener<GameEndEvent>(HandleResultEvent); //WaveView에서 쓰는중.
-            if (nextButton != null)
-                nextButton.onClick.RemoveListener(HandleNextButtonClick);
-            
             _canvasGroup.DOKill();
         }
-        
-        private void HandleNextButtonClick()
-        {
-            if (_isActive) return;
-            _isActive = true;           //한번만 야르딱딱 누르게 해줘야지.
-            
-            //ScreenEffectManager.Instance.ScreenFade(true, 0.25f, true);
-            Debug.Log("버튼 눌리긴 하네;");
-        }
-
 
         //IsLost다. 졌으면 True고 아니면 False다. 너는 할 수 있어 야르
         private void HandleResultEvent(GameEndEvent evt)

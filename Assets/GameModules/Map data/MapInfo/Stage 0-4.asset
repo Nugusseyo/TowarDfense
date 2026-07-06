@@ -17,8 +17,9 @@ MonoBehaviour:
   <Index>k__BackingField: 6
   <SubTitle>k__BackingField: "\uB05D"
   <WaveCount>k__BackingField: 4
-  <EnemyCount>k__BackingField: 14
+  <EnemyCount>k__BackingField: 5
   <LifeCount>k__BackingField: 1
   <BigStageNumber>k__BackingField: 0
   <SmallStageNumber>k__BackingField: 4
   <HoldOperatorList>k__BackingField: {fileID: 11400000, guid: 6024e5dc22c38d24aab5b4f586248004, type: 2}
+  <NextMapData>k__BackingField: {fileID: 0}

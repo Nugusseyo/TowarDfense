@@ -47,13 +47,5 @@ namespace _Scripts.Managers.LifeManager
             OnLifeDamaged.RemoveAllListeners();
             OnLifeChanged = null;
         }
-        
-        private void Update()
-        {
-            if (Keyboard.current.escapeKey.wasPressedThisFrame)
-            {
-                CurrentLife = 0;
-            }
-        }
     }
 }

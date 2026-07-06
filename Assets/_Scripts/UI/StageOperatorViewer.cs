@@ -8,6 +8,7 @@ namespace _Scripts.UI
 {
     public class StageOperatorViewer : MonoSingleton<StageOperatorViewer>
     {
+        [field: SerializeField] public InputSO PlayerInputSO { get; private set; }
         [SerializeField] private UnityEngine.Video.VideoPlayer videoPlayer;
         [SerializeField] private GameObject videoPopUp;
 
@@ -37,6 +38,8 @@ namespace _Scripts.UI
             videoPlayer.isLooping = true;
             videoPlayer.clip = clip;
             videoPlayer.Play();
+
+            PlayerInputSO.ChangeInput(true);
         }
         
         public void StopTutorialVideo()
@@ -46,6 +49,7 @@ namespace _Scripts.UI
                 videoPlayer.Stop();
             }
             videoPopUp.SetActive(false);
+            PlayerInputSO.ChangeInput(false);
         }
     }
 }

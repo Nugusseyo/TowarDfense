@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Script.ScriptableObject.Event;
+using _Scripts.Agent.Tower;
 using _Scripts.Managers.Board;
 using TMPro;
 using UnityEngine;
@@ -20,7 +21,7 @@ namespace _Scripts.UI
         [SerializeField] private EventChannelSO gameEventChannel;
         [SerializeField] private Button skillBtn;
         
-        private readonly WaitForSeconds _waitSecond = new  WaitForSeconds(5f);
+        private readonly WaitForSeconds _waitSecond = new  WaitForSeconds(3f);
         private bool _trigger = false;
 
         [SerializeField] private GameObject crossBow;
@@ -61,7 +62,7 @@ namespace _Scripts.UI
             
             _trigger = false;
             tutorialText.text = "하단 바에서 요원을 클릭하거나, 배치된 요원을 클릭하면\n요원에 대한 정보를 얻을 수 있습니다.";
-            yield return new WaitForSeconds(8f);
+            yield return new WaitForSeconds(5f);
             
             tutorialText.text = "필드의 초록색 칸에 요원을 배치해보세요.";
             BoardManager.Instance.OnOperatorCountChanged += HandleOperatorChange;
@@ -70,7 +71,7 @@ namespace _Scripts.UI
             
             _trigger = false;
             tutorialText.text = "게임의 목표는 요원을 배치해 달걀을 지키는 것입니다.";
-            yield return new WaitForSeconds(6f);
+            yield return new WaitForSeconds(4f);
 
             tutorialText.text = "요원 체력 아래의 파란색 바는 스킬 게이지입니다.";
             yield return _waitSecond;
@@ -79,9 +80,6 @@ namespace _Scripts.UI
             skillBtn.onClick.AddListener(HandleSkillBtnClick);
             yield return new WaitUntil(() => _trigger);
             _trigger = false;
-
-            tutorialText.text = "좋습니다.";
-            yield return _waitSecond;
             
             tutorialText.text = "스킬의 자세한 내용은 좌측에 나오는 요원 정보란에 있습니다.";
             yield return _waitSecond;
@@ -97,18 +95,23 @@ namespace _Scripts.UI
             tutorialText.text = "노란색 칸에는 타워(적)이 나와 달걀을 공격하게 됩니다.";
             yield return _waitSecond;
             
-            Instantiate(crossBow, new Vector3(5, 3, 1), Quaternion.identity);
+            Tower tower = Instantiate(crossBow, new Vector3(5, 3, 1), Quaternion.identity).GetComponent<Tower>();
             yield return _waitSecond;
             tutorialText.text = "타워는 웨이브가 지날수록 점점 강해집니다.";
             yield return _waitSecond;
             
-            tutorialText.text = "상황에 맞는 요원을 이용해 승리하세요!";
-            Instantiate(opHealer, new Vector3(1, 3, -3), Quaternion.identity);
-            yield return new WaitForSeconds(1.5f);
-            Instantiate(magician, new Vector3(5, 3, -1), Quaternion.identity);
-            yield return new WaitForSeconds(1.5f);
+            tutorialText.text = "\"진화체\" 요원을 소환해 타워를 공격하세요.";
             Instantiate(bowwow, new Vector3(5, 3, 5), Quaternion.identity);
-            yield return new WaitForSeconds(6f);
+            yield return new WaitForSeconds(3f);
+            tutorialText.text = "\"의무병\" 요원을 소환해 요원을 회복하세요.";
+            Instantiate(opHealer, new Vector3(1, 3, -3), Quaternion.identity);
+            yield return new WaitForSeconds(4f);
+            tutorialText.text = "\"연금술사\" 요원으로 달걀을 회복할 수 있습니다.";
+            Instantiate(magician, new Vector3(5, 3, -1), Quaternion.identity);
+            yield return new WaitForSeconds(4f);
+            tutorialText.text = "\"연금술사\" 요원과 \"의무병\" 요원의 역할을 혼동하지 말아주시길 바랍니다.";
+            yield return new WaitForSeconds(5f);
+            
             tutorialText.text = "행운을 빕니다.";
             gameEventChannel.RaiseEvent(InGameEvents.GameEndEvent.Init(false));
         }

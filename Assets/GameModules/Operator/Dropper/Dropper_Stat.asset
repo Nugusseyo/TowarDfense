@@ -19,3 +19,4 @@ MonoBehaviour:
   <MaxTargetCount>k__BackingField: 20
   <AttackCount>k__BackingField: 20
   <Damage>k__BackingField: 1000
+  <RespawnDelay>k__BackingField: 5

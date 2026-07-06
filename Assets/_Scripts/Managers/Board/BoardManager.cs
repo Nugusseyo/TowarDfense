@@ -30,6 +30,8 @@ namespace _Scripts.Managers.Board
         
         private int _curOperatorIndex = -1;
 
+        private List<OperatorWrapper> _operatorList = new List<OperatorWrapper>();
+
         public Grid Grid { get; private set; }
 
         private bool _isSpawning = false;
@@ -61,8 +63,11 @@ namespace _Scripts.Managers.Board
         private void Start()
         {
             CurrentOperatorCount = MaxOperatorCount;
-            if(MapDataHolder.Instance != null)
+            if (MapDataHolder.Instance != null)
+            {
                 HoldOperatorListSO = MapDataHolder.Instance.HoldData.HoldOperatorList;
+                _operatorList = new List<OperatorWrapper>(HoldOperatorListSO.GetOperators()); 
+            }
         }
         
         private void Update()

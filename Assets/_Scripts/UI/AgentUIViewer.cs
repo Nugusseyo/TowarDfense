@@ -106,6 +106,7 @@ namespace _Scripts.UI
 
         private void HandleSkillButtonClick()
         {
+            if (_curOperator.HealthModule.IsDead) return;
             _curAttackModule.UseSkill();
             
             _uiParentCG.DOKill();

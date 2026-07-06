@@ -48,6 +48,7 @@ namespace _Scripts.UI
             if (!Buttons.TryGetValue(index, out CharacterButton charBtn)) return;
 
             charBtn.gameObject.SetActive(isActive);
+            charBtn.CooldownCharacter(HoldOperator.GetOperator(index).operatorPrefab.AgentStatusSO.RespawnDelay);
         }
     }
 }

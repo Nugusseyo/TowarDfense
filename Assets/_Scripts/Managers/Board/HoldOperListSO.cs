@@ -17,6 +17,11 @@ namespace _Scripts.Managers.Board
         {
             return operators[index];
         }
+
+        public List<OperatorWrapper> GetOperators()
+        {
+            return operators;
+        }
     }
     
     [Serializable]

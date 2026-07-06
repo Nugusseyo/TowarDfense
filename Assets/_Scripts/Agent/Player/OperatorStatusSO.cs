@@ -12,6 +12,7 @@ namespace _Scripts.Agent.Player
         [field: SerializeField] public int MaxTargetCount { get; private set; } = 2;
         [field: SerializeField] public int AttackCount { get; private set; } = 1;
         [field: SerializeField] public int Damage { get; private set; } = 200;
+        [field: SerializeField] public float RespawnDelay { get; private set; } = 30f;
 
         public void SetDamage(int damage)
         {
